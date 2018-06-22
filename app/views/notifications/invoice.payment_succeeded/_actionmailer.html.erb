@@ -1,0 +1,5 @@
+<p><%= t('d.hello') %> <%= notification.object.user.name %>,</p>
+
+<p><%= t('notifications.invoice_payment_succeeded.content.main', payment: notification.object.name) %></p>
+
+<p><%= link_to t('notifications.invoice_payment_succeeded.content.link'), account_url %></p>

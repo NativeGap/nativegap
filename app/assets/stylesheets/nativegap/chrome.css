@@ -1,0 +1,6 @@
+/*
+ * Use this file to import your platform specific stylesheets.
+ *
+ *= require_tree ./chrome
+ *= require_self
+ */

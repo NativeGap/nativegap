@@ -1,0 +1,7 @@
+de:
+    pwa:
+        offline:
+            title: Du bist offline ...
+            content: Diese Seite haben wir noch nicht für Dich gespeichert. Du kannst später mit einer Internetverbindung zurückkehren.
+            open_dashboard: Dashboard öffnen
+            open_nativegap: NativeGap öffnen

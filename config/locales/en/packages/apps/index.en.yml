@@ -1,0 +1,11 @@
+en:
+    apps:
+        index:
+            apps:
+                new:
+                    title: Build an app
+                    content: It only takes a couple of minutes.
+            no_apps:
+                new:
+                    title: Build your first app
+                    content: It only takes a couple of minutes.

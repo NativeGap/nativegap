@@ -1,0 +1,19 @@
+= component 'myg/form-field', as: :input, attribute: :background, class_name: 'app', label: t('apps._design.background'), input_html: { required: true, value: @app.background, placeholder: '#FFFFFF', minlength: 7, maxlength: 7 }
+= component 'myg/form-field', as: :input, attribute: :color, class_name: 'app', label: t('apps._design.color'), input_html: { required: true, value: @app.color, placeholder: '#000000', minlength: 7, maxlength: 7 }
+= component 'myg/form-field', as: :input, attribute: :accent, class_name: 'app', label: t('apps._design.accent'), input_html: { required: true, value: @app.accent, placeholder: '#0000FF', minlength: 7, maxlength: 7 }
+
+%h3.sm Splash screen
+= component 'myg/form-field', as: :input, attribute: :splash_screen_background, class_name: 'app', label: t('apps._design.splash_screen_background'), input_html: { value: @app.splash_screen_background, placeholder: '#FFFFFF', minlength: 7, maxlength: 7 }
+= component 'myg/form-field', as: :input, attribute: :splash_screen_color, class_name: 'app', label: t('apps._design.splash_screen_color'), input_html: { value: @app.splash_screen_color, placeholder: '#000000', minlength: 7, maxlength: 7 }
+= component 'myg/form-field', as: :input, attribute: :splash_screen_transition_duration, class_name: 'app', label: [t('apps._design.splash_screen_transition_duration.title'), t('apps._design.splash_screen_transition_duration.content')], input_html: { value: @app.splash_screen_transition_duration, placeholder: '350', minlength: 1, maxlength: 4 }
+= component 'myg/form-field', as: :input, attribute: :splash_screen_logo_height, class_name: 'app', label: [t('apps._design.splash_screen_logo_height.title'), t('apps._design.splash_screen_logo_height.content')], input_html: { value: @app.splash_screen_logo_height, placeholder: '50', minlength: 2, maxlength: 3 }
+= component 'myg/form-field', as: :checkbox, attribute: :splash_screen_loader, class_name: 'app', inline_label: [t('apps._design.splash_screen_loader.title'), t('apps._design.splash_screen_loader.content')], input_html: { input_html: { checked: @app.splash_screen_loader } }
+
+%h3.sm Statusbar
+= component 'myg/form-field', as: :checkbox, attribute: :statusbar_hide, class_name: 'app', inline_label: [t('apps._design.statusbar_hide.title'), t('apps._design.statusbar_hide.content')], input_html: { input_html: { checked: @app.statusbar_hide } }
+
+%h3.sm Device orientations
+= component 'myg/form-field', as: :checkbox, attribute: :orientation_portrait, class_name: 'app', inline_label: t('apps._design.orientation_portrait'), input_html: { input_html: { checked: @app.orientation_portrait } }
+= component 'myg/form-field', as: :checkbox, attribute: :orientation_portrait_flipped, class_name: 'app', inline_label: t('apps._design.orientation_portrait_flipped'), input_html: { input_html: { checked: @app.orientation_portrait_flipped } }
+= component 'myg/form-field', as: :checkbox, attribute: :orientation_landscape, class_name: 'app', inline_label: t('apps._design.orientation_landscape'), input_html: { input_html: { checked: @app.orientation_landscape } }
+= component 'myg/form-field', as: :checkbox, attribute: :orientation_landscape_flipped, class_name: 'app', inline_label: t('apps._design.orientation_landscape_flipped'), input_html: { input_html: { checked: @app.orientation_landscape_flipped } }

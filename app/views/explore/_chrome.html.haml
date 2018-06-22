@@ -1,0 +1,3 @@
+.myg-grid
+    - App.where(visibility: 'public').where.not(chrome: nil)&.each do |app|
+        = render app

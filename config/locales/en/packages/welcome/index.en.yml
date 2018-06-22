@@ -1,0 +1,25 @@
+en:
+    welcome:
+        index:
+            title: Your website, in your customers pocket.
+            content: Converting your Web App to mobile & desktop platforms has never been easier. Bring your app into all major app stores in just a few minutes!
+            get_started: Get started
+            explore:
+                title: You are not alone
+                content: NativeGap is being used to build and distribute some of the best apps out there.
+                button: Explore apps
+            features:
+                enlighten_your_users:
+                    title: Enlighten your users
+                    content: Always be one tap away from your users. Use powerful features such as push notifications to increase engagement. Craft a consistent design across all of the touchpoints your customers have with your brand.
+                one_app:
+                    title: One app, all markets
+                    content: NativeGap allows you to focus on maintaining a georgeous web app without sacrificing accessibility and visibility on mobile & desktop platforms. Shift your resources towards building one great app, and then share it with everyone.
+                consistent_and_beautiful:
+                    title: Consistent & Beautiful across all platforms
+                    content: Craft beautiful native apps, which embrace your brand's design language. Because of the deep level of customizability you can increase conversions by creating a strong and consistent visual identity for all of your customers on all platforms.
+                from_a_website_to_an_app:
+                    title: From a website to an app in 5 minutes
+                    content: With NativeGap you enter a link, upload some images, choose colors, set user experience preferences and voila, after a few more minutes of processing, your app is ready to be published on all the platforms you'll ever need.
+            pricing:
+                content: Our unmatched pricing allows you to get started entirely for free.

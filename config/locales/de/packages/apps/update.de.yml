@@ -1,0 +1,5 @@
+de:
+    apps:
+        update:
+            success: App aktualisiert
+            error: Wir konnten Deine App nicht aktualisieren

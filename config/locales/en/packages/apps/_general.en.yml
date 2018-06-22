@@ -1,0 +1,10 @@
+en:
+    apps:
+        _general:
+            path: Start path (optional)
+            globalization:
+                title: Globalization (optional)
+                content: The name of the parameter specifying the ISO 639-1 code of the users language.
+            branding:
+                title: Branding
+                content: Enable NativeGap branding inside of your app. This setting is only being considered after you upgraded your app to a paid plan.

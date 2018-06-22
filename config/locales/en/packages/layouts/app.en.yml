@@ -1,0 +1,10 @@
+en:
+    layouts:
+        app:
+            choose_an_app: Choose an app ...
+            build_app: Build your first app
+            apps:
+                all_apps: All apps
+                build_app: Build an app
+            account:
+                install_app: Install the app

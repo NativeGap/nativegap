@@ -1,0 +1,22 @@
+= component 'modalist', title: t('apps.builds.key.title') do
+    = component 'modalist/closer'
+
+- if @build.key_needed?
+    %h2= t('apps.builds.key.key_needed.title')
+    %p= t('apps.builds.key.key_needed.content', link: link_to(t('apps.builds.key.key_needed.link'), Settings.nativegap.medium.help, target: '_blank')).html_safe
+- else
+    %h2= t('apps.builds.key.no_key_needed.title')
+    %p= t('apps.builds.key.no_key_needed.content')
+
+= simple_form_for @build, url: app_apps_build_url(@build.app.slug, @build.id), method: :put, html: { multipart: true } do |f|
+    - if @build.platform == 'android'
+        = component 'myg/form-field', as: :input, attribute: :android_key_alias, class_name: 'app_build', floating_label: t('apps.builds.key.form.android_key_alias'), input_html: { required: true, value: @build.android_key_alias }
+        = component 'myg/form-field', as: :input, attribute: :android_key_password, class_name: 'app_build', floating_label: t('apps.builds.key.form.android_key_password'), input_html: { required: true, type: 'password', value: @build.android_key_password }
+        = component 'myg/form-field', as: :input, file: t('apps.builds.key.form.no_file_chosen'), attribute: :android_keystore, class_name: 'app_build', label: [t('apps.builds.key.form.android_keystore.title'), t('apps.builds.key.form.android_keystore.content')], input_html: { required: true }
+        = component 'myg/form-field', as: :input, attribute: :android_keystore_password, class_name: 'app_build', floating_label: t('apps.builds.key.form.android_keystore_password'), input_html: { required: true, type: 'password', value: @build.android_keystore_password }
+    - elsif @build.platform == 'ios'
+        = component 'myg/form-field', as: :input, file: t('apps.builds.key.form.no_file_chosen'), attribute: :ios_profile, class_name: 'app_build', label: [t('apps.builds.key.form.ios_profile.title'), t('apps.builds.key.form.ios_profile.content')], input_html: { required: true }
+        = component 'myg/form-field', as: :input, file: t('apps.builds.key.form.no_file_chosen'), attribute: :ios_cert, class_name: 'app_build', label: [t('apps.builds.key.form.ios_cert.title'), t('apps.builds.key.form.ios_cert.content')], input_html: { required: true }
+        = component 'myg/form-field', as: :input, attribute: :ios_cert_password, class_name: 'app_build', floating_label: t('apps.builds.key.form.ios_cert_password'), input_html: { required: true, type: 'password', value: @build.ios_cert_password }
+    .flex.reverse
+        = component 'myg/button', value: t('apps.builds.key.form.add_signing_key')

@@ -1,0 +1,14 @@
+- meta title: @user.publisher
+
+%section#main
+    %h1.sm= @user.publisher
+    - if @user.url
+        .myg-button--container
+            = link_to t('users.show.visit_my_website'), @user.url, target: '_blank', class: 'myg-button myg-button--secondary'
+    - unless @apps.any?
+        %p= t('users.show.no_apps')
+
+- if @apps.any?
+    %section#apps.myg-grid.myg-wrap--tablet
+        - @apps.each do |app|
+            = render app

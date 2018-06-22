@@ -1,0 +1,7 @@
+de:
+    devise:
+        registrations:
+            _tabs:
+                title: Dein Account
+                content: Bearbeite Dein Profil, Kontaktdetails & Bezahlinformationen.
+                error: Ein Fehler ist aufgetreten

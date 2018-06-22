@@ -1,0 +1,26 @@
+.myg-grid.myg-wrap--tablet
+    .myg-card
+        %h1.sm $0
+        %h3= t('d.free')
+        %p.sm= t('welcome._android.free.content')
+        %p.sm= t('welcome._android.free.features')
+        .license
+            %p.sm= t('welcome._android.free.license')
+    .myg-card
+        %h1.sm
+            = "$#{Settings.nativegap.pricing.android.starter}"
+            %span= t('welcome._android.per_year')
+        %h3= t('d.starter')
+        %p.sm= t('welcome._android.starter.content')
+        %p.sm= t('welcome._android.starter.features')
+        .license
+            %p.sm= t('welcome._android.starter.license')
+    .myg-card
+        %h1.sm
+            = "$#{Settings.nativegap.pricing.android.pro}"
+            %span= t('welcome._android.per_year')
+        %h3= t('d.professional')
+        %p.sm= t('welcome._android.professional.content')
+        %p.sm= t('welcome._android.professional.features')
+        .license
+            %p.sm= t('welcome._android.professional.license')

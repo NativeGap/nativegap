@@ -1,0 +1,6 @@
+de:
+    devise:
+        passwords:
+            edit:
+                title: Passwort aktualisieren
+                content: Gib ein neues Passwort ein, um Deinen Account erneut verwenden zu können.

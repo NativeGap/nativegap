@@ -1,0 +1,24 @@
+en:
+    apps:
+        _design:
+            background: Background color
+            color: Text color
+            accent: Accent color
+            splash_screen_background: Background color (optional)
+            splash_screen_color: Text color (optional)
+            splash_screen_transition_duration:
+                title: Transition duration (optional)
+                content: Duration of transitions on the splash screen in miliseconds.
+            splash_screen_logo_height:
+                title: Logo height (optional)
+                content: Height of your app's logo on the splash screen in pixels.
+            splash_screen_loader:
+                title: Show loader
+                content: Display a spinning loader on the splash screen.
+            statusbar_hide:
+                title: Hide statusbar
+                content: Automatically hides the statusbar when your app launches. It remains accessible by swiping down from the top edge of the screen.
+            orientation_portrait: Portrait
+            orientation_portrait_flipped: Portrait flipped
+            orientation_landscape: Landscape
+            orientation_landscape_flipped: Landscape flipped

@@ -1,0 +1,21 @@
+= simple_form_for resource, as: resource_name, url: account_url, html: { method: :put } do |f|
+
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', value: current_user.email }
+    = component 'myg/form-field', as: :input, attribute: :first_name, class_name: 'user', floating_label: t('devise.registrations._edit.first_name'), input_html: { required: true, value: current_user.first_name }
+    = component 'myg/form-field', as: :input, attribute: :last_name, class_name: 'user', floating_label: t('devise.registrations._edit.last_name'), input_html: { required: true, value: current_user.last_name }
+    = component 'myg/form-field', as: :input, attribute: :publisher_name, class_name: 'user', floating_label: t('devise.registrations._edit.publisher_name'), input_html: { value: current_user.publisher_name }
+    = component 'myg/form-field', as: :input, attribute: :url, class_name: 'user', floating_label: t('devise.registrations._edit.url'), input_html: { value: current_user.url, type: 'url' }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('devise.registrations._edit.password'), input_html: { minlength: 5, type: 'password' }
+    = component 'myg/form-field', as: :input, attribute: :current_password, class_name: 'user', floating_label: t('devise.registrations._edit.current_password'), input_html: { required: true, minlength: 5, type: 'password' }
+
+    %h3.sm Notifications
+    = component 'myg/form-field', as: :checkbox, attribute: :build_notifications, class_name: 'user', inline_label: t('devise.registrations._edit.build_notifications'), input_html: { input_html: { checked: current_user.build_notifications } }
+    = component 'myg/form-field', as: :checkbox, attribute: :update_notifications, class_name: 'user', inline_label: t('devise.registrations._edit.update_notifications'), input_html: { input_html: { checked: current_user.update_notifications } }
+    .myg-button--container.hidden
+        = link_to t('devise.registrations._edit.enable_notifications'), notify_url, class: 'modalist--trigger myg-button myg-button--secondary'
+
+    %h3.sm Explore
+    = component 'myg/form-field', as: :checkbox, attribute: :visibility, class_name: 'user', inline_label: t('devise.registrations._edit.visibility.content', link: link_to(t('devise.registrations._edit.visibility.link'), user_url(current_user))).html_safe, input_html: { values: ['private', 'public'], input_html: { checked: current_user.visibility == 'public' } }
+
+    .flex.reverse
+        = component 'myg/button', value: t('d.update')

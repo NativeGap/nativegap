@@ -1,0 +1,11 @@
+- meta title: t('devise.passwords.new.title')
+
+%h2= t('devise.passwords.new.title')
+%p= t('devise.passwords.new.content')
+
+= simple_form_for resource, as: resource_name, url: password_url do |f|
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', autofocus: true }
+    .flex.space-between
+        %p.sm
+            = link_to t('devise.passwords.new.try_to_login'), new_user_session_url, class: 'hyperlink--inherit', data: { turbolinks_animate_type: 'devise' }
+        = component 'myg/button', value: t('d.proceed')

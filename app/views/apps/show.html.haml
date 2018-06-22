@@ -1,0 +1,10 @@
+- meta title: @app.name
+
+%section#head
+    %h1.sm= @app.name
+    %p= @app.description
+    %p.sm
+        %span= link_to @app.start_url, @app.start_url, target: '_blank', class: 'hyperlink--inherit'
+        %span= t('apps.show.created', time: time_ago_in_words(@app.created_at))
+
+= component 'myg/tabs', tabs: @tabs

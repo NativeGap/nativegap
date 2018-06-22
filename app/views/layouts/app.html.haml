@@ -1,0 +1,87 @@
+- replace :layout, 'app'
+- replace :body_class, 'myg-layout--toolbar'
+
+= mozaic do
+
+    = component 'confirm'
+
+    = component 'myg/toolbar', class: 'myg-toolbar--flexible', data: { turbolinks_animate_persist: 'app' } do
+        .mdc-toolbar__row
+            - if current_user
+                %section.mdc-toolbar__section.mdc-toolbar__section--align-start
+                    - if current_user.apps.any?
+                        = link_to 'javascript:void(0)', class: 'preventdefault', id: 'apps-dropdown' do
+                            - if @app && @app.created_at
+                                = image_tag @app.icon.url
+                                = @app.name
+                            - else
+                                = t('layouts.app.choose_an_app')
+                            = asset 'components/dropdown/toggle'
+                    - else
+                        = link_to t('layouts.app.build_app'), new_app_url, data: { turbolinks_animate_type: 'app' }
+            %section.mdc-toolbar__section.mdc-toolbar__section--align-center
+                - if current_user
+                    = link_to apps_url, data: { turbolinks_animate_type: 'app' } do
+                        = asset 'components/brand/logo'
+                - else
+                    = link_to root_url do
+                        = asset 'components/brand/logo'
+            - if current_user
+                %section.mdc-toolbar__section.mdc-toolbar__section--align-end.mobile
+                    = link_to 'javascript:void(0)', class: 'preventdefault' do
+                        = asset 'components/drawer/toggle'
+                %section.mdc-toolbar__section.mdc-toolbar__section--align-end
+                    = link_to 'javascript:void(0)', class: 'preventdefault', id: 'account-dropdown' do
+                        = current_user.name
+                        = asset 'components/dropdown/toggle'
+
+    - if current_user
+        - if current_user.apps.any?
+            .myg-dropdown{ data: { myg_dropdown_reference: '#apps-dropdown', myg_dropdown_placement: 'bottom-start' } }
+                - current_user.apps.order('updated_at desc').limit(4).each do |app|
+                    - if app.created_at
+                        %p.sm
+                            = link_to app, class: 'flex center--c', data: { turbolinks_animate_type: 'app' } do
+                                = image_tag app.icon.url
+                                = app.name
+                %hr
+                - if current_user.apps.size > 4
+                    %p.sm= link_to t('layouts.app.apps.all_apps'), apps_url, data: { turbolinks_animate_type: 'app' }
+                %p.sm= link_to t('layouts.app.apps.build_app'), new_app_url, data: { turbolinks_animate_type: 'app' }
+
+        .myg-dropdown{ data: { myg_dropdown_reference: '#account-dropdown', myg_dropdown_placement: 'bottom-end' } }
+            %p.sm= link_to t('d.help'), Settings.nativegap.medium.help, target: '_blank'
+            %hr
+            - if current_user
+                %p.sm= link_to t('d.account'), edit_user_registration_url, data: { turbolinks_animate_type: 'app' }
+                - if current_user.visibility == 'public'
+                    %p.sm= link_to t('d.profile'), current_user
+            %p.sm= link_to t('d.language'), language_url, class: 'modalist--trigger'
+            - if @nativegap.present?
+                %p.sm= link_to t('layouts.app.account.install_app'), app_explore_url(@nativegap)
+            - if current_user
+                %p.sm= link_to t('signout'), destroy_user_session_path, method: :delete
+
+        = component 'myg/drawer' do
+            %nav.mdc-drawer__drawer
+                %nav.mdc-drawer__content
+                    - if current_user
+                        = link_to t('layouts.app.apps.all_apps'), apps_url, data: { turbolinks_animate_type: 'app' }
+                        = link_to t('d.account'), edit_user_registration_url, data: { turbolinks_animate_type: 'app' }
+                        - if current_user.visibility == 'public'
+                            = link_to t('d.profile'), current_user
+                    - else
+                        = link_to t('d.login'), new_user_session_url
+                        = link_to t('d.signup'), new_user_registration_url
+                    = link_to t('d.language'), language_url, class: 'modalist--trigger'
+                    - if @nativegap.present?
+                        = link_to t('layouts.app.account.install_app'), app_explore_url(@nativegap)
+                    = link_to t('d.help'), Settings.nativegap.medium.help, target: '_blank'
+                    - if current_user
+                        %p.sm= link_to t('signout'), destroy_user_session_path, method: :delete
+                %nav.mdc-drawer__footer
+                    = link_to t('layouts.app.build_app'), new_app_url, class: 'myg-button myg-button--dense', data: { turbolinks_animate_type: 'app' }
+
+    .myg-content
+        = mozaic_area :app do
+            = yield

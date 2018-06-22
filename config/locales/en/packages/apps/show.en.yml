@@ -1,0 +1,4 @@
+en:
+    apps:
+        show:
+            created: created %{time}

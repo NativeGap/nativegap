@@ -1,0 +1,28 @@
+- meta title: @app.name
+
+%p.sm.nav{ style: "color:#{@app.splash_screen_color}" }= link_to t('explore.show.more'), explore_url, class: 'hyperlink--inherit'
+- if @app.user.visibility == 'public'
+    %p.sm.nav.right{ style: "color:#{@app.splash_screen_color}" }
+        %span= t('explore.show.made_by').html_safe
+        = link_to @app.user.publisher, @app.user, class: 'hyperlink--inherit'
+
+%section#main{ style: "background:#{@app.splash_screen_background}" }
+    = image_tag @app.icon.url
+    %h1.sm{ style: "color:#{@app.splash_screen_color}" }= @app.name
+    %p{ style: "color:#{@app.splash_screen_color}" }
+        %span= @app.description
+    .myg-button--container
+        - if @platforms.length > 1
+            = link_to t('explore.show.install_app'), install_app_explore_url(@app), class: 'modalist--trigger myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
+        - elsif @platforms.length == 1
+            - if @platforms.first == :chrome
+                = link_to t('explore.show.install_extension'), @app.send(@platforms.first), target: '_blank', class: 'myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
+            - else
+                = link_to t('explore.show.install_app'), @app.send(@platforms.first), target: '_blank', class: 'myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
+        - elsif @platforms.length == 0
+            = link_to t('explore.show.learn_more'), @app.url, target: '_blank', class: 'myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
+    %p.sm{ style: "color:#{@app.splash_screen_color}" }
+        - if @app.appetize && @app.builds.where(platform: 'android').first.appetize
+            = link_to t('d.demo'), @app.builds.where(platform: 'android').first.appetize, target: '_blank', class: 'hyperlink--inherit'
+        - if @platforms.length > 0
+            = link_to t('explore.show.learn_more'), @app.url, target: '_blank', class: 'hyperlink--inherit'

@@ -1,0 +1,14 @@
+de:
+    apps:
+        builds:
+            _manage:
+                error:
+                    title: Ein Fehler ist aufgetreten
+                    content: Neustarten des Prozesses kann helfen. Wenn Du diese Nachricht häufiger siehst, %{link}.
+                    contact_us: kontaktiere uns
+                    signing_key:
+                        content: Bitte stelle sicher, dass die Anmeldeinformationen des %{link} korrekt sind.
+                        link: Signierschlüssels
+                edit_signing_key: Signierschlüssel bearbeiten
+                add_signing_key: Signierschlüssel hinzufügen
+                add_splash_screen: Startbildschirm hinzufügen

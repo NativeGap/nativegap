@@ -1,0 +1,4 @@
+de:
+    apps:
+        edit:
+            title: "%{app} bearbeiten"

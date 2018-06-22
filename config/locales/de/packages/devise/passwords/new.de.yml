@@ -1,0 +1,7 @@
+de:
+    devise:
+        passwords:
+            new:
+                title: Passwort vergessen?
+                content: Kein Problem. Stelle Deinen Account wieder her, indem Du ein neues erstellst.
+                try_to_login: Anmelden

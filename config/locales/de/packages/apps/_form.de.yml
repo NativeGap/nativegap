@@ -1,0 +1,10 @@
+de:
+    apps:
+        _form:
+            error: Du hast nicht alle erforderlichen Felder ausgefüllt
+            url:
+                title: URL
+                content: Du kannst die URL nicht mehr ändern, nachdem Du die App erstellt hast.
+                hint:
+                    content: Gehe sicher, dass der <code>X-FRAME-OPTIONS</code>-Header für Seiten der Domain <code>allowall</code> zurückgibt. %{link}.
+                    link: Mehr erfahren

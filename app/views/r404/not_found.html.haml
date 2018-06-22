@@ -1,0 +1,7 @@
+%h1.sm= t('r404.not_found.title')
+%p= t('r404.not_found.content')
+.myg-button--container
+    - if current_user
+        = link_to t('r404.not_found.open_dashboard'), apps_url, class: 'myg-button'
+    - else
+        = link_to t('r404.not_found.open_nativegap'), root_url, class: 'myg-button'

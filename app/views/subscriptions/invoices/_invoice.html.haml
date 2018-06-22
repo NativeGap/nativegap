@@ -1,0 +1,3 @@
+.myg-list--element
+    %h4= "$#{invoice.amount / 100}"
+    %p.sm= t('subscriptions.invoices._invoice.content', platform: invoice.subscription.build.name, subscription: invoice.subscription.name, app: invoice.subscription.build.app.name, date: invoice.created_at.strftime('%B %-d, %Y'))

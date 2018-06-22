@@ -1,0 +1,4 @@
+en:
+    subscriptions:
+        destroy:
+            success: Abonnement beendet

@@ -1,0 +1,10 @@
+= component 'modalist', title: t('apps.builds.version.title') do
+    = component 'modalist/closer'
+
+%h2= t('apps.builds.version.header')
+%p= t('apps.builds.version.content')
+
+= simple_form_for @build, url: app_apps_build_url(@build.app.slug, @build.id) do |f|
+    = component 'myg/form-field', as: :input, attribute: :version, class_name: 'app_build', floating_label: t('d.version'), input_html: { required: true, value: @build.version, placeholder: '1.0.0', minlength: 5 }
+    .flex.reverse
+        = component 'myg/button', value: t('apps.builds.version.rebuild_app')

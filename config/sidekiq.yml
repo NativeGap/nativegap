@@ -1,0 +1,18 @@
+# => http://manuelvanrijn.nl/sidekiq-heroku-redis-calc/
+
+# Set timeout to 8 on Heroku, longer if you manage your own systems.
+development:
+    :timeout: 8
+    :concurrency: 47
+    :queues:
+        - app
+        - cable
+        - carrierwave
+
+production:
+    :timeout: 8
+    :concurrency: 6
+    :queues:
+        - app
+        - cable
+        - carrierwave

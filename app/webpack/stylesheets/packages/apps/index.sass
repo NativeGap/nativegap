@@ -1,0 +1,30 @@
+body.apps.index
+    .myg-content
+        background: color(background, lighter)
+        padding: px(35)
+        +bigger-than(large)
+            padding: px(100) 0
+        +smaller-than(phone)
+            padding: px(20)
+        .myg-card
+            +myg-grid-span(4)
+            +flex--center
+            flex-direction: column
+            text-align: center
+            padding: myg-spacing(md)
+            +smaller-than(phone)
+                padding: px(30) px(20)
+            h3
+                margin: px(35) myg-spacing(sm) 0
+            p
+                margin: myg-spacing(tn) myg-spacing(sm) 0
+            i
+                color: color(text, light)
+            img
+                height: px(48)
+                +border-radius(sm)
+            &#new-app, &#first-app
+                border-style: dashed
+            &#first-app
+                +myg-grid-span(12)
+                padding: myg-spacing(lg)

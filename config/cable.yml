@@ -1,0 +1,13 @@
+development:
+    adapter: redis
+    url: redis://localhost:6379/
+    channel_prefix: nativegap_development
+
+test:
+    adapter: redis
+    channel_prefix: nativegap_test
+
+production:
+    adapter: redis
+    url: redis://:qZxWQFostD0xUadS@redis-14537.c8.us-east-1-4.ec2.cloud.redislabs.com:14537
+    channel_prefix: nativegap_production

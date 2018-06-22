@@ -1,0 +1,7 @@
+en:
+    devise:
+        passwords:
+            new:
+                title: Forgot password?
+                content: No problem. Recover your account by creating a new one.
+                try_to_login: Try to login

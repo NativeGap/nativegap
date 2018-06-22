@@ -1,0 +1,20 @@
+production:
+    pool: 24 # Sidekiq concurrency + 2
+
+development:
+    adapter: mysql2
+    encoding: utf8
+    pool: 49 # Sidekiq concurrency + 2
+    database: native_gap_development
+    username: root
+    password: 0402Jonas
+    port: 3306
+
+test:
+    adapter: mysql2
+    encoding: utf8
+    pool: 49 # Sidekiq concurrency + 2
+    database: native_gap_test
+    username: root
+    password: 0402Jonas
+    port: 3306

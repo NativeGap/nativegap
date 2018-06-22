@@ -1,0 +1,5 @@
+de:
+    explore:
+        install:
+            title: Wähle eine Plattform
+            content: auf der Du %{app} installieren möchtest.

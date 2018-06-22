@@ -1,0 +1,8 @@
+en:
+    mozaic:
+        _confirm:
+            title: Confirm your account
+            content: Confirm your account within the next %{days}
+            day: day
+            resend_email: Resend email
+            resend_confirmation_email: Resend confirmation email

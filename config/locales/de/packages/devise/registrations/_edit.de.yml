@@ -1,0 +1,16 @@
+de:
+    devise:
+        registrations:
+            _edit:
+                first_name: Vorname
+                last_name: Nachname
+                publisher_name: Herausgebername (optional)
+                url: Webseite (optional)
+                password: Neues Passwort (optional)
+                current_password: Aktuelles Passwort
+                build_notifications: Erhalte Benachrichtigungen wenn deine Apps erstellt wurden
+                update_notifications: Erhalte Benachrichtigungen wenn neue Updates bereitstehen
+                enable_notifications: Push-Benachrichtigungen auf diesem Gerät erlauben
+                visibility:
+                    content: Erstelle ein öffentliches Profil, das alle Deine Apps auflistet. Du findest es %{link}.
+                    link: hier

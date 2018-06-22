@@ -1,0 +1,36 @@
+nativegap:
+    version:
+        android: 2.1.0
+        ios: 2.0.1
+        windows: 1.4.1
+        chrome: 1.1.1
+        beta:
+            android: 2.1.0
+            ios: 3.0.0.beta3
+            windows: 1.4.1
+            chrome: 1.1.1
+    delay:
+        build: <%= 30.seconds %>
+        phonegap: <%= 2.minutes %>
+    socials:
+        twitter: https://twitter.com/native_gap
+        youtube: https://www.youtube.com/channel/UCIEedde7D9ea39nBEHIcLTw
+    pricing:
+        android:
+            starter: 25
+            pro: 100
+        ios:
+            starter: 25
+            pro: 100
+    medium:
+        blog: https://medium.com/nativegap/blog
+        help: https://medium.com/nativegap/help
+        changelog: https://medium.com/nativegap/changelog
+    terms: https://jonhue.me/nativegap/terms
+    privacy: https://jonhue.me/nativegap/privacy
+
+mailgun:
+    domain: nativegap.com
+    emails:
+        with: with@nativegap.com
+        support: support@nativegap.com

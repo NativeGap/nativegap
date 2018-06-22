@@ -1,0 +1,24 @@
+en:
+    apps:
+        _settings:
+            marketplace:
+                visibility:
+                    title: Share your app on the marketplace
+                    content: Make your app discoverable and create a custom landing page linked to your profile. Look at it %{link}.
+                    link: here
+                android: Google Play listing
+                ios: App Store listing
+                windows: Microsoft Store listing
+                chrome: Chrome Webstore listing
+                appetize:
+                    title: Appetize testing
+                    content: Embed a public Appetize link to test your app.
+            edit_your_app:
+                title: Edit your app
+                content: Add features, update general information, images or the design of your app.
+                button: Edit this app
+            danger_zone:
+                title: Danger zone
+                content: Once you delete an app, there is no going back. We'll cancel all your active subscriptions associated with it. Please be certain.
+                button: Delete this app
+                confirm: Proceeding will delete all data associated with your app. Including canceling subscriptions and removing your marketplace presence. Are you sure?

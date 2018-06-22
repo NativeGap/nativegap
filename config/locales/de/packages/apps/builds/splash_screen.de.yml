@@ -1,0 +1,13 @@
+de:
+    apps:
+        builds:
+            splash_screen:
+                title: Startbildschirm hinzufügen
+                header: Füge einen Startbildschirm hinzu
+                content: Dein Startbildschirm wird dargestellt, wenn Benutzer Deine App starten.
+                form:
+                    no_file_chosen: Keine Datei ausgewählt
+                    windows_splash_screen:
+                        title: Startbildschirm
+                        content: Verwendet für Windows 10. Das Dateiformat muss PNG sein. Wir empfehlen ein Breite von 2480 Pixeln und eine Höhe von 1200 Pixeln.
+                    add_splash_scree: Startbildschirm hinzufügen

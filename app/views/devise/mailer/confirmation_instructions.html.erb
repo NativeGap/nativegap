@@ -1,0 +1,18 @@
+<p>Hi <%= @resource.name %>!</p>
+
+<p>Welcome to your new NativeGap account! We're happy you're here.</p>
+
+<p><%= link_to 'Confirm your email address', user_confirmation_url(confirmation_token: @token) %></p>
+
+<p>You can now log into your <%= link_to 'dashboard', apps_url %>. Creating your first app with NativeGap takes less than 5 minutes. Visit our <%= link_to 'App Builder', new_app_url %> to get started. You can create Windows 10 apps & Chrome Extensions entirely for free. We even offer free Android & iOS apps (with some NativeGap branding).</p>
+
+<p>Don't forget to share your app on our <%= link_to 'marketplace', explore_url %>. You'll get your own beautiful landing page for your app, directing your customers to install it on their platform.</p>
+
+<p>If you have some burning questions, visit our <%= link_to 'Help Center', Settings.nativegap.medium.help %> or push us an <%= link_to 'email', "mailto:#{Settings.mailgun.emails.support}" %>.</p>
+
+<p>And that’s it! NativeGap is yours to enjoy. We'd love to hear from you over on <%= link_to 'Twitter', Settings.nativegap.socials.twitter %> or via <%= link_to 'email', "mailto:#{Settings.mailgun.emails.support}" %></p>
+
+<p>
+    Cheers,
+    The NativeGap team
+</p>

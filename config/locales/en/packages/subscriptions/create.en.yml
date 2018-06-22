@@ -1,0 +1,4 @@
+en:
+    subscriptions:
+        create:
+            success: Subscription successfull
