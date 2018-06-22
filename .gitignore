@@ -40,3 +40,5 @@ yarn-error.log*
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+config/master.key
