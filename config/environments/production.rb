@@ -1,119 +1,117 @@
 Rails.application.configure do
+  # Settings specified here will take precedence over those in config/application.rb.
+
   # Verifies that versions and hashed value of the package contents in the project's package.json
-  config.webpacker.check_yarn_integrity = false
+  config.webpacker.check_yarn_integrity = true
 
+  # Code is not reloaded between requests.
+  config.cache_classes = true
 
-    # Settings specified here will take precedence over those in config/application.rb.
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both threaded web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = true
 
-    # Code is not reloaded between requests.
-    config.cache_classes = true
+  # Full error reports are disabled and caching is turned on.
+  config.consider_all_requests_local       = false
+  config.action_controller.perform_caching = true
 
-    # Eager load code on boot. This eager loads most of Rails and
-    # your application in memory, allowing both threaded web servers
-    # and those relying on copy on write to perform better.
-    # Rake tasks automatically ignore this option for performance.
-    config.eager_load = true
+  # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
+  # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
+  # `config/secrets.yml.key`.
+  config.read_encrypted_secrets = true
 
-    # Full error reports are disabled and caching is turned on.
-    config.consider_all_requests_local       = false
-    config.action_controller.perform_caching = true
+  # Disable serving static files from the `/public` folder by default since
+  # Apache or NGINX already handles this.
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-    # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
-    # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
-    # `config/secrets.yml.key`.
-    config.read_encrypted_secrets = true
+  # Compress JavaScripts and CSS.
+  # config.assets.js_compressor = :uglifier
+  config.assets.css_compressor = :sass
 
-    # Disable serving static files from the `/public` folder by default since
-    # Apache or NGINX already handles this.
-    config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
 
-    # Compress JavaScripts and CSS.
-    # config.assets.js_compressor = :uglifier
-    config.assets.css_compressor = :sass
+  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-    # Do not fallback to assets pipeline if a precompiled asset is missed.
-    config.assets.compile = true
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # config.action_controller.asset_host = 'http://assets.example.com'
 
-    # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
+  # Specifies the header that your server uses for sending files.
+  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
-    # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-    # config.action_controller.asset_host = 'http://assets.example.com'
+  # Mount Action Cable outside main process or domain
+  # config.action_cable.mount_path = nil
+  # config.action_cable.url = 'wss://example.com/cable'
+  config.action_cable.allowed_request_origins = [ 'https://nativegap.com', /https:\/\/nativegap.*/ ]
 
-    # Specifies the header that your server uses for sending files.
-    # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-    # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # config.force_ssl = true
 
-    # Mount Action Cable outside main process or domain
-    # config.action_cable.mount_path = nil
-    # config.action_cable.url = 'wss://example.com/cable'
-    config.action_cable.allowed_request_origins = [ 'https://nativegap.com', /https:\/\/nativegap.*/ ]
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = :debug
 
-    # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-    # config.force_ssl = true
+  # Prepend all log lines with the following tags.
+  config.log_tags = [ :request_id ]
 
-    # Use the lowest log level to ensure availability of diagnostic information
-    # when problems arise.
-    config.log_level = :debug
+  # Use a different cache store in production.
+  # config.cache_store = :mem_cache_store
 
-    # Prepend all log lines with the following tags.
-    config.log_tags = [ :request_id ]
+  # Use a real queuing backend for Active Job (and separate queues per environment)
+  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_name_prefix = "phylator_#{Rails.env}"
+  config.action_mailer.perform_caching = false
 
-    # Use a different cache store in production.
-    # config.cache_store = :mem_cache_store
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # config.action_mailer.raise_delivery_errors = false
 
-    # Use a real queuing backend for Active Job (and separate queues per environment)
-    # config.active_job.queue_adapter     = :resque
-    # config.active_job.queue_name_prefix = "phylator_#{Rails.env}"
-    config.action_mailer.perform_caching = false
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation cannot be found).
+  config.i18n.fallbacks = true
 
-    # Ignore bad email addresses and do not raise email delivery errors.
-    # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-    # config.action_mailer.raise_delivery_errors = false
+  # Send deprecation notices to registered listeners.
+  config.active_support.deprecation = :notify
 
-    # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-    # the I18n.default_locale when a translation cannot be found).
-    config.i18n.fallbacks = true
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
 
-    # Send deprecation notices to registered listeners.
-    config.active_support.deprecation = :notify
+  # Use a different logger for distributed setups.
+  # require 'syslog/logger'
+  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-    # Use default logging formatter so that PID and timestamp are not suppressed.
-    config.log_formatter = ::Logger::Formatter.new
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
 
-    # Use a different logger for distributed setups.
-    # require 'syslog/logger'
-    # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
 
-    if ENV["RAILS_LOG_TO_STDOUT"].present?
-        logger = ActiveSupport::Logger.new(STDOUT)
-        logger.formatter = config.log_formatter
-        config.logger = ActiveSupport::TaggedLogging.new(logger)
-    end
+  # Needed for Devise Gem
+  config.action_mailer.default_url_options = {
+    host: 'nativegap.com',
+    protocol: 'https'
+  }
+  # Host for url helpers
+  Rails.application.routes.default_url_options[:host] = 'nativegap.com'
+  Rails.application.routes.default_url_options[:protocol] = 'https'
 
-    # Do not dump schema after migrations.
-    config.active_record.dump_schema_after_migration = false
+  # Email delivery
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+  	api_key: Rails.application.credentials.mailgun[:key],
+  	domain: Settings.mailgun.domain
+  }
 
-    # Needed for Devise Gem
-    config.action_mailer.default_url_options = {
-        host: 'nativegap.com',
-        protocol: 'https'
-    }
-    # Host for url helpers
-    Rails.application.routes.default_url_options[:host] = 'nativegap.com'
-    Rails.application.routes.default_url_options[:protocol] = 'https'
+  # Heroku
+  config.serve_static_assets = true
+  config.assets.digest = true
 
-    # Email delivery
-    config.action_mailer.delivery_method = :mailgun
-    config.action_mailer.mailgun_settings = {
-		api_key: Rails.application.credentials.mailgun[:key],
-		domain: Settings.mailgun.domain
-    }
-
-    # Heroku
-    config.serve_static_assets = true
-    config.assets.digest = true
-
-    # Cloudflare Flexible SSL && Heroku Free Dynos (No custom SSL certificate)
-    config.action_controller.forgery_protection_origin_check = false
-
+  # Cloudflare Flexible SSL && Heroku Free Dynos (No custom SSL certificate)
+  config.action_controller.forgery_protection_origin_check = false
 end
