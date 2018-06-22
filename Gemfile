@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 git_source(:github) do |repo_name|
-    repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-    "https://github.com/#{repo_name}.git"
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
 end
 
 
@@ -24,7 +24,6 @@ gem 'ahoy_matey'
 gem 'cancancan'
 gem 'devise'
 gem 'bcrypt'
-gem 'config'
 gem 'sidekiq'
 gem 'mailgun-ruby'
 gem 'octokit'
@@ -73,6 +72,13 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mysql2', '~> 0.4.10'
+end
+
+group :test do
+  gem 'rubocop'
+  gem 'rspec-rails'
+  gem 'rubocop-rspec'
+  gem 'rspec-sidekiq'
 end
 
 group :production do

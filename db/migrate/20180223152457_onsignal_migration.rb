@@ -1,16 +1,14 @@
 class OnsignalMigration < ActiveRecord::Migration[5.1]
-    def change
-        create_table :devices do |t|
+  def change
+    create_table :devices do |t|
+      t.references :owner, polymorphic: true, index: true
 
-            t.references :owner, polymorphic: true, index: true
+      t.string :onesignal_id, index: true, unique: true
+      t.string :onesignal_permission
 
-            t.string :onesignal_id, index: true, unique: true
-            t.string :onesignal_permission
+      t.datetime :last_used
 
-            t.datetime :last_used
-
-            t.timestamps
-
-        end
+      t.timestamps
     end
+  end
 end
