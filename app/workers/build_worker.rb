@@ -163,7 +163,7 @@ class BuildWorker
         "tmp/wrappers/#{@build.folder_name}",
         branch: @build.beta ? :beta : :master
       )
-      clone.instance_variable_get('@working_directory').instance_variable_get('@path')
+      clone.instance_variable_get('@working_directory').instance_variable_get('@path') + '/wrapper'
     end
 
     def cleanup build, wrapper
