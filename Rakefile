@@ -7,3 +7,7 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+
+system('bundle exec rubocop')
+system('bundle exec rspec')
