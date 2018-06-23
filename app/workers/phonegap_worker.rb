@@ -4,98 +4,40 @@ class PhonegapWorker
   include Sidekiq::Worker
   sidekiq_options(retry: false, queue: 'app')
 
-  def perform(build_id, phonegap_id, phonegap_android_key_id,
-              phonegap_ios_key_id)
+  def perform(build_id, phonegap_app_id, phonegap_key_id)
     build = App::Build.find(build_id)
 
-    # Authenticate PhoneGap
-    phonegap_auth = {
+    phonegap_client = Phonegap::Client.new(
       username: Rails.application.credentials.phonegap[:username],
       password: Rails.application.credentials.phonegap[:password]
-    }
-    phonegap_token = JSON.parse(
-      HTTParty.post(
-        'https://build.phonegap.com/token',
-        u: Rails.application.credentials.phonegap[:username],
-        basic_auth: phonegap_auth,
-        format: :plain
-      ),
-      symbolize_names: true
-    )[:token]
+    )
 
-    case build.platform
-    when 'ios'
-      response = HTTParty.get(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{phonegap_id}/ios?auth_token=#{phonegap_token}",
-        format: :plain
-      )
-    when 'android'
-      response = HTTParty.get(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{phonegap_id}/android?auth_token=#{phonegap_token}",
-        format: :plain
-      )
-    end
-    if response_valid?(response)
-      download_build(build, response)
-    else
-      return_with_error(build)
-    end
-    return_with_error(build) if build.file.url.nil?
+    # Download build
+    phonegap_build = Phonegap::Build.new(phonegap_client,
+                                         app_id: phonegap_app_id,
+                                         platform: build.platform
+                                        )
+    build.file = phonegap.fetch(directory: build.folder_name)
+    build.save!
+    return_with_error(build) unless build.file.url
 
     # Create Appetize app
     AppetizeWorker.perform_async build_id
 
     # Delete PhoneGap app
-    HTTParty.delete(
-      'https://build.phonegap.com/api/v1/apps/'\
-      "#{phonegap_id}?auth_token=#{phonegap_token}"
-    )
-    unless phonegap_ios_key_id.nil?
-      HTTParty.delete(
-        'https://build.phonegap.com/api/v1/keys/ios/'\
-        "#{phonegap_ios_key_id}?auth_token=#{phonegap_token}"
-      )
-    end
-    unless phonegap_android_key_id.nil?
-      HTTParty.delete(
-        'https://build.phonegap.com/api/v1/keys/android/'\
-        "#{phonegap_android_key_id}?auth_token=#{phonegap_token}"
-      )
-    end
+    Phonegap::App.new(phonegap_client, id: phonegap_app_id).destroy
+    "Phonegap::Key::#{build.platform.camelize}".constantize.new(
+      phonegap_client,
+      id: phonegap_key_id
+    ).destroy
 
-    build.update_attributes status: 'processed'
+    build.update(status: 'processed')
 
     # Send notification
     send_notification(build) if build.app.user.build_notifications
   end
 
   private
-
-  def download_build(build, response)
-    path = Rails.root.join('tmp', 'builds', build.folder_name)
-    FileUtils.mkdir_p(path) unless File.directory? path
-    case build.platform
-    when 'ios'
-      path += '.ipa'
-    when 'android'
-      path += '.apk'
-    end
-    f = File.new(path, 'w')
-    f.binmode
-    f.write(response.body)
-    f.flush
-    build.file = f
-    build.save!
-    f.close
-  end
-
-  def response_valid?(response)
-    !JSON.parse(response, symbolize_names: true).key?(:error)
-  rescue JSON::ParserError
-    true
-  end
 
   def return_with_error(object)
     object.update_attributes status: 'error'
