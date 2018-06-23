@@ -1,9 +1,11 @@
-class Users::PasswordsController < Devise::PasswordsController
+# frozen_string_literal: true
 
+module Users
+  class PasswordsController < Devise::PasswordsController
     # GET /resource/password/new
     def new
-        turbolinks_animate 'fadein'
-        super
+      turbolinks_animate 'fadein'
+      super
     end
 
     # POST /resource/password
@@ -13,8 +15,8 @@ class Users::PasswordsController < Devise::PasswordsController
 
     # GET /resource/password/edit?reset_password_token=abcdef
     def edit
-        turbolinks_animate 'fadein'
-        super
+      turbolinks_animate 'fadein'
+      super
     end
 
     # PUT /resource/password
@@ -32,5 +34,5 @@ class Users::PasswordsController < Devise::PasswordsController
     # def after_sending_reset_password_instructions_path_for(resource_name)
     #   super(resource_name)
     # end
-
+  end
 end

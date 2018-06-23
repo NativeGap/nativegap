@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
+  before_action :set_user
 
-    before_action :set_user
+  def show
+    authorize! :read, @user
+    turbolinks_animate 'fadein'
+    @apps = @user.apps.where(visibility: 'public').order('updated_at desc')
+  end
 
-    def show
-        authorize! :read, @user
-        turbolinks_animate 'fadein'
-        @apps = @user.apps.where(visibility: 'public').order('updated_at desc')
-    end
+  private
 
-    private
-
-    def set_user
-        @user = User.friendly.find params[:id]
-    end
-
+  def set_user
+    @user = User.friendly.find params[:id]
+  end
 end

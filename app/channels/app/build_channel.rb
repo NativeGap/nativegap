@@ -1,11 +1,13 @@
-class App::BuildChannel < ApplicationCable::Channel
+# frozen_string_literal: true
 
+module App
+  class BuildChannel < ApplicationCable::Channel
     def subscribed
-        stream_from "app_build_channel"
+      stream_from 'app_build_channel'
     end
 
     def unsubscribed
-        # Any cleanup needed when channel is unsubscribed
+      # Any cleanup needed when channel is unsubscribed
     end
-
+  end
 end

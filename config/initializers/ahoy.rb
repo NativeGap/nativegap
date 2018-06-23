@@ -1,7 +1,11 @@
-class Ahoy::Store < Ahoy::DatabaseStore
+# frozen_string_literal: true
+
+module Ahoy
+  class Store < DatabaseStore
     def exclude?
-        bot?
+      bot?
     end
+  end
 end
 
 # set to true for JavaScript tracking

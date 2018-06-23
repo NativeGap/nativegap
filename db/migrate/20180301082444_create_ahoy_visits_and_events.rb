@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.1]
   def change
-   create_table :ahoy_visits do |t|
+    create_table :ahoy_visits do |t|
       t.string :visit_token
       t.string :visitor_token
 

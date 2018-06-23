@@ -1,5 +1,7 @@
-class App::Build < ApplicationRecord
+# frozen_string_literal: true
 
+module App
+  class Build < ApplicationRecord
     self.table_name = 'app_builds'
 
     before_validation :set_wrapper_version
@@ -15,9 +17,9 @@ class App::Build < ApplicationRecord
     mount_uploader :ios_profile, IosProfileUploader
     mount_uploader :android_keystore, AndroidKeystoreUploader
     if Rails.env.production?
-        process_in_background :icon
-        process_in_background :ios_app_store_icon
-        process_in_background :windows_splash_screen
+      process_in_background :icon
+      process_in_background :ios_app_store_icon
+      process_in_background :windows_splash_screen
     end
 
     validates :platform, presence: true
@@ -34,98 +36,147 @@ class App::Build < ApplicationRecord
     belongs_to :app, class_name: '::App'
 
     def folder_name
-        "#{self.id}"
+      id.to_s
     end
+
     def name
-        return "#{I18n.t("d.#{self.platform}")} (#{I18n.t('d.beta')})" if self.beta
-        I18n.t("d.#{self.platform}")
+      return "#{I18n.t("d.#{platform}")} (#{I18n.t('d.beta')})" if beta
+      I18n.t("d.#{platform}")
     end
+
     def key_needed?
-        return true if (self.platform == 'ios' && (self.ios_cert.url.nil? || self.ios_profile.url.nil? || self.ios_cert_password.nil?)) || (self.platform == 'android' && (self.android_keystore.url.nil? || self.android_keystore_password.nil? || self.android_key_alias.nil? || self.android_key_password.nil?))
-        false
+      return false unless platform == 'ios' && ios_key_needed? ||
+                          platform == 'android' && android_key_needed?
+      true
     end
+
     def splash_screen_needed?
-        return true if self.platform == 'windows' && self.windows_splash_screen.url.nil?
-        false
+      return false unless platform == 'windows' &&
+                          windows_splash_screen.url.nil?
+      true
     end
+
     def can_build?
-        self.app.user.present? && !self.key_needed? && !self.splash_screen_needed?
+      app.user.present? && !key_needed? && !splash_screen_needed?
     end
+
     def start_url
-        if self.path
-            if self.app.url.last == '/'
-                su = self.app.url + self.path
-            else
-                su = self.app.url + '/' + self.path
-            end
+      su =
+        if path
+          app.url.last == '/' ? "#{app.url}#{path}" : "#{app.url}/#{path}"
         else
-            su = self.app.start_url
+          app.start_url
         end
-        if su.include? '?'
-            return su + '&nativegap=' + self.platform
-        else
-            return su + '?nativegap=' + self.platform
-        end
+      return su + '&nativegap=' + platform if su.include? '?'
+      su + '?nativegap=' + platform
     end
-    def icon_url version
-        return self.ios_app_store_icon.url if self.platform == 'ios' && version == '_1024x1024' && !self.ios_app_store_icon.nil?
-        return self.icon&.send(version)&.url || self.app.icon&.send(version)&.url if self.icon.respond_to?(version) || self.app.icon.respond_to?(version)
-        self.windows_splash_screen&.send(version)&.url
+
+    def icon_url(version)
+      if platform == 'ios' && version == '_1024x1024' &&
+         !ios_app_store_icon.nil?
+        ios_app_store_icon.url
+      elsif icon.respond_to?(version)
+        icon&.send(version)&.url
+      elsif app.icon.respond_to?(version)
+        app.icon&.send(version)&.url
+      else
+        windows_splash_screen&.send(version)&.url
+      end
     end
+
     def update_available?
-        return true unless self.wrapper_version == ( self.beta ? Settings.nativegap.version.beta.send(self.platform) : Settings.nativegap.version.send(self.platform) )
-        false
+      current_wrapper_version = "Wrapper::#{platform.camelize}"
+                                .constantize.new(beta: beta).version
+      return true unless wrapper_version == current_wrapper_version
+      false
     end
+
     def build
-        if self.can_build?
-            self.update_attributes status: 'processing' unless self.status == 'processing'
-            BuildWorker.perform_in Settings.nativegap.delay.build, self.id
-        end
+      return unless can_build?
+      update_attributes(status: 'processing') unless status == 'processing'
+      BuildWorker.perform_in(Settings.nativegap.delay.build, id)
     end
 
     def android_statusbar_background
-        self[:android_statusbar_background] || '#000000'
+      self[:android_statusbar_background] || '#000000'
     end
+
     def android_statusbar_style
-        self[:android_statusbar_style] || 'lightcontent'
+      self[:android_statusbar_style] || 'lightcontent'
     end
+
     def ios_statusbar_style
-        self[:ios_statusbar_style] || 'default'
+      self[:ios_statusbar_style] || 'default'
     end
+
     def chrome_width
-        self[:chrome_width] || 350
+      self[:chrome_width] || 350
     end
+
     def chrome_height
-        self[:chrome_height] || 500
+      self[:chrome_height] || 500
     end
+
     def error_network_title
-        self.subscription&.subscribed? && ( self.subscription.plan == 'android_pro' || self.subscription.plan == 'ios_pro' ) ? self.app.error_network_title : 'Oooooops ...'
+      if subscription&.subscribed? && subscription.plan.end_with?('_pro')
+        app.error_network_title
+      else
+        'Oooooops ...'
+      end
     end
+
     def error_network_content
-        self.subscription&.subscribed? && ( self.subscription.plan == 'android_pro' || self.subscription.plan == 'ios_pro' ) ? self.app.error_network_content : 'No network connection'
+      if subscription&.subscribed? && subscription.plan.end_with?('_pro')
+        app.error_network_content
+      else
+        'No network connection'
+      end
     end
+
     def error_unsupported_title
-        self.subscription&.subscribed? && ( self.subscription.plan == 'android_pro' || self.subscription.plan == 'ios_pro' ) ? self.app.error_unsupported_title : 'Oooooops ...'
+      if subscription&.subscribed? && subscription.plan.end_with?('_pro')
+        app.error_unsupported_title
+      else
+        'Oooooops ...'
+      end
     end
+
     def error_unsupported_content
-        self.subscription&.subscribed? && ( self.subscription.plan == 'android_pro' || self.subscription.plan == 'ios_pro' ) ? self.app.error_unsupported_content : 'Your device is unsupported'
+      if subscription&.subscribed? && subscription.plan.end_with?('_pro')
+        app.error_unsupported_content
+      else
+        'Your device is unsupported'
+      end
     end
 
     private
 
-    def set_wrapper_version
-        self.wrapper_version = ( self.beta ? Settings.nativegap.version.beta.send(self.platform) : Settings.nativegap.version.send(self.platform) )
-    end
-    def cancel_subscription
-        if self.subscription.present?
-            subscription = Stripe::Subscription.retrieve self.subscription.stripe_subscription_id
-            subscription.delete
-        end
-    end
-    def broadcast
-        # if self.status_changed?
-        App::BuildBroadcastWorker.perform_async self.id
-        # end
+    def ios_key_needed?
+      ios_cert.url.nil? || ios_profile.url.nil? || ios_cert_password.nil?
     end
 
+    def android_key_needed?
+      android_keystore.url.nil? || android_keystore_password.nil? ||
+        android_key_alias.nil? || android_key_password.nil?
+    end
+
+    def set_wrapper_version
+      self.wrapper_version = "Wrapper::#{platform.camelize}"
+                             .constantize.new(beta: beta).version
+    end
+
+    def cancel_subscription
+      return unless subscription.present?
+      subscription = Stripe::Subscription.retrieve(
+        subscription.stripe_subscription_id
+      )
+      subscription.delete
+    end
+
+    def broadcast
+      # if self.status_changed?
+      App::BuildBroadcastWorker.perform_async(id)
+      # end
+    end
+  end
 end

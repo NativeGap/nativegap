@@ -1,7 +1,11 @@
-Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+# frozen_string_literal: true
 
-  # Verifies that versions and hashed value of the package contents in the project's package.json
+Rails.application.configure do
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
+
+  # Verifies that versions and hashed value of the package contents in the
+  # project's package.json
   config.webpacker.check_yarn_integrity = true
 
   # In the development environment your application's code is reloaded on
@@ -61,8 +65,8 @@ Rails.application.configure do
   # Email delivery
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-		api_key: Rails.application.credentials.mailgun[:key],
-		domain: Settings.mailgun.domain
+    api_key: Rails.application.credentials.mailgun[:key],
+    domain: Settings.mailgun.domain
   }
 
   # Host for url helpers
