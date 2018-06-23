@@ -28,6 +28,9 @@ Metrics/AbcSize:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+Style/StringArray:
+  EnforcedStyle: brackets
+
 Style/Documentation:
   Enabled: false
 
