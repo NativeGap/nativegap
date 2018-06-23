@@ -20,6 +20,7 @@ gem 'cancancan-system'
 gem 'carrierwave'
 gem 'carrierwave_backgrounder', github: 'harigopal/carrierwave_backgrounder',
                                 branch: 'rails-5-1'
+gem 'config'
 gem 'devise'
 gem 'fog-aws'
 gem 'foreman'

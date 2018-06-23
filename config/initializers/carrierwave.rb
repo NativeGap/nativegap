@@ -6,7 +6,7 @@ fog_directory =
   else
     Rails.application.credentials.development[:digital_ocean][:space]
   end
-asset_host = "https://#{config.fog_directory}.nyc3.digitaloceanspaces.com"
+asset_host = "https://#{fog_directory}.nyc3.digitaloceanspaces.com"
 
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
