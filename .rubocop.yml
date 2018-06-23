@@ -1,0 +1,35 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'node_modules/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/initializers/simple_form.rb
+    - config/routes.rb
+    - db/migrate/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - app/models/ability.rb
+    - db/migrate/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*.rb
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/Documentation:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false

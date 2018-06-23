@@ -10,16 +10,18 @@ class Subscription < ApplicationRecord
   validates :plan, presence: true
 
   def subscribed?
-    self.current_period_end.future?
-  end
-  def canceled?
-    !self.canceled_at.nil?
-  end
-  def name
-    self.class.names self.plan
+    current_period_end.future?
   end
 
-  def self.names plan
+  def canceled?
+    !canceled_at.nil?
+  end
+
+  def name
+    self.class.names plan
+  end
+
+  def self.names(plan)
     case plan
     when 'android_starter', 'ios_starter'
       I18n.t('d.starter')

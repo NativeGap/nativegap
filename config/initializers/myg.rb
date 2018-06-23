@@ -10,7 +10,6 @@ Myg.configure do |config|
   # Enable or disable Webpack (ES6)
   # config.es6 = true
 
-
   ##### MYG-THEME #####
 
   # Array of available themes

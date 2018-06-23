@@ -24,56 +24,64 @@ class App < ApplicationRecord
   belongs_to :user, optional: true
 
   def name_without_spaces
-    self.name.sub(' ', '')
+    name.sub(' ', '')
   end
+
   def safe_description
-    self.description.gsub(/&/, 'and')
+    description.gsub(/&/, 'and')
   end
+
   def package_id
-    self.url.sub('https://', '').split('/').first.split('.').reverse.join('.')
+    url.sub('https://', '').split('/').first.split('.').reverse.join('.')
   end
+
   def start_url
-    if self.path
-      if self.url.last == '/'
-        self.url + self.path
-      else
-        self.url + '/' + self.path
-      end
+    if path
+      url.last == '/' ? "#{url}#{path}" : "#{url}/#{path}"
     else
-      self.url
+      url
     end
   end
+
   def build
-    self.builds.create! platform: 'android'
-    self.builds.create! platform: 'ios'
-    self.builds.create! platform: 'windows', version: '1.1.0'
-    self.builds.create! platform: 'chrome'
+    builds.create!(platform: 'android')
+    builds.create!(platform: 'ios')
+    builds.create!(platform: 'windows', version: '1.1.0')
+    builds.create!(platform: 'chrome')
   end
 
   def globalization
     self[:globalization] || 'lang'
   end
+
   def splash_screen_background
-    self[:splash_screen_background] || self.background
+    self[:splash_screen_background] || background
   end
+
   def splash_screen_color
-    self[:splash_screen_color] || self.color
+    self[:splash_screen_color] || color
   end
+
   def splash_screen_transition_duration
     self[:splash_screen_transition_duration] || 350
   end
+
   def splash_screen_logo_height
     self[:splash_screen_logo_height] || 50
   end
+
   def error_network_title
     self[:error_network_title] || 'Oooooops ...'
   end
+
   def error_network_content
     self[:error_network_content] || 'No network connection'
   end
+
   def error_unsupported_title
     self[:error_unsupported_title] || 'Oooooops ...'
   end
+
   def error_unsupported_content
     self[:error_unsupported_content] || 'Your device is unsupported'
   end
@@ -83,7 +91,9 @@ class App < ApplicationRecord
   def slug_candidates
     [:name, [:name, :id]]
   end
+
   def set_logo_content_type
-    self.logo_content_type = logo.url.split('.').last if logo.present? && logo_changed?
+    return unless logo.present? && logo_changed?
+    self.logo_content_type = logo.url.split('.').last
   end
 end

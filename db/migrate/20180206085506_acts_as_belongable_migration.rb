@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActsAsBelongableMigration < ActiveRecord::Migration[5.1]
   def change
     create_table :belongings do |t|

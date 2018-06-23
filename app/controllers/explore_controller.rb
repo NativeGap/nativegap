@@ -24,23 +24,10 @@ class ExploreController < ApplicationController
   private
 
   def set_app
-    @app = App.friendly.find params[:id]
+    @app = App.friendly.find(params[:id])
   end
+
   def set_platforms
-    @platforms = []
-    if browser.device.mobile?
-      return @platforms << :android if browser.platform.android? && @app.android
-      return @platforms << :ios if browser.platform.ios? && @app.ios
-      return @platforms << :windows if browser.platform.windows_mobile? && @app.windows
-    else
-      @platforms << :windows if browser.platform.windows10? && @app.windows
-      @platforms << :chrome if browser.chrome? && @app.chrome
-    end
-    if @platforms.length == 0
-      @platforms << :android if @app.android
-      @platforms << :ios if @app.ios
-      @platforms << :windows if @app.windows
-      @platforms << :chrome if @app.chrome
-    end
+    @platforms = detect_platforms(app: @app)
   end
 end

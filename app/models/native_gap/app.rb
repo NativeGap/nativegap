@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class NativeGap::App < NativeGap::AppLibrary
+module NativeGap
+  class App < AppLibrary
+  end
 end

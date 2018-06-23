@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wrapper
   class Base
     attr_accessor :beta
@@ -18,7 +20,9 @@ module Wrapper
     private
 
     def github_url
-      "https://#{Rails.application.credentials.github[:username]}:#{Rails.application.credentials.github[:password]}@github.com/#{GITHUB_USERNAME}/#{GITHUB_REPOSITORY}"
+      "https://#{Rails.application.credentials.github[:username]}:"\
+      "#{Rails.application.credentials.github[:password]}@github.com/"\
+      "#{GITHUB_USERNAME}/#{GITHUB_REPOSITORY}"
     end
 
     def path(directory)

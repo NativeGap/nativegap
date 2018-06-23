@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wrapper
   class Ios < Base
     VERSION = '2.0.1'

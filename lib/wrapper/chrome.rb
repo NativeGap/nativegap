@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wrapper
   class Chrome < Base
     VERSION = '1.1.1'

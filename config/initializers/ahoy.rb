@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-class Ahoy::Store < Ahoy::DatabaseStore
-  def exclude?
-    bot?
+module Ahoy
+  class Store < DatabaseStore
+    def exclude?
+      bot?
+    end
   end
 end
 

@@ -1,7 +1,4 @@
 #!/bin/bash -i
 
-
-##### RUNNING DEVELOPMENT SERVER #####
-
 bundle install
 bundle exec foreman start -f Procfile.dev

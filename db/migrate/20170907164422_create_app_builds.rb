@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CreateAppBuilds < ActiveRecord::Migration[5.1]
   def change
     create_table :app_builds do |t|
       t.references :app, index: true
-      
+
       # General
       t.string :platform
       t.string :path

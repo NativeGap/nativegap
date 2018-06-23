@@ -7,12 +7,12 @@ class AppsController < ApplicationController
   layout 'app'
 
   def index
-    unless current_user
-      redirect_to new_user_session_url(nativegap: params[:nativegap])
-    else
+    if current_user
       @apps = current_user.apps.order('updated_at desc')
       authorizes! :read, @apps
       turbolinks_animate 'fadein'
+    else
+      redirect_to new_user_session_url(nativegap: params[:nativegap])
     end
   end
 
@@ -21,7 +21,13 @@ class AppsController < ApplicationController
 
     @tabs = []
     @app.builds.order(:created_at).each_with_index do |build, index|
-      @tabs << { name: build.name, id: build.platform, partial: 'apps/builds/build', partial_locals: { build: build }, active: index == 0 }
+      @tabs << {
+        name: build.name,
+        id: build.platform,
+        partial: 'apps/builds/build',
+        partial_locals: { build: build },
+        active: index.zero?
+      }
     end
     @tabs[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings' }
 
@@ -45,7 +51,8 @@ class AppsController < ApplicationController
     @app.user = current_user if current_user
 
     if @app.save
-      redirect_to ( @app.user ? @app : new_user_registration_url(app: @app.slug) ), notice: I18n.t('apps.create.success'), notify: true
+      url = @app.user ? @app : new_user_registration_url(app: @app.slug)
+      redirect_to url, notice: I18n.t('apps.create.success'), notify: true
     else
       redirect_to root_url, alert: I18n.t('apps.create.error')
     end
@@ -74,15 +81,20 @@ class AppsController < ApplicationController
   private
 
   def set_app
-    @app = App.friendly.find params[:id]
+    @app = App.friendly.find(params[:id])
   end
+
   def app_params
     params.require(:app).permit(
       :url, :path, :name, :description, :globalization, :icon, :logo,
-      :background, :color, :accent, :statusbar_hide, :orientation_portrait, :orientation_portrait_flipped, :orientation_landscape, :orientation_landscape_flipped, :splash_screen_background, :splash_screen_color, :splash_screen_transition_duration, :splash_screen_logo_height, :branding, :splash_screen_loader,
-      :error_network_title, :error_network_content, :error_unsupported_title, :error_unsupported_content, :one_signal_app_id,
-      :android, :ios, :windows, :chrome, :appetize,
-      :ability, :visibility
+      :background, :color, :accent, :statusbar_hide, :orientation_portrait,
+      :orientation_portrait_flipped, :orientation_landscape,
+      :orientation_landscape_flipped, :splash_screen_background,
+      :splash_screen_color, :splash_screen_transition_duration,
+      :splash_screen_logo_height, :branding, :splash_screen_loader,
+      :error_network_title, :error_network_content, :error_unsupported_title,
+      :error_unsupported_content, :one_signal_app_id, :android, :ios, :windows,
+      :chrome, :appetize, :ability, :visibility
     )
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NativegapMigration < ActiveRecord::Migration[5.1]
   def change
     create_table :native_gap_apps do |t|

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   before_create :stripe
   before_save :lock
@@ -20,16 +20,19 @@ class User < ApplicationRecord
 
   has_many :apps, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :invoices, through: :subscriptions, class_name: 'Subscription::Invoice'
+  has_many :invoices, through: :subscriptions,
+                      class_name: 'Subscription::Invoice'
 
   def name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
+
   def publisher
-    self.publisher_name || self.name
+    publisher_name || name
   end
+
   def admin?
-    self.admin
+    admin
   end
 
   private
@@ -37,14 +40,16 @@ class User < ApplicationRecord
   def slug_candidates
     [:publisher, [:publisher, :id]]
   end
+
   def stripe
     customer = Stripe::Customer.create(
-      description: self.name,
-      email: self.email
+      description: name,
+      email: email
     )
     self.stripe_customer_id = customer.id
   end
+
   def lock
-    return false if self.locked
+    return false if locked
   end
 end

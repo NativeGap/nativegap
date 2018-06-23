@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+fog_directory =
+  if Rails.env.production?
+    Rails.application.credentials.production[:digital_ocean][:space]
+  else
+    Rails.application.credentials.development[:digital_ocean][:space]
+  end
+asset_host = "https://#{config.fog_directory}.nyc3.digitaloceanspaces.com"
+
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
@@ -9,10 +17,9 @@ CarrierWave.configure do |config|
     region: 'nyc3',
     endpoint: 'https://nyc3.digitaloceanspaces.com'
   }
-  config.fog_directory = Rails.env.production? ? Rails.application.credentials.production[:digital_ocean][:space] : Rails.application.credentials.development[:digital_ocean][:space]
-  config.asset_host = "https://#{config.fog_directory}.nyc3.digitaloceanspaces.com"
+  config.fog_directory = fog_directory
+  config.asset_host = asset_host
 end
-
 
 module CarrierWave
   module MiniMagick
