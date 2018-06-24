@@ -4,7 +4,7 @@ class PhonegapWorker
   include Sidekiq::Worker
   sidekiq_options(retry: false, queue: 'app')
 
-  def perform(build_id, phonegap_app_id, phonegap_key_id)
+  def perform(build_id:, phonegap_app_id:, phonegap_key_id:)
     build = App::Build.find(build_id)
 
     phonegap_client = Phonegap::Client.new(
@@ -22,7 +22,7 @@ class PhonegapWorker
     return_with_error(build) unless build.file.url
 
     # Create Appetize app
-    AppetizeWorker.perform_async build_id
+    AppetizeWorker.perform_async(build_id: build_id)
 
     # Delete PhoneGap app
     Phonegap::App.new(phonegap_client, id: phonegap_app_id).destroy
