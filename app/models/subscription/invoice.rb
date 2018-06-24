@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Subscription
+class Subscription
   class Invoice < ApplicationRecord
     validates :amount, presence: true
 
