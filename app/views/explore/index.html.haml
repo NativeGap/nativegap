@@ -1,19 +1,19 @@
 - meta title: t('d.marketplace')
 
 %section#head
-    .myg-wrap--large
-        %h1.sm= t('explore.index.title')
-        %p.lg= t('explore.index.content')
-        .myg-grid.myg-wrap--tablet
-            - App.where(visibility: 'public').limit(3)&.each do |app|
-                = link_to app_explore_url(app) do
-                    .wrapper{ style: "background:#{app.splash_screen_background}" }
-                        = image_tag app.icon.url
-                        %h3{ style: "color:#{app.splash_screen_color}" }= app.name
-                    %p.sm= app.description
+  .myg-wrap--large
+    %h1.sm= t('explore.index.title')
+    %p.lg= t('explore.index.content')
+    .myg-grid.myg-wrap--tablet
+      - App.where(visibility: 'public').limit(3)&.each do |app|
+        = link_to app_explore_url(app) do
+          .wrapper{ style: "background:#{app.splash_screen_background}" }
+            = image_tag app.icon.url
+            %h3{ style: "color:#{app.splash_screen_color}" }= app.name
+          %p.sm= app.description
 
 %section#content
-    .myg-wrap--tablet
-        = component 'myg/tabs', tabs: [{ name: t('d.trending'), partial: 'trending', active: true }, { name: t('d.fresh'), partial: 'fresh' }, { name: t('d.android'), partial: 'android' }, { name: t('d.ios'), partial: 'ios' }, { name: t('d.windows'), id: 'windows', partial: 'windows' }, { name: t('d.chrome'), partial: 'chrome' }]
+  .myg-wrap--tablet
+    = component 'myg/tabs', tabs: [{ name: t('d.trending'), partial: 'trending', active: true }, { name: t('d.fresh'), partial: 'fresh' }, { name: t('d.android'), partial: 'android' }, { name: t('d.ios'), partial: 'ios' }, { name: t('d.windows'), id: 'windows', partial: 'windows' }, { name: t('d.chrome'), partial: 'chrome' }]
 
 = component 'footer'

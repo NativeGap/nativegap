@@ -1,43 +1,43 @@
 - meta title: t('welcome.index.title')
 
 %section#head
-    .myg-wrap--large
-        %h1.sm= t('welcome.index.title')
-        %p.lg= t('welcome.index.content')
-        = simple_form_for App.new, method: :get, url: new_app_url, html: { class: 'flex' } do |f|
-            = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', input_html: { required: true, spellcheck: false, type: 'url', placeholder: 'https://nativegap.com' }
-            = component 'myg/button', value: t('welcome.index.get_started')
+  .myg-wrap--large
+    %h1.sm= t('welcome.index.title')
+    %p.lg= t('welcome.index.content')
+    = simple_form_for App.new, method: :get, url: new_app_url, html: { class: 'flex' } do |f|
+      = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', input_html: { required: true, spellcheck: false, type: 'url', placeholder: 'https://nativegap.com' }
+      = component 'myg/button', value: t('welcome.index.get_started')
 
 %section#explore.myg-wrap--tablet
-    %h2= t('welcome.index.explore.title')
-    %p= t('welcome.index.explore.content')
-    .myg-grid
-        - App.where(visibility: 'public').limit(3)&.each do |app|
-            = link_to app_explore_url(app) do
-                = image_tag app.icon.url
-                %h3.sm= app.name
-                %p.sm= app.description
-    .myg-button--container
-        = link_to t('welcome.index.explore.button'), explore_url, class: 'myg-button myg-button--secondary', data: { turbolinks_animate_type: 'application' }
+  %h2= t('welcome.index.explore.title')
+  %p= t('welcome.index.explore.content')
+  .myg-grid
+    - App.where(visibility: 'public').limit(3)&.each do |app|
+      = link_to app_explore_url(app) do
+        = image_tag app.icon.url
+        %h3.sm= app.name
+        %p.sm= app.description
+  .myg-button--container
+    = link_to t('welcome.index.explore.button'), explore_url, class: 'myg-button myg-button--secondary', data: { turbolinks_animate_type: 'application' }
 
 %section#features.myg-wrap--large
-    .feature
-        %h2= t('welcome.index.features.enlighten_your_users.title')
-        %p= t('welcome.index.features.enlighten_your_users.content')
-    .feature
-        %h2= t('welcome.index.features.one_app.title')
-        %p= t('welcome.index.features.one_app.content')
-    .feature
-        %h2= t('welcome.index.features.consistent_and_beautiful.title')
-        %p= t('welcome.index.features.consistent_and_beautiful.content')
-    .feature
-        %h2= t('welcome.index.features.from_a_website_to_an_app.title')
-        %p= t('welcome.index.features.from_a_website_to_an_app.content')
+  .feature
+    %h2= t('welcome.index.features.enlighten_your_users.title')
+    %p= t('welcome.index.features.enlighten_your_users.content')
+  .feature
+    %h2= t('welcome.index.features.one_app.title')
+    %p= t('welcome.index.features.one_app.content')
+  .feature
+    %h2= t('welcome.index.features.consistent_and_beautiful.title')
+    %p= t('welcome.index.features.consistent_and_beautiful.content')
+  .feature
+    %h2= t('welcome.index.features.from_a_website_to_an_app.title')
+    %p= t('welcome.index.features.from_a_website_to_an_app.content')
 
 %section#pricing.myg-wrap--tablet
-    %a{ name: 'pricing' }
-    %h2= t('d.pricing')
-    %p= t('welcome.index.pricing.content')
-    = component 'myg/tabs', tabs: [{ name: t('d.android'), partial: 'android', active: true }, { name: t('d.ios'), partial: 'ios' }, { name: t('d.windows'), id: 'windows', partial: 'windows' }, { name: t('d.chrome'), partial: 'chrome' }], nav_html: { class: 'myg-tabs--center' }
+  %a{ name: 'pricing' }
+  %h2= t('d.pricing')
+  %p= t('welcome.index.pricing.content')
+  = component 'myg/tabs', tabs: [{ name: t('d.android'), partial: 'android', active: true }, { name: t('d.ios'), partial: 'ios' }, { name: t('d.windows'), id: 'windows', partial: 'windows' }, { name: t('d.chrome'), partial: 'chrome' }], nav_html: { class: 'myg-tabs--center' }
 
 = component 'footer'

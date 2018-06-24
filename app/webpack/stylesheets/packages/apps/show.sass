@@ -1,88 +1,88 @@
 body.apps.show
-    .myg-content
-        section#head
-            padding: px(40) px(45) px(88)
-            background: color(background, darker)
-            +smaller-than(phone)
-                padding: px(25) px(25) px(75)
-            h1
-                margin: 0
-            p
-                margin: px(10) 0
-                &.sm
-                    margin: 0
-                    color: color(text, light)
-                    span:not(:first-child)
-                        margin-left: px(15)
-        nav
-            margin-top: px(-48)
-        .myg-tabs--panel
-            padding: px(35)
-            +bigger-than(laptop)
-                padding: px(35) 0
-            +smaller-than(phone)
-                padding: px(20)
-            &:not(#settings, #resources)
-                .column
-                    +myg-grid-span(4)
-                    +bigger-than(laptop)
-                        +myg-grid-span(6)
-                    .myg-card
-                        padding: px(20)
-                        &:not(:first-child)
-                            margin-top: px(20)
-                        & > h3
-                            margin-bottom: px(15)
-                            &:first-child
-                                margin-top: 0
-                        & > .myg-button--container
-                            margin-top: px(10)
-                            a:not(.myg-button)
-                                text-decoration: none !important
-                                color: color(text, base)
-                                +transition(color)
-                                &:hover, &:focus
-                                    color: color(accent, base)
-                        .flex.reverse
-                            margin-top: px(35)
-                #information
-                    img
-                        width: px(64)
-                        height: px(64)
-                        margin-right: px(15)
-                    h2, p
-                        margin: 0
-                #plan
-                    h2
-                        margin: 0
-                        span
-                            color: color(text, base)
-                            &:not(.sm)
-                                margin-left: px(10)
-                            &.sm
-                                font-size: px(14)
-                                margin-left: px(-5)
-                #error
-                    text-align: center
-                    padding: px(20) px(20) 0
-                    i, h3, p
-                        color: color(error)
-                #settings
-                    & > h3
-                        margin: 0
-                    & > p
-                        margin: px(5) 0 px(25)
-                    .myg-form-field--file
-                        display: block
-                        & > label:last-child
-                            margin: px(15) 0 0
-            &#settings
-                padding-bottom: px(60)
-                h3
-                    margin-bottom: px(15)
-                    &:not(:first-child)
-                        margin-top: px(50)
-                .myg-button--container
-                    margin-top: px(10)
-                form > .myg-button--container
-                    margin-top: px(15)
+  .myg-content
+    section#head
+      padding: px(40) px(45) px(88)
+      background: color(background, darker)
+      +smaller-than(phone)
+        padding: px(25) px(25) px(75)
+      h1
+        margin: 0
+      p
+        margin: px(10) 0
+        &.sm
+          margin: 0
+          color: color(text, light)
+          span:not(:first-child)
+            margin-left: px(15)
+    nav
+      margin-top: px(-48)
+    .myg-tabs--panel
+      padding: px(35)
+      +bigger-than(laptop)
+        padding: px(35) 0
+      +smaller-than(phone)
+        padding: px(20)
+      &:not(#settings, #resources)
+        .column
+          +myg-grid-span(4)
+          +bigger-than(laptop)
+            +myg-grid-span(6)
+          .myg-card
+            padding: px(20)
+            &:not(:first-child)
+              margin-top: px(20)
+            & > h3
+              margin-bottom: px(15)
+              &:first-child
+                margin-top: 0
+            & > .myg-button--container
+              margin-top: px(10)
+              a:not(.myg-button)
+                text-decoration: none !important
+                color: color(text, base)
+                +transition(color)
+                &:hover, &:focus
+                  color: color(accent, base)
+            .flex.reverse
+              margin-top: px(35)
+        #information
+          img
+            width: px(64)
+            height: px(64)
+            margin-right: px(15)
+          h2, p
+            margin: 0
+        #plan
+          h2
+            margin: 0
+            span
+              color: color(text, base)
+              &:not(.sm)
+                margin-left: px(10)
+              &.sm
+                font-size: px(14)
+                margin-left: px(-5)
+        #error
+          text-align: center
+          padding: px(20) px(20) 0
+          i, h3, p
+            color: color(error)
+        #settings
+          & > h3
+            margin: 0
+          & > p
+            margin: px(5) 0 px(25)
+          .myg-form-field--file
+            display: block
+            & > label:last-child
+              margin: px(15) 0 0
+      &#settings
+        padding-bottom: px(60)
+        h3
+          margin-bottom: px(15)
+          &:not(:first-child)
+            margin-top: px(50)
+        .myg-button--container
+          margin-top: px(10)
+        form > .myg-button--container
+          margin-top: px(15)

@@ -1,54 +1,54 @@
 #application.myg-layout.myg-layout--toolbar
-    +grid-rows(px(72) 1fr)
-    & > .myg-toolbar
-        border-bottom: none
-        & > .mdc-toolbar__row
-            min-height: px(72)
-            padding-left: px(20)
-            +bigger-than(tablet)
-                padding: 0 px(20)
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
-                & > a
-                    line-height: 0
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                &:not(.mobile)
-                    display: none
-                & > a
-                    font-size: px(14)
-                    +transition
-                    &:not(:last-child)
-                        margin: 0 px(15)
-                        +flex--center
-                        color: color(text, base)
-                    &:last-child
-                        margin-left: px(15)
-                &.mobile > a
-                    padding: 0 px(20)
-                    background: color(background, base)
-                    height: px(72)
-                    +flex--center
-                    +transition(background)
-                    &:hover
-                        background: color(background, lighter)
-            +bigger-than(tablet)
-                section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                    &:not(.mobile)
-                        display: flex
-                    &.mobile
-                        display: none
-        &.scrolled
-            border-bottom: inherit
-            & > .mdc-toolbar__row
-                +bigger-than(tablet)
-                    padding: 0 px(15) 0 px(20)
-                & > section.mdc-toolbar__section.mdc-toolbar__section--align-end:not(.mobile)
-                    & > a:last-child
-                        +myg-button
-                        +myg-button--dense
-                        +myg-button--light
+  +grid-rows(px(72) 1fr)
+  & > .myg-toolbar
+    border-bottom: none
+    & > .mdc-toolbar__row
+      min-height: px(72)
+      padding-left: px(20)
+      +bigger-than(tablet)
+        padding: 0 px(20)
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
+        & > a
+          line-height: 0
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
+        &:not(.mobile)
+          display: none
+        & > a
+          font-size: px(14)
+          +transition
+          &:not(:last-child)
+            margin: 0 px(15)
+            +flex--center
+            color: color(text, base)
+          &:last-child
+            margin-left: px(15)
+        &.mobile > a
+          padding: 0 px(20)
+          background: color(background, base)
+          height: px(72)
+          +flex--center
+          +transition(background)
+          &:hover
+            background: color(background, lighter)
+      +bigger-than(tablet)
+        section.mdc-toolbar__section.mdc-toolbar__section--align-end
+          &:not(.mobile)
+            display: flex
+          &.mobile
+            display: none
+    &.scrolled
+      border-bottom: inherit
+      & > .mdc-toolbar__row
+        +bigger-than(tablet)
+          padding: 0 px(15) 0 px(20)
+        & > section.mdc-toolbar__section.mdc-toolbar__section--align-end:not(.mobile)
+          & > a:last-child
+            +myg-button
+            +myg-button--dense
+            +myg-button--light
 
 
 
-    .myg-drawer
-        a.myg-button
-            width: 100%
+  .myg-drawer
+    a.myg-button
+      width: 100%

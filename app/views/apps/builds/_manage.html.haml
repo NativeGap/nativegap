@@ -1,22 +1,22 @@
 .myg-button--container#manage
-    - if build.can_build?
-        - if build.status == 'processing'
-            = component 'myg/progress', indeterminate: true
-        - elsif build.status == 'error'
-            #error
-                %i.nc-icon.nc-alert.x3
-                %h3.sm= t('apps.builds._manage.error.title')
-                %p
-                    - if build.platform == 'android' || build.platform == 'ios'
-                        = t('apps.builds._manage.error.signing_key.content', link: link_to(t('apps.builds._manage.error.signing_key.link'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger hyperlink--inherit')).html_safe
-                    = t('apps.builds._manage.error.content', link: link_to(t('apps.builds._manage.error.contact_us'), "mailto:#{Settings.mailgun.emails.support}", class: 'hyperlink--inherit')).html_safe
-        - else
-            = link_to t('d.download'), build.file.url, download: true, class: 'myg-button'
-            - if build.appetize && build.platform == 'android'
-                = link_to t('d.test'), build.appetize, target: '_blank', class: 'myg-button myg-button--secondary'
-            - if build.platform == 'android' || build.platform == 'ios'
-                = link_to t('apps.builds._manage.edit_signing_key'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary'
-    - elsif build.key_needed?
-        = link_to t('apps.builds._manage.add_signing_key'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary error'
-    - elsif build.splash_screen_needed?
-        = link_to t('apps.builds._manage.add_splash_screen'), app_apps_splash_screen_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary error'
+  - if build.can_build?
+    - if build.status == 'processing'
+      = component 'myg/progress', indeterminate: true
+    - elsif build.status == 'error'
+      #error
+        %i.nc-icon.nc-alert.x3
+        %h3.sm= t('apps.builds._manage.error.title')
+        %p
+          - if build.platform == 'android' || build.platform == 'ios'
+            = t('apps.builds._manage.error.signing_key.content', link: link_to(t('apps.builds._manage.error.signing_key.link'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger hyperlink--inherit')).html_safe
+          = t('apps.builds._manage.error.content', link: link_to(t('apps.builds._manage.error.contact_us'), "mailto:#{Settings.mailgun.emails.support}", class: 'hyperlink--inherit')).html_safe
+    - else
+      = link_to t('d.download'), build.file.url, download: true, class: 'myg-button'
+      - if build.appetize && build.platform == 'android'
+        = link_to t('d.test'), build.appetize, target: '_blank', class: 'myg-button myg-button--secondary'
+      - if build.platform == 'android' || build.platform == 'ios'
+        = link_to t('apps.builds._manage.edit_signing_key'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary'
+  - elsif build.key_needed?
+    = link_to t('apps.builds._manage.add_signing_key'), app_apps_key_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary error'
+  - elsif build.splash_screen_needed?
+    = link_to t('apps.builds._manage.add_splash_screen'), app_apps_splash_screen_url(build.app.slug, build.id), class: 'modalist--trigger myg-button myg-button--secondary error'

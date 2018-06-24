@@ -1,10 +1,10 @@
 = component 'modalist', title: t('apps.builds.splash_screen.title') do
-    = component 'modalist/closer'
+  = component 'modalist/closer'
 
 %h2= t('apps.builds.splash_screen.header')
 %p= t('apps.builds.splash_screen.content')
 
 = simple_form_for @build, url: app_apps_build_url(@build.app.slug, @build.id), method: :put, html: { multipart: true } do |f|
-    = component 'myg/form-field', as: :input, file: t('apps.builds.splash_screen.form.no_file_chosen'), attribute: :windows_splash_screen, class_name: 'app_build', label: [t('apps.builds.splash_screen.form.windows_splash_screen.title'), t('apps.builds.splash_screen.form.windows_splash_screen.content')], input_html: { required: true }
-    .flex.reverse
-        = component 'myg/button', value: t('apps.builds.splash_screen.form.add_splash_scree')
+  = component 'myg/form-field', as: :input, file: t('apps.builds.splash_screen.form.no_file_chosen'), attribute: :windows_splash_screen, class_name: 'app_build', label: [t('apps.builds.splash_screen.form.windows_splash_screen.title'), t('apps.builds.splash_screen.form.windows_splash_screen.content')], input_html: { required: true }
+  .flex.reverse
+    = component 'myg/button', value: t('apps.builds.splash_screen.form.add_splash_scree')
