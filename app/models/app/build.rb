@@ -97,6 +97,24 @@ module App
       BuildWorker.perform_in(Settings.nativegap.delay.build, id)
     end
 
+    def create_appetize
+      appetize = Appetize.new.create(
+        file_url: file.url,
+        platform: platform
+      )
+      update(
+        appetize: appetize.url,
+        appetize_public_key: appetize.public_key,
+        appetize_private_key: appetize.private_key
+      )
+    end
+
+    def remove_appetize
+      return unless appetize
+      Appetize.new(public_key: appetize_public_key).destroy
+      update(appetize: nil, appetize_public_key: nil, appetize_private_key: nil)
+    end
+
     def android_statusbar_background
       self[:android_statusbar_background] || '#000000'
     end

@@ -1,5 +1,5 @@
-const environment = require('./environment')
-const erb =  require('./production/loaders/erb')
+process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
-environment.loaders.append('erb', erb)
+const environment = require('./environment')
+
 module.exports = environment.toWebpackConfig()

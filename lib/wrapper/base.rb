@@ -2,7 +2,7 @@
 
 module Wrapper
   class Base
-    attr_accessor :beta
+    attr_reader :beta
 
     def initialize(beta: false)
       @beta = beta

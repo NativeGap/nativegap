@@ -39,7 +39,9 @@ rails db:seed
 ### Development instructions
 
 ```
-$ bash bin/dev-server
+$ bundle install
+$ bundle exec foreman start -f Procfile.dev
+$ ./bin/webpack-dev-server
 ```
 
 ---

@@ -4,8 +4,8 @@ class BuildWorker
   include Sidekiq::Worker
   sidekiq_options(retry: false, queue: 'app')
 
-  def perform(build_id)
-    build = App::Build.find build_id
+  def perform(build_id:)
+    build = App::Build.find(build_id)
     octokit_client = Octokit::Client.new(
       login: Rails.application.credentials.github[:username],
       password: Rails.application.credentials.github[:password]
@@ -17,125 +17,65 @@ class BuildWorker
       github build, octokit_client, wrapper
       cleanup(wrapper)
 
-      # Authenticate PhoneGap
-      phonegap_auth = {
+      phonegap_client = Phonegap::Client.new(
         username: Rails.application.credentials.phonegap[:username],
         password: Rails.application.credentials.phonegap[:password]
-      }
-      phonegap_token = JSON.parse(
-        HTTParty.post(
-          'https://build.phonegap.com/token',
-          u: Rails.application.credentials.phonegap[:username],
-          basic_auth: phonegap_auth,
-          format: :plain
-        ),
-        symbolize_names: true
-      )[:token]
+      )
 
       # Create signing keys
       case build.platform
       when 'android'
-        android_keystore = download_file build.android_keystore.url, 'keystore'
-        phonegap_android_key_id = JSON.parse(
-          RestClient.post(
-            'https://build.phonegap.com/api/v1/keys/android?auth_token='\
-            "#{phonegap_token}",
-            title: "#{build.folder_name} Key",
-            alias: build.android_key_alias,
-            key_pw: build.android_key_password,
-            keystore_pw: build.android_keystore_password,
-            keystore: File.new(android_keystore)
-          ),
-          symbolize_names: true
-        )[:id]
+        phonegap_key = Phonegap::Key::Android.new(phonegap_client).create(
+          keystore: File.new(download_file(build.android_keystore.url, 'keystore')),
+          keystore_password: build.android_keystore_password,
+          key_password: build.android_key_password,
+          key_alias: build.android_key_alias,
+          title: "#{build.folder_name} Key"
+        )
       when 'ios'
-        ios_cert = download_file build.ios_cert.url, 'p12'
-        ios_profile = download_file build.ios_profile.url, 'mobileprovision'
-        phonegap_ios_key_id = JSON.parse(
-          RestClient.post(
-            'https://build.phonegap.com/api/v1/keys/ios?auth_token='\
-            "#{phonegap_token}",
-            title: "#{build.folder_name} Key",
-            password: build.ios_cert_password,
-            cert: File.new(ios_cert),
-            profile: File.new(ios_profile)
-          ),
-          symbolize_names: true
-        )[:id]
+        phonegap_key = Phonegap::Key::Ios.new(phonegap_client).create(
+          profile: File.new(download_file(build.ios_profile.url, 'mobileprovision')),
+          cert: File.new(download_file(build.ios_cert.url, 'p12')),
+          cert_password: build.ios_cert_password,
+          title: "#{build.folder_name} Key"
+        )
       end
 
       # Create PhoneGap app
-      phonegap_id = JSON.parse(
-        HTTParty.post(
-          "https://build.phonegap.com/api/v1/apps?auth_token=#{phonegap_token}",
-          body: {
-            data: {
-              title: build.app.name,
-              create_method: 'remote_repo',
-              package: build.app.package_id,
-              version: build.version,
-              description: build.app.description,
-              debug: false,
-              private: false,
-              tag: 'master',
-              repo: 'https://github.com/NativeGap/' + build.folder_name + '.git'
-            }
-          },
-          format: :plain
-        ),
-        symbolize_names: true
-      )[:id]
+      phonegap_app = Phonegap::App.new(phonegap_client)
+                     .create(
+                       title: build.app.name,
+                       package: build.app.package_id,
+                       version: build.version,
+                       description: build.app.description,
+                       repository: build.folder_name
+                     )
 
       # Add signing keys
       case build.platform
       when 'android'
-        HTTParty.put(
-          'https://build.phonegap.com/api/v1/apps/'\
-          "#{phonegap_id}?auth_token=#{phonegap_token}",
-          body: {
-            data: {
-              keys: {
-                android: {
-                  id: phonegap_android_key_id,
-                  key_pw: build.android_key_password,
-                  keystore_pw: build.android_keystore_password
-                }
-              }
-            }
-          },
-          format: :plain
+        phonegap_app.add_android_key(
+          id: phonegap_key.id,
+          key_password: build.android_key_password,
+          keystore_password: build.android_keystore_password
         )
       when 'ios'
-        HTTParty.put(
-          'https://build.phonegap.com/api/v1/apps/'\
-          "#{phonegap_id}?auth_token=#{phonegap_token}",
-          body: {
-            data: {
-              keys: {
-                ios: {
-                  id: phonegap_ios_key_id,
-                  password: build.ios_cert_password
-                }
-              }
-            }
-          },
-          format: :plain
+        phonegap_app.add_ios_key(
+          id: phonegap_key.id,
+          cert_password: build.ios_cert_password
         )
       end
 
       # Delete GitHub repository
-      octokit_client.delete_repository 'NativeGap/' + build.folder_name
+      octokit_client.delete_repository("NativeGap/#{build.folder_name}")
 
       # Build PhoneGap app
-      HTTParty.post(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{phonegap_id}/build?auth_token=#{phonegap_token}"
-      )
+      phonegap_app.build
       PhonegapWorker.perform_in(
         Settings.nativegap.delay.phonegap,
-        build_id, phonegap_id,
-        phonegap_android_key_id,
-        phonegap_ios_key_id
+        build_id: build.id,
+        phonegap_app_id: phonegap_app.id,
+        phonegap_key_id: phonegap_key.id
       )
     when 'windows', 'chrome'
       wrapper = builder build
