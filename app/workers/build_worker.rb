@@ -29,8 +29,8 @@ class BuildWorker
           keystore: File.new(download_file(build.android_keystore.url, 'keystore')),
           keystore_password: build.android_keystore_password,
           key_password: build.android_key_password,
-          title: "#{build.folder_name} Key",
-          alias: build.android_key_alias
+          key_alias: build.android_key_alias,
+          title: "#{build.folder_name} Key"
         )
       when 'ios'
         phonegap_key = Phonegap::Key::Ios.new(phonegap_client).create(
