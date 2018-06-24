@@ -1,22 +1,23 @@
 footer
-  background: color(background, dark)
-  padding: px(50) 0
-  .myg-grid
-    +smaller-than(laptop)
-      padding: 0 px(25)
+  background: myg-theme__color(background, dark)
+  padding: myg__px(50) 0
+  .myg-grid__grid
+    +myg-grid__smaller-than(laptop)
+      padding: 0 myg__px(25)
     & > div
-      +myg-grid-span(4)
-      +bigger-than(laptop)
-        +myg-grid-span(3)
+      +myg-grid__grid
+      +myg-grid__grid-span(4)
+      +myg-grid__bigger-than(laptop)
+        +myg-grid__grid-span(3)
       p
-        margin: px(4) 0
+        margin: myg__px(4) 0
         a
-          color: color(text, darker)
-  .flex
-    +smaller-than(laptop)
-      padding: 0 px(25)
-    margin-top: px(25)
+          color: myg-theme__color(text, darker)
+  .myg-grid__flex
+    +myg-grid__smaller-than(laptop)
+      padding: 0 myg__px(25)
+    margin-top: myg__px(25)
     p
-      color: color(text, light) !important
+      color: myg-theme__color(text, light) !important
       &:last-child
-        margin-left: px(15)
+        margin-left: myg__px(15)

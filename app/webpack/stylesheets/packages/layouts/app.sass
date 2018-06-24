@@ -1,32 +1,32 @@
 #app.myg-layout
   & > .myg-toolbar
     & > .mdc-toolbar__row
-      padding: 0 px(20)
-      +smaller-than(tablet)
+      padding: 0 myg__px(20)
+      +myg-grid__smaller-than(tablet)
         padding-right: 0
       & > section.mdc-toolbar__section.mdc-toolbar__section--align-start, & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
         & > a
-          font-size: px(14)
-          color: color(text, base)
+          font-size: myg__px(14)
+          color: myg-theme__color(text, base)
           text-decoration: none !important
-          +transition(color)
+          +myg-animate__transition(color)
           &:hover
-            color: color(accent, base)
+            color: myg-theme__color(accent, base)
           svg
-            margin-left: px(5)
+            margin-left: myg__px(5)
       & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
-        +smaller-than(tablet)
+        +myg-grid__smaller-than(tablet)
           display: none
         & > a
-          +flex--center-c
+          +myg-grid__flex---center-y
           img
-            height: px(20)
-            margin-right: px(10)
-            +border-radius(sm)
+            height: myg__px(20)
+            margin-right: myg__px(10)
+            +myg-theme__border-radius(2)
           svg
-            margin-left: px(15)
+            margin-left: myg__px(15)
       & > section.mdc-toolbar__section.mdc-toolbar__section--align-center
-        +smaller-than(tablet)
+        +myg-grid__smaller-than(tablet)
           justify-content: flex-start
         & > a
           line-height: 0
@@ -34,14 +34,14 @@
         &:not(.mobile)
           display: none
         &.mobile > a
-          padding: 0 px(20)
-          background: color(background, base)
+          padding: 0 myg__px(20)
+          background: myg-theme__color(background, base)
           height: map-get($myg-layout, toolbar-height)
-          +flex--center
-          +transition(background)
+          +myg-grid__flex---center
+          +myg-animate__transition(background)
           &:hover
-            background: color(background, lighter)
-      +bigger-than(tablet)
+            background: myg-theme__color(background, lighter)
+      +myg-grid__bigger-than(tablet)
         section.mdc-toolbar__section.mdc-toolbar__section--align-end
           &:not(.mobile)
             display: flex
@@ -49,11 +49,11 @@
             display: none
     .myg-dropdown
       img
-        height: px(20)
-        margin-right: px(10)
-        +border-radius(sm)
+        height: myg__px(20)
+        margin-right: myg__px(10)
+        +myg-theme__border-radius(2)
       a
-        color: color(text, base)
+        color: myg-theme__color(text, base)
 
 
 

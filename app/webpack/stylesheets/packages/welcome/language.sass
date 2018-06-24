@@ -1,7 +1,8 @@
 .modalist--content-body.welcome.language
-  +grid-columns(1fr)
-  +bigger-than(phone)
-    +grid-columns(repeat(2, 1fr))
-  +smaller-than(phone)
+  +myg-grid__grid
+  +myg-grid__grid-columns(1fr)
+  +myg-grid__bigger-than(phone)
+    +myg-grid__grid-columns(repeat(2, 1fr))
+  +myg-grid__smaller-than(phone)
     a:not(:first-child)
-      margin-top: px(10)
+      margin-top: myg__px(10)

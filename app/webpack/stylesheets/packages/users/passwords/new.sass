@@ -1,13 +1,13 @@
 body.users.passwords.new
   .myg-card
     form
-      margin-top: px(35)
+      margin-top: myg__px(35)
       .flex
-        margin-top: px(35)
+        margin-top: myg__px(35)
         a
           text-decoration: none
-          +transition(color)
+          +myg-animate__transition(color)
           &:hover
-            color: color(accent, base)
+            color: myg-theme__color(accent, base)
           &:not(:first-child)
-            margin-left: px(20)
+            margin-left: myg__px(20)

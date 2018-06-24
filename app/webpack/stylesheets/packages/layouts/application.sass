@@ -1,12 +1,12 @@
 #application.myg-layout.myg-layout--toolbar
-  +grid-rows(px(72) 1fr)
+  +myg-grid__grid-rows(myg__px(72) 1fr)
   & > .myg-toolbar
     border-bottom: none
     & > .mdc-toolbar__row
-      min-height: px(72)
-      padding-left: px(20)
-      +bigger-than(tablet)
-        padding: 0 px(20)
+      min-height: myg__px(72)
+      padding-left: myg__px(20)
+      +myg-grid__bigger-than(tablet)
+        padding: 0 myg__px(20)
       & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
         & > a
           line-height: 0
@@ -14,23 +14,23 @@
         &:not(.mobile)
           display: none
         & > a
-          font-size: px(14)
-          +transition
+          font-size: myg__px(14)
+          +myg-animate__transition
           &:not(:last-child)
-            margin: 0 px(15)
-            +flex--center
-            color: color(text, base)
+            margin: 0 myg__px(15)
+            +myg-grid__flex---center
+            color: myg-theme__color(text, base)
           &:last-child
-            margin-left: px(15)
+            margin-left: myg__px(15)
         &.mobile > a
-          padding: 0 px(20)
-          background: color(background, base)
-          height: px(72)
-          +flex--center
-          +transition(background)
+          padding: 0 myg__px(20)
+          background: myg-theme__color(background, base)
+          height: myg__px(72)
+          +myg-grid__flex---center
+          +myg-animate__transition(background)
           &:hover
-            background: color(background, lighter)
-      +bigger-than(tablet)
+            background: myg-theme__color(background, lighter)
+      +myg-grid__bigger-than(tablet)
         section.mdc-toolbar__section.mdc-toolbar__section--align-end
           &:not(.mobile)
             display: flex
@@ -39,13 +39,13 @@
     &.scrolled
       border-bottom: inherit
       & > .mdc-toolbar__row
-        +bigger-than(tablet)
-          padding: 0 px(15) 0 px(20)
+        +myg-grid__bigger-than(tablet)
+          padding: 0 myg__px(15) 0 myg__px(20)
         & > section.mdc-toolbar__section.mdc-toolbar__section--align-end:not(.mobile)
           & > a:last-child
             +myg-button
-            +myg-button--dense
             +myg-button--light
+            +myg-button---dense
 
 
 
