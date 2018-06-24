@@ -13,7 +13,7 @@
         "turbolinks-animate": "^3.0.5"
     },
     "devDependencies": {
-        "webpack-cli": "^2.1.5",
+        "webpack-cli": "^3.0.8",
         "webpack-dev-server": "^2.11.2"
     }
 }
