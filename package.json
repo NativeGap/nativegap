@@ -4,7 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "^3.5.3",
     "ahoy.js": "^0.3.3",
-    "myg": "^0.13.3",
+    "myg": "^0.12.5",
     "nativegap": "^1.1.8",
     "onsignal": "^5.0.6",
     "rails-erb-loader": "^5.4.2",
@@ -14,6 +14,6 @@
   },
   "devDependencies": {
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^2.11.1"
   }
 }

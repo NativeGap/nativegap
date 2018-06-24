@@ -232,7 +232,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    myg (2.10.3)
+    myg (2.9.0)
       actionpack (>= 5.0)
       activesupport (>= 5.0)
       mozaic (~> 2.0)
