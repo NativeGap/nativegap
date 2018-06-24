@@ -1,7 +1,7 @@
 %h1.sm= t('pwa.offline.title')
 %p= t('pwa.offline.content')
 .myg-button--container
-    - if current_user
-        = link_to t('pwa.offline.open_dashboard'), apps_url, class: 'myg-button'
-    - else
-        = link_to t('pwa.offline.open_nativegap'), root_url, class: 'myg-button'
+  - if current_user
+    = link_to t('pwa.offline.open_dashboard'), apps_url, class: 'myg-button'
+  - else
+    = link_to t('pwa.offline.open_nativegap'), root_url, class: 'myg-button'

@@ -1,19 +1,19 @@
 {
-    "name": "nativegap",
-    "private": true,
-    "dependencies": {
-        "@rails/webpacker": "^3.5.3",
-        "ahoy.js": "^0.3.3",
-        "myg": "^0.13.3",
-        "nativegap": "^1.1.8",
-        "onsignal": "^5.0.6",
-        "rails-erb-loader": "^5.4.2",
-        "rails-ujs": "^5.2.0",
-        "turbolinks": "^5.1.1",
-        "turbolinks-animate": "^3.0.5"
-    },
-    "devDependencies": {
-        "webpack-cli": "^3.0.8",
-        "webpack-dev-server": "^3.1.4"
-    }
+  "name": "nativegap",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.5.3",
+    "ahoy.js": "^0.3.3",
+    "myg": "^0.13.3",
+    "nativegap": "^1.1.8",
+    "onsignal": "^5.0.6",
+    "rails-erb-loader": "^5.4.2",
+    "rails-ujs": "^5.2.0",
+    "turbolinks": "^5.1.1",
+    "turbolinks-animate": "^3.0.5"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  }
 }

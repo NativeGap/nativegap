@@ -1,25 +1,25 @@
 %h3.sm= t('subscriptions._index.payment_method.title')
 - if current_user.has_payment_method?
-    %p= t('subscriptions._index.payment_method.has_payment_method.content')
-    .myg-button--container
-        = link_to t('subscriptions._index.payment_method.has_payment_method.button'), users_edit_payment_method_url, class: 'modalist--trigger myg-button'
+  %p= t('subscriptions._index.payment_method.has_payment_method.content')
+  .myg-button--container
+    = link_to t('subscriptions._index.payment_method.has_payment_method.button'), users_edit_payment_method_url, class: 'modalist--trigger myg-button'
 - else
-    %p= t('subscriptions._index.payment_method.no_payment_method.content')
-    .myg-button--container
-        = link_to t('subscriptions._index.payment_method.no_payment_method.button'), users_edit_payment_method_url, class: 'modalist--trigger myg-button'
+  %p= t('subscriptions._index.payment_method.no_payment_method.content')
+  .myg-button--container
+    = link_to t('subscriptions._index.payment_method.no_payment_method.button'), users_edit_payment_method_url, class: 'modalist--trigger myg-button'
 
 %h3.sm= t('subscriptions._index.upcoming_invoices.title')
 - if @subscriptions.any?
-    .myg-list
-        - @subscriptions.each do |subscription|
-            = render subscription
+  .myg-list
+    - @subscriptions.each do |subscription|
+      = render subscription
 - else
-    %p= t('subscriptions._index.upcoming_invoices.content')
+  %p= t('subscriptions._index.upcoming_invoices.content')
 
 %h3.sm= t('d.invoices')
 - if @invoices.any?
-    .myg-list
-        - @invoices.each do |invoice|
-            = render 'subscriptions/invoices/invoice', invoice: invoice
+  .myg-list
+    - @invoices.each do |invoice|
+      = render 'subscriptions/invoices/invoice', invoice: invoice
 - else
-    %p= t('subscriptions._index.invoices.content')
+  %p= t('subscriptions._index.invoices.content')

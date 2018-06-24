@@ -1,23 +1,23 @@
 .myg-wrap--phone
 
-    %h3.sm= t('d.marketplace')
-    = simple_form_for @app do |f|
-        = component 'myg/form-field', as: :switch, attribute: :visibility, class_name: 'app', inline_label: [t('apps._settings.marketplace.visibility.title'), t('apps._settings.marketplace.visibility.content', link: link_to(t('apps._settings.marketplace.visibility.link'), app_explore_url(@app))).html_safe], input_html: { values: ['private', 'public'], input_html: { checked: @app.visibility == 'public' } }
-        - if @app.visibility == 'public'
-            = component 'myg/form-field', as: :input, attribute: :android, class_name: 'app', floating_label: t('apps._settings.marketplace.android'), input_html: { type: 'url', value: @app.android }
-            = component 'myg/form-field', as: :input, attribute: :ios, class_name: 'app', floating_label: t('apps._settings.marketplace.ios'), input_html: { type: 'url', value: @app.ios }
-            = component 'myg/form-field', as: :input, attribute: :windows, class_name: 'app', floating_label: t('apps._settings.marketplace.windows'), input_html: { type: 'url', value: @app.windows }
-            = component 'myg/form-field', as: :input, attribute: :chrome, class_name: 'app', floating_label: t('apps._settings.marketplace.chrome'), input_html: { type: 'url', value: @app.chrome }
-            = component 'myg/form-field', as: :checkbox, attribute: :appetize, class_name: 'app', inline_label: [t('apps._settings.marketplace.appetize.title'), t('apps._settings.marketplace.appetize.content')], input_html: { input_html: { checked: @app.appetize } }
-        .myg-button--container
-            = component 'myg/button', value: t('d.update'), class: 'myg-button--secondary'
-
-    %h3.sm= t('apps._settings.edit_your_app.title')
-    %p.sm= t('apps._settings.edit_your_app.content')
+  %h3.sm= t('d.marketplace')
+  = simple_form_for @app do |f|
+    = component 'myg/form-field', as: :switch, attribute: :visibility, class_name: 'app', inline_label: [t('apps._settings.marketplace.visibility.title'), t('apps._settings.marketplace.visibility.content', link: link_to(t('apps._settings.marketplace.visibility.link'), app_explore_url(@app))).html_safe], input_html: { values: ['private', 'public'], input_html: { checked: @app.visibility == 'public' } }
+    - if @app.visibility == 'public'
+      = component 'myg/form-field', as: :input, attribute: :android, class_name: 'app', floating_label: t('apps._settings.marketplace.android'), input_html: { type: 'url', value: @app.android }
+      = component 'myg/form-field', as: :input, attribute: :ios, class_name: 'app', floating_label: t('apps._settings.marketplace.ios'), input_html: { type: 'url', value: @app.ios }
+      = component 'myg/form-field', as: :input, attribute: :windows, class_name: 'app', floating_label: t('apps._settings.marketplace.windows'), input_html: { type: 'url', value: @app.windows }
+      = component 'myg/form-field', as: :input, attribute: :chrome, class_name: 'app', floating_label: t('apps._settings.marketplace.chrome'), input_html: { type: 'url', value: @app.chrome }
+      = component 'myg/form-field', as: :checkbox, attribute: :appetize, class_name: 'app', inline_label: [t('apps._settings.marketplace.appetize.title'), t('apps._settings.marketplace.appetize.content')], input_html: { input_html: { checked: @app.appetize } }
     .myg-button--container
-        = link_to t('apps._settings.edit_your_app.button'), edit_app_url(@app), class: 'myg-button myg-button--secondary', data: { turbolinks_animate_type: 'app' }
+      = component 'myg/button', value: t('d.update'), class: 'myg-button--secondary'
 
-    %h3.sm= t('apps._settings.danger_zone.title')
-    %p.sm= t('apps._settings.danger_zone.content')
-    .myg-button--container
-        = link_to t('apps._settings.danger_zone.button'), app_url(@app), method: :delete, class: 'myg-button myg-button--secondary error', data: { turbolinks_animate_type: 'app', confirm: t('apps._settings.danger_zone.confirm') }
+  %h3.sm= t('apps._settings.edit_your_app.title')
+  %p.sm= t('apps._settings.edit_your_app.content')
+  .myg-button--container
+    = link_to t('apps._settings.edit_your_app.button'), edit_app_url(@app), class: 'myg-button myg-button--secondary', data: { turbolinks_animate_type: 'app' }
+
+  %h3.sm= t('apps._settings.danger_zone.title')
+  %p.sm= t('apps._settings.danger_zone.content')
+  .myg-button--container
+    = link_to t('apps._settings.danger_zone.button'), app_url(@app), method: :delete, class: 'myg-button myg-button--secondary error', data: { turbolinks_animate_type: 'app', confirm: t('apps._settings.danger_zone.confirm') }

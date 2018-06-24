@@ -4,7 +4,7 @@
 %p= t('devise.passwords.edit.content')
 
 = simple_form_for resource, as: resource_name, url: password_url, html: { method: :put } do |f|
-    = f.input :reset_password_token, as: :hidden
-    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('d.password'), input_html: { required: true, type: 'password', autofocus: true, minlength: 5 }
-    .flex.reverse
-        = component 'myg/button', value: t('d.proceed')
+  = f.input :reset_password_token, as: :hidden
+  = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('d.password'), input_html: { required: true, type: 'password', autofocus: true, minlength: 5 }
+  .flex.reverse
+    = component 'myg/button', value: t('d.proceed')

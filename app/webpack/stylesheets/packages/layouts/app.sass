@@ -1,62 +1,62 @@
 #app.myg-layout
-    & > .myg-toolbar
-        & > .mdc-toolbar__row
-            padding: 0 px(20)
-            +smaller-than(tablet)
-                padding-right: 0
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-start, & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                & > a
-                    font-size: px(14)
-                    color: color(text, base)
-                    text-decoration: none !important
-                    +transition(color)
-                    &:hover
-                        color: color(accent, base)
-                    svg
-                        margin-left: px(5)
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
-                +smaller-than(tablet)
-                    display: none
-                & > a
-                    +flex--center-c
-                    img
-                        height: px(20)
-                        margin-right: px(10)
-                        +border-radius(sm)
-                    svg
-                        margin-left: px(15)
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-center
-                +smaller-than(tablet)
-                    justify-content: flex-start
-                & > a
-                    line-height: 0
-            & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                &:not(.mobile)
-                    display: none
-                &.mobile > a
-                    padding: 0 px(20)
-                    background: color(background, base)
-                    height: map-get($myg-layout, toolbar-height)
-                    +flex--center
-                    +transition(background)
-                    &:hover
-                        background: color(background, lighter)
-            +bigger-than(tablet)
-                section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                    &:not(.mobile)
-                        display: flex
-                    &.mobile
-                        display: none
-        .myg-dropdown
-            img
-                height: px(20)
-                margin-right: px(10)
-                +border-radius(sm)
-            a
-                color: color(text, base)
+  & > .myg-toolbar
+    & > .mdc-toolbar__row
+      padding: 0 px(20)
+      +smaller-than(tablet)
+        padding-right: 0
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-start, & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
+        & > a
+          font-size: px(14)
+          color: color(text, base)
+          text-decoration: none !important
+          +transition(color)
+          &:hover
+            color: color(accent, base)
+          svg
+            margin-left: px(5)
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-start
+        +smaller-than(tablet)
+          display: none
+        & > a
+          +flex--center-c
+          img
+            height: px(20)
+            margin-right: px(10)
+            +border-radius(sm)
+          svg
+            margin-left: px(15)
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-center
+        +smaller-than(tablet)
+          justify-content: flex-start
+        & > a
+          line-height: 0
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-end
+        &:not(.mobile)
+          display: none
+        &.mobile > a
+          padding: 0 px(20)
+          background: color(background, base)
+          height: map-get($myg-layout, toolbar-height)
+          +flex--center
+          +transition(background)
+          &:hover
+            background: color(background, lighter)
+      +bigger-than(tablet)
+        section.mdc-toolbar__section.mdc-toolbar__section--align-end
+          &:not(.mobile)
+            display: flex
+          &.mobile
+            display: none
+    .myg-dropdown
+      img
+        height: px(20)
+        margin-right: px(10)
+        +border-radius(sm)
+      a
+        color: color(text, base)
 
 
 
-    .myg-drawer
-        a.myg-button
-            width: 100%
+  .myg-drawer
+    a.myg-button
+      width: 100%

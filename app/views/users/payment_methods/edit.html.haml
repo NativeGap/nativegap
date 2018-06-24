@@ -1,14 +1,14 @@
 = component 'modalist', title: t('users.payment_methods.edit.title') do
-    = component 'modalist/closer'
+  = component 'modalist/closer'
 
 %h2= t('users.payment_methods.edit.header')
 %p= t('users.payment_methods.edit.content')
 
 = form_tag users_payment_method_url, method: :post, authenticity_token: true, remote: params.has_key?(:plan) do
-    %input{ type: 'hidden', name: 'stripeToken' }
-    #card-element
-    .myg-button--container.flex.reverse
-        - if params.has_key?(:plan)
-            = component 'myg/button', value: t('users.payment_methods.edit.continue_to_checkout'), data: { modalist_url: checkout_url(build: params[:build], plan: params[:plan]) }
-        - else
-            = component 'myg/button', value: t('users.payment_methods.edit.add_payment_method')
+  %input{ type: 'hidden', name: 'stripeToken' }
+  #card-element
+  .myg-button--container.flex.reverse
+    - if params.has_key?(:plan)
+      = component 'myg/button', value: t('users.payment_methods.edit.continue_to_checkout'), data: { modalist_url: checkout_url(build: params[:build], plan: params[:plan]) }
+    - else
+      = component 'myg/button', value: t('users.payment_methods.edit.add_payment_method')

@@ -1,26 +1,26 @@
 .myg-card#update
-    - if build.update_available?
-        %h3.sm= t('apps.builds._update.updates.title')
-        %p= t('apps.builds._update.updates.content')
+  - if build.update_available?
+    %h3.sm= t('apps.builds._update.updates.title')
+    %p= t('apps.builds._update.updates.content')
+  - else
+    - if build.key_needed?
+      %h3.sm= t('apps.builds._update.key_needed.title')
+      %p= t('apps.builds._update.key_needed.content', link: link_to(t('apps.builds._update.key_needed.link'), 'https://medium.com/nativegap/whats-the-the-x-frame-options-header-c6bd6573d7dd', target: '_blank')).html_safe
+    - elsif build.splash_screen_needed?
+      %h3.sm= t('apps.builds._update.splash_screen_needed.title')
+      %p= t('apps.builds._update.splash_screen_needed.content')
+    - elsif build.status == 'processing'
+      %h3.sm= t('apps.builds._update.processing.title')
+      %p= t('apps.builds._update.processing.content')
     - else
-        - if build.key_needed?
-            %h3.sm= t('apps.builds._update.key_needed.title')
-            %p= t('apps.builds._update.key_needed.content', link: link_to(t('apps.builds._update.key_needed.link'), 'https://medium.com/nativegap/whats-the-the-x-frame-options-header-c6bd6573d7dd', target: '_blank')).html_safe
-        - elsif build.splash_screen_needed?
-            %h3.sm= t('apps.builds._update.splash_screen_needed.title')
-            %p= t('apps.builds._update.splash_screen_needed.content')
-        - elsif build.status == 'processing'
-            %h3.sm= t('apps.builds._update.processing.title')
-            %p= t('apps.builds._update.processing.content')
-        - else
-            %h3.sm= t('apps.builds._update.rebuild.title')
-            %p= t('apps.builds._update.rebuild.content')
-    .myg-button--container
-        - if build.update_available?
-            = link_to t('d.update'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button'
-            %p.sm= link_to t('d.changelog'), Settings.nativegap.medium.changelog, target: '_blank'
-        - elsif build.key_needed? == false
-            - if build.status == 'processing'
-                = link_to t('apps.builds._update.restart_build'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button myg-button--secondary'
-            - else
-                = link_to t('d.rebuild'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button myg-button--secondary'
+      %h3.sm= t('apps.builds._update.rebuild.title')
+      %p= t('apps.builds._update.rebuild.content')
+  .myg-button--container
+    - if build.update_available?
+      = link_to t('d.update'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button'
+      %p.sm= link_to t('d.changelog'), Settings.nativegap.medium.changelog, target: '_blank'
+    - elsif build.key_needed? == false
+      - if build.status == 'processing'
+        = link_to t('apps.builds._update.restart_build'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button myg-button--secondary'
+      - else
+        = link_to t('d.rebuild'), app_apps_build_url(build.app.slug, build.id), method: :put, remote: true, class: 'myg-button myg-button--secondary'

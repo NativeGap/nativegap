@@ -1,6 +1,6 @@
 = simple_form_for @app, html: { class: 'myg-wrap--phone', multipart: true } do |f|
 
-    %p#error.hidden= t('apps._form.error')
+  %p#error.hidden= t('apps._form.error')
 
-    = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', label: [t('apps._form.url.title'), t('apps._form.url.content')], hint: (t('apps._form.url.hint.content', link: link_to(t('apps._form.url.hint.link'), 'https://medium.com/nativegap/whats-the-the-x-frame-options-header-c6bd6573d7dd', target: '_blank', class: 'hyperlink--inherit')).html_safe unless @app.id), hint_html: { class: 'error' }, input_html: { required: true, type: 'url', value: @app.url || params.dig(:app, :url), disabled: !@app.url.nil?, placeholder: 'https://nativegap.com', autofocus: true }
-    = component 'myg/tabs', tabs: [{ name: t('d.general'), partial: 'general', active: true }, { name: t('d.icons'), partial: 'icons' }, { name: t('d.design'), partial: 'design' }, { name: t('d.features'), partial: 'features' }]
+  = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', label: [t('apps._form.url.title'), t('apps._form.url.content')], hint: (t('apps._form.url.hint.content', link: link_to(t('apps._form.url.hint.link'), 'https://medium.com/nativegap/whats-the-the-x-frame-options-header-c6bd6573d7dd', target: '_blank', class: 'hyperlink--inherit')).html_safe unless @app.id), hint_html: { class: 'error' }, input_html: { required: true, type: 'url', value: @app.url || params.dig(:app, :url), disabled: !@app.url.nil?, placeholder: 'https://nativegap.com', autofocus: true }
+  = component 'myg/tabs', tabs: [{ name: t('d.general'), partial: 'general', active: true }, { name: t('d.icons'), partial: 'icons' }, { name: t('d.design'), partial: 'design' }, { name: t('d.features'), partial: 'features' }]
