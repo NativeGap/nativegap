@@ -1,3 +1,5 @@
 - meta title: t('d.settings')
 
-= render 'tabs', tab: t('d.settings'), success: { partial: 'devise/registrations/edit' }
+= render('tabs',
+  tab: t('d.settings'),
+  success: { partial: 'devise/registrations/edit' })

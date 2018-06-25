@@ -1,15 +1,47 @@
 %h3.sm= t('apps._features.error_pages.title')
 %p= t('apps._features.error_pages.content')
-= component 'myg/form-field', as: :input, attribute: :error_network_title, class_name: 'app', label: t('apps._features.error_pages.error_network_title'), input_html: { value: @app.error_network_title, placeholder: 'Oooooops ...' }
-= component 'myg/form-field', as: :textarea, attribute: :error_network_content, class_name: 'app', label: [t('apps._features.error_pages.error_network_content'), t('apps._features.error_pages.html')], input_html: { placeholder: 'No network connection' } do
-  = @app.error_network_content
-= component 'myg/form-field', as: :input, attribute: :error_unsupported_title, class_name: 'app', label: t('apps._features.error_pages.error_unsupported_title'), input_html: { value: @app.error_unsupported_title, placeholder: 'Oooooops ...' }
-= component 'myg/form-field', as: :textarea, attribute: :error_unsupported_content, class_name: 'app', label: [t('apps._features.error_pages.error_unsupported_content'), t('apps._features.error_pages.html')], input_html: { placeholder: 'Your device is unsupported' } do
-  = @app.error_unsupported_content
+= component('myg/form-field',
+  as: :input,
+  attribute: :error_network_title,
+  class_name: 'app',
+  label: t('apps._features.error_pages.error_network_title'),
+  input_html: { value: app.error_network_title, placeholder: 'Oooooops ...' })
+= component('myg/form-field',
+  as: :textarea,
+  attribute: :error_network_content,
+  class_name: 'app',
+  label: [t('apps._features.error_pages.error_network_content'),
+    t('apps._features.error_pages.html')],
+  input_html: { placeholder: 'No network connection' }) do
+  = app.error_network_content
+= component('myg/form-field',
+  as: :input,
+  attribute: :error_unsupported_title,
+  class_name: 'app',
+  label: t('apps._features.error_pages.error_unsupported_title'),
+  input_html: { value: app.error_unsupported_title,
+    placeholder: 'Oooooops ...' })
+= component('myg/form-field',
+  as: :textarea,
+  attribute: :error_unsupported_content,
+  class_name: 'app',
+  label: [t('apps._features.error_pages.error_unsupported_content'),
+    t('apps._features.error_pages.html')],
+  input_html: { placeholder: 'Your device is unsupported' }) do
+  = app.error_unsupported_content
 
 %h3.sm= t('d.notifications')
-%p= t('apps._features.notifications.content', link: link_to('OneSignal', 'https://onesignal.com', target: '_blank')).html_safe
-= component 'myg/form-field', as: :input, attribute: :one_signal_app_id, class_name: 'app', label: t('apps._features.notifications.one_signal_app_id'), input_html: { value: @app.one_signal_app_id }
+%p= t('apps._features.notifications.content',
+  link: link_to('OneSignal',
+    'https://onesignal.com',
+    target: '_blank')).html_safe
+= component('myg/form-field',
+  as: :input,
+  attribute: :one_signal_app_id,
+  class_name: 'app',
+  label: t('apps._features.notifications.one_signal_app_id'),
+  input_html: { value: app.one_signal_app_id })
 
 .flex.reverse
-  = component 'myg/button', value: (@app.created_at ? t('apps._features.update_app') : t('apps._features.create_app'))
+  = component('myg/button',
+    value: app.created_at ? t('apps._features.update_app') : t('apps._features.create_app'))

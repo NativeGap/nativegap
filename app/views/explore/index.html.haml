@@ -14,6 +14,12 @@
 
 %section#content
   .myg-wrap--tablet
-    = component 'myg/tabs', tabs: [{ name: t('d.trending'), partial: 'trending', active: true }, { name: t('d.fresh'), partial: 'fresh' }, { name: t('d.android'), partial: 'android' }, { name: t('d.ios'), partial: 'ios' }, { name: t('d.windows'), id: 'windows', partial: 'windows' }, { name: t('d.chrome'), partial: 'chrome' }]
+    = component('myg/tabs',
+      tabs: [{ name: t('d.trending'), partial: 'trending', active: true },
+        { name: t('d.fresh'), partial: 'fresh' },
+        { name: t('d.android'), partial: 'android' },
+        { name: t('d.ios'), partial: 'ios' },
+        { name: t('d.windows'), id: 'windows', partial: 'windows' },
+        { name: t('d.chrome'), partial: 'chrome' }])
 
 = component 'footer'

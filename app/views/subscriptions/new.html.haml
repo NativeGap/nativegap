@@ -1,5 +1,5 @@
 %h1
-  = "$#{Settings.nativegap.pricing.send(App::Build.find(params[:build]).platform)&.send(params[:plan])}"
+  = "$#{@price}"
   %span= t('subscriptions.new.per_year')
 - if params[:plan] == 'starter'
   %h2= t('d.starter')
@@ -9,4 +9,7 @@
   %p= t('subscriptions.new.professional')
 
 .myg-button--container
-  = link_to t('d.purchase'), subscriptions_url(build: params[:build], plan: params[:plan]), method: :post, class: 'myg-button'
+  = link_to(t('d.purchase'),
+    subscriptions_url(build: params[:build], plan: params[:plan]),
+    method: :post,
+    class: 'myg-button')

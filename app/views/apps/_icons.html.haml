@@ -1,2 +1,14 @@
-= component 'myg/form-field', as: :input, file: t('apps._icons.no_file_chosen'), attribute: :icon, class_name: 'app', label: [t('apps._icons.icon.title'), t('apps._icons.icon.content')], input_html: { required: @app.icon.nil? }
-= component 'myg/form-field', as: :input, file: t('apps._icons.no_file_chosen'), attribute: :logo, class_name: 'app', label: [t('apps._icons.logo.title'), t('apps._icons.logo.content')], input_html: { required: @app.logo.nil? }
+= component('myg/form-field',
+  as: :input,
+  file: t('apps._icons.no_file_chosen'),
+  attribute: :icon,
+  class_name: 'app',
+  label: [t('apps._icons.icon.title'), t('apps._icons.icon.content')],
+  input_html: { required: app.icon.nil? })
+= component('myg/form-field',
+  as: :input,
+  file: t('apps._icons.no_file_chosen'),
+  attribute: :logo,
+  class_name: 'app',
+  label: [t('apps._icons.logo.title'), t('apps._icons.logo.content')],
+  input_html: { required: app.logo.nil? })

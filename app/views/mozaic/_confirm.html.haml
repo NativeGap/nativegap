@@ -1,6 +1,13 @@
 - if current_user && !current_user.confirmed?
-  = component 'myg/titlebar', close: false, class: 'error', data: { turbolinks_animate_persist: 'app' } do
+  = component('myg/titlebar',
+    close: false,
+    class: 'error',
+    data: { turbolinks_animate_persist: 'app' }) do
     %p.welcomer--mobile= t('mozaic._confirm.title')
-    %p= t('mozaic._confirm.content', days: "#{7 - (Date.today - current_user.created_at.to_date).to_i} #{t('mozaic._confirm.day').pluralize(7 - (Date.today - current_user.created_at.to_date).to_i)}")
-    = link_to t('mozaic._confirm.resend_email'), new_user_confirmation_url, class: 'welcomer--mobile'
-    = link_to t('mozaic._confirm.resend_confirmation_email'), new_user_confirmation_url
+    %p= t('mozaic._confirm.content',
+      days: required_confirmation_in_days_string)
+    = link_to(t('mozaic._confirm.resend_email'),
+      new_user_confirmation_url,
+      class: 'welcomer--mobile')
+    = link_to(t('mozaic._confirm.resend_confirmation_email'),
+      new_user_confirmation_url)

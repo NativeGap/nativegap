@@ -1,48 +1,89 @@
-.myg-grid.myg-wrap--tablet{ data: { build_id: build.id }  }
+.myg-grid.myg-wrap--tablet{ data: { build_id: build.id } }
 
   .column
     .myg-card.flex#information
-      = image_tag build.icon_url('_1240x1240'), onerror: "this.src = 'https://nativegap.com/icon_fallback.png'"
+      = image_tag(build.icon_url('_1240x1240'),
+        onerror: "this.src = 'https://nativegap.com/icon_fallback.png'")
       .wrapper
         %h2= build.name
         %p.sm
           = build.version
           ·
-          = link_to t('apps.builds._build.information.update_version'), app_apps_version_url(build.app.slug, build.id), class: 'modalist--trigger'
+          = link_to(t('apps.builds._build.information.update_version'),
+            app_apps_version_url(build.app.slug, build.id),
+            class: 'modalist--trigger')
     - if build.platform == 'android' || build.platform == 'ios'
       .myg-card#plan
         %h2
-          = build.subscription&.subscribed? ? build.subscription.name : t('d.free')
+          - if build.subscription&.subscribed?
+            = build.subscription.name
+          - else
+            = t('d.free')
           %span
-            = "$#{build.subscription&.subscribed? ? Settings.nativegap.pricing.send(build.platform).send(build.subscription&.plan&.split('_')&.last) : 0}"
+            - if build.subscription&.subscribed?
+              = "$#{Settings.nativegap.pricing.send(build.platform).send(build.subscription&.plan&.split('_')&.last)}"
+            - else
+              = "$0"
             %span.sm= t('apps.builds._build.plan.per_year')
         - if build.subscription&.subscribed?
           - if build.subscription&.canceled?
-            %p= t('apps.builds._build.plan.subscription.canceled.content', date: build.subscription.current_period_end.strftime('%B %-d, %Y'))
-            %p.color--error= t('apps.builds._build.plan.subscription.canceled.warning.content', link: link_to(t('apps.builds._build.plan.subscription.canceled.warning.link'), 'https://medium.com/nativegap/licensing-22021a9389ff', target: '_blank', class: 'hyperlink--inherit')).html_safe
+            %p= t('apps.builds._build.plan.subscription.canceled.content',
+              date: build.subscription.current_period_end.strftime('%B %-d, %Y'))
+            %p.color--error= t('apps.builds._build.plan.subscription.canceled.warning.content',
+              link: link_to(t('apps.builds._build.plan.subscription.canceled.warning.link'),
+                'https://medium.com/nativegap/licensing-22021a9389ff',
+                target: '_blank',
+                class: 'hyperlink--inherit')).html_safe
           - else
-            %p= t('apps.builds._build.plan.subscription.active', date: build.subscription.current_period_end.strftime('%B %-d, %Y'))
+            %p= t('apps.builds._build.plan.subscription.active',
+              date: build.subscription.current_period_end.strftime('%B %-d, %Y'))
         - else
-          %p= t('apps.builds._build.plan.subscription.inactive.content', link: link_to(t('d.here'), "#{root_url}#pricing", target: '_blank')).html_safe
-          %p.color--error= t('apps.builds._build.plan.subscription.inactive.warning.content', link: link_to(t('apps.builds._build.plan.subscription.inactive.warning.link'), 'https://medium.com/nativegap/licensing-22021a9389ff', target: '_blank', class: 'hyperlink--inherit')).html_safe
+          %p= t('apps.builds._build.plan.subscription.inactive.content',
+            link: link_to(t('d.here'),
+              "#{root_url}#pricing",
+              target: '_blank')).html_safe
+          %p.color--error= t('apps.builds._build.plan.subscription.inactive.warning.content',
+            link: link_to(t('apps.builds._build.plan.subscription.inactive.warning.link'),
+              'https://medium.com/nativegap/licensing-22021a9389ff',
+              target: '_blank',
+              class: 'hyperlink--inherit')).html_safe
         .myg-button--container
           - if build.subscription&.subscribed?
             - if build.subscription&.canceled?
-              = link_to t('apps.builds._build.plan.enable_subscription'), subscription_url(build.subscription), method: :put, class: 'myg-button myg-button--secondary'
+              = link_to(t('apps.builds._build.plan.enable_subscription'),
+                subscription_url(build.subscription),
+                method: :put,
+                class: 'myg-button myg-button--secondary')
             - else
-              = link_to t('apps.builds._build.plan.cancel_subscription'), subscription_url(build.subscription), method: :delete, class: 'myg-button myg-button--secondary'
-            %p.sm= link_to t('apps.builds._build.plan.billing_overview'), subscriptions_url
+              = link_to(t('apps.builds._build.plan.cancel_subscription'),
+                subscription_url(build.subscription),
+                method: :delete,
+                class: 'myg-button myg-button--secondary')
+            %p.sm= link_to(t('apps.builds._build.plan.billing_overview'),
+              subscriptions_url)
           - else
-            - unless current_user.confirmed?
-              = link_to t('apps.builds._build.plan.upgrade_to_pro'), users_payment_method_url(build: build.id, plan: "pro"), class: 'myg-button modalist--trigger myg-button--disabled'
-              = link_to t('apps.builds._build.plan.upgrade_to_starter'), users_payment_method_url(build: build.id, plan: "starter"), class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled'
-            - else
+            - if current_user.confirmed?
               - if build.platform == 'ios'
-                = link_to t('apps.builds._build.plan.upgrade_to_pro'), users_payment_method_url(build: build.id, plan: "pro"), class: 'myg-button modalist--trigger myg-button--disabled'
-                = link_to t('apps.builds._build.plan.upgrade_to_starter'), users_payment_method_url(build: build.id, plan: "starter"), class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled'
+                = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
+                  users_payment_method_url(build: build.id, plan: 'pro'),
+                  class: 'myg-button modalist--trigger myg-button--disabled')
+                = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
+                  users_payment_method_url(build: build.id, plan: 'starter'),
+                  class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
               - else
-                = link_to t('apps.builds._build.plan.upgrade_to_pro'), users_payment_method_url(build: build.id, plan: "pro"), class: 'myg-button modalist--trigger'
-                = link_to t('apps.builds._build.plan.upgrade_to_starter'), users_payment_method_url(build: build.id, plan: "starter"), class: 'myg-button myg-button--secondary modalist--trigger'
+                = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
+                  users_payment_method_url(build: build.id, plan: 'pro'),
+                  class: 'myg-button modalist--trigger')
+                = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
+                  users_payment_method_url(build: build.id, plan: 'starter'),
+                  class: 'myg-button myg-button--secondary modalist--trigger')
+            - else
+              = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
+                users_payment_method_url(build: build.id, plan: 'pro'),
+                class: 'myg-button modalist--trigger myg-button--disabled')
+              = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
+                users_payment_method_url(build: build.id, plan: 'starter'),
+                class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
     = render 'apps/builds/update', build: build
 
   .column
@@ -50,25 +91,140 @@
     .myg-card#settings
       %h3.sm= t('d.settings')
       %p= t('apps.builds._build.settings.content')
-      = simple_form_for build, url: app_apps_build_url(build.app.slug, build.id), method: :put, html: { multipart: true } do |f|
-        = component 'myg/form-field', as: :input, attribute: :path, class_name: 'app_build', identifier: build.platform, label: t('apps.builds._build.settings.form.path'), input_html: { value: build.path, placeholder: build.app.path || 'start/path' }
+      = simple_form_for(build,
+        url: app_apps_build_url(build.app.slug, build.id),
+        method: :put,
+        html: { multipart: true }) do
+        = component('myg/form-field',
+          as: :input,
+          attribute: :path,
+          class_name: 'app_build',
+          identifier: build.platform,
+          label: t('apps.builds._build.settings.form.path'),
+          input_html: { value: build.path,
+            placeholder: build.app.path || 'start/path' })
         - if build.platform == 'android'
-          = component 'myg/form-field', as: :input, attribute: :android_statusbar_background, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.android_statusbar_background.title'), t('apps.builds._build.settings.form.android_statusbar_background.content')], input_html: { value: build.android_statusbar_background, placeholder: '#000000', minlength: 7, maxlength: 7 }
-          = component 'myg/form-field', as: :input, attribute: :android_statusbar_style, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.android_statusbar_style.title'), t('apps.builds._build.settings.form.android_statusbar_style.content')], input_html: { value: build.android_statusbar_style, placeholder: 'lightcontent', minlength: 11, maxlength: 12 }
+          = component('myg/form-field',
+            as: :input,
+            attribute: :android_statusbar_background,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.android_statusbar_background.title'),
+              t('apps.builds._build.settings.form.android_statusbar_background.content')],
+            input_html: { value: build.android_statusbar_background,
+              placeholder: '#000000',
+              minlength: 7,
+              maxlength: 7 })
+          = component('myg/form-field',
+            as: :input,
+            attribute: :android_statusbar_style,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.android_statusbar_style.title'),
+              t('apps.builds._build.settings.form.android_statusbar_style.content')],
+            input_html: { value: build.android_statusbar_style,
+              placeholder: 'lightcontent',
+              minlength: 11,
+              maxlength: 12 })
         - elsif build.platform == 'ios'
-          = component 'myg/form-field', as: :input, attribute: :ios_statusbar_background, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.ios_statusbar_background.title'), t('apps.builds._build.settings.form.ios_statusbar_background.content')], input_html: { value: build.ios_statusbar_background, minlength: 7, maxlength: 7 }
-          = component 'myg/form-field', as: :input, attribute: :ios_statusbar_style, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.ios_statusbar_style.title'), t('apps.builds._build.settings.form.ios_statusbar_style.content')], input_html: { value: build.ios_statusbar_style, placeholder: 'default', minlength: 7, maxlength: 16 }
+          = component('myg/form-field',
+            as: :input,
+            attribute: :ios_statusbar_background,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.ios_statusbar_background.title'),
+              t('apps.builds._build.settings.form.ios_statusbar_background.content')],
+            input_html: { value: build.ios_statusbar_background,
+              minlength: 7,
+              maxlength: 7 })
+          = component('myg/form-field',
+            as: :input,
+            attribute: :ios_statusbar_style,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.ios_statusbar_style.title'),
+              t('apps.builds._build.settings.form.ios_statusbar_style.content')],
+            input_html: { value: build.ios_statusbar_style,
+              placeholder: 'default',
+              minlength: 7,
+              maxlength: 16 })
         - elsif build.platform == 'windows'
-          = component 'myg/form-field', as: :input, attribute: :windows_tile_background, class_name: 'app_build', identifier: build.platform, label: t('apps.builds._build.settings.form.windows_tile_background'), input_html: { value: build.windows_tile_background, placeholder: build.app.accent, minlength: 7, maxlength: 7 }
-          = component 'myg/form-field', as: :input, attribute: :windows_splash_screen_background, class_name: 'app_build', identifier: build.platform, label: t('apps.builds._build.settings.form.windows_splash_screen_background'), input_html: { value: build.windows_splash_screen_background, placeholder: build.app.background, minlength: 7, maxlength: 7 }
+          = component('myg/form-field',
+            as: :input,
+            attribute: :windows_tile_background,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: t('apps.builds._build.settings.form.windows_tile_background'),
+            input_html: { value: build.windows_tile_background,
+              placeholder: build.app.accent,
+              minlength: 7,
+              maxlength: 7 })
+          = component('myg/form-field',
+            as: :input,
+            attribute: :windows_splash_screen_background,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: t('apps.builds._build.settings.form.windows_splash_screen_background'),
+            input_html: { value: build.windows_splash_screen_background,
+              placeholder: build.app.background,
+              minlength: 7,
+              maxlength: 7 })
         - elsif build.platform == 'chrome'
-          = component 'myg/form-field', as: :input, attribute: :chrome_width, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.chrome_width.title'), t('apps.builds._build.settings.form.chrome_width.content')], input_html: { value: build.chrome_width, placeholder: 350, minlength: 3, maxlength: 4 }
-          = component 'myg/form-field', as: :input, attribute: :chrome_height, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.chrome_height.title'), t('apps.builds._build.settings.form.chrome_height.content')], input_html: { value: build.chrome_height, placeholder: 500, minlength: 3, maxlength: 4 }
-        = component 'myg/form-field', as: :input, file: t('apps.builds._build.settings.form.no_file_chosen'), attribute: :icon, class_name: 'app_build', identifier: build.platform, label: [t('apps.builds._build.settings.form.icon.title'), t('apps.builds._build.settings.form.icon.content')]
+          = component('myg/form-field',
+            as: :input,
+            attribute: :chrome_width,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.chrome_width.title'),
+              t('apps.builds._build.settings.form.chrome_width.content')],
+            input_html: { value: build.chrome_width,
+              placeholder: 350,
+              minlength: 3,
+              maxlength: 4 })
+          = component('myg/form-field',
+            as: :input,
+            attribute: :chrome_height,
+            class_name: 'app_build',
+            identifier: build.platform,
+            label: [t('apps.builds._build.settings.form.chrome_height.title'),
+              t('apps.builds._build.settings.form.chrome_height.content')],
+            input_html: { value: build.chrome_height,
+              placeholder: 500,
+              minlength: 3,
+              maxlength: 4 })
+        = component('myg/form-field',
+          as: :input,
+          file: t('apps.builds._build.settings.form.no_file_chosen'),
+          attribute: :icon,
+          class_name: 'app_build',
+          identifier: build.platform,
+          label: [t('apps.builds._build.settings.form.icon.title'),
+            t('apps.builds._build.settings.form.icon.content')])
         - if build.platform == 'ios'
-          = component 'myg/form-field', as: :input, file: t('apps.builds._build.settings.form.no_file_chosen'), attribute: :ios_app_store_icon, class_name: 'app_build', label: [t('apps.builds._build.settings.form.ios_app_store_icon.title'), t('apps.builds._build.settings.form.ios_app_store_icon.content')]
+          = component('myg/form-field',
+            as: :input,
+            file: t('apps.builds._build.settings.form.no_file_chosen'),
+            attribute: :ios_app_store_icon,
+            class_name: 'app_build',
+            label: [t('apps.builds._build.settings.form.ios_app_store_icon.title'),
+              t('apps.builds._build.settings.form.ios_app_store_icon.content')])
         - if build.platform == 'windows' && !build.splash_screen_needed?
-          = component 'myg/form-field', as: :input, file: t('apps.builds._build.settings.form.no_file_chosen'), attribute: :windows_splash_screen, class_name: 'app_build', label: [t('apps.builds._build.settings.form.windows_splash_screen.title'), t('apps.builds._build.settings.form.windows_splash_screen.content')]
-        = component 'myg/form-field', as: :checkbox, attribute: :beta, class_name: 'app_build', identifier: build.platform, inline_label: [t('apps.builds._build.settings.form.beta.title'), t('apps.builds._build.settings.form.beta.content')], input_html: { input_html: { checked: build.beta } }
+          = component('myg/form-field',
+            as: :input,
+            file: t('apps.builds._build.settings.form.no_file_chosen'),
+            attribute: :windows_splash_screen,
+            class_name: 'app_build',
+            label: [t('apps.builds._build.settings.form.windows_splash_screen.title'),
+              t('apps.builds._build.settings.form.windows_splash_screen.content')])
+        = component('myg/form-field',
+          as: :checkbox,
+          attribute: :beta,
+          class_name: 'app_build',
+          identifier: build.platform,
+          inline_label: [t('apps.builds._build.settings.form.beta.title'),
+            t('apps.builds._build.settings.form.beta.content')],
+          input_html: { input_html: { checked: build.beta } })
         .flex.reverse
-          = component 'myg/button', value: t('d.update'), class: 'myg-button--secondary'
+          = component('myg/button',
+            value: t('d.update'),
+            class: 'myg-button--secondary')

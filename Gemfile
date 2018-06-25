@@ -65,6 +65,11 @@ gem 'webpacker'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'haml-lint', require: false
+  gem 'rspec-rails', require: false
+  gem 'rspec-sidekiq', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
 
@@ -75,13 +80,6 @@ group :development do
   gem 'mysql2', '~> 0.5.1'
   gem 'pry-rails'
   gem 'web-console'
-end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'rspec-sidekiq'
-  gem 'rubocop'
-  gem 'rubocop-rspec'
 end
 
 group :production do

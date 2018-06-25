@@ -3,7 +3,15 @@
 %h2= t('devise.confirmations.new.title')
 %p= t('devise.confirmations.new.content')
 
-= simple_form_for resource, as: resource_name, url: confirm_url, html: { method: :post } do |f|
-  = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', autofocus: true }
+= simple_form_for(resource,
+  as: resource_name,
+  url: confirm_url,
+  html: { method: :post }) do
+  = component('myg/form-field',
+    as: :input,
+    attribute: :email,
+    class_name: 'user',
+    floating_label: t('d.email'),
+    input_html: { required: true, type: 'email', autofocus: true })
   .flex.reverse
     = component 'myg/button', value: t('d.proceed')

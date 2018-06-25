@@ -2,5 +2,9 @@
   %h2= t('devise.registrations._tabs.title')
   %p= t('devise.registrations._tabs.content')
 
-  = component 'myg/tabs', async: true, success: local_assigns[:success], tabs: [{ name: t('d.settings'), href: edit_user_registration_url, active: local_assigns[:tab] == 'Settings' }, { name: t('d.billing'), href: subscriptions_url, active: local_assigns[:tab] == 'Billing' }] do
+  = component('myg/tabs',
+    async: true,
+    success: local_assigns[:success],
+    tabs: [{ name: t('d.settings'), href: edit_user_registration_url, active: local_assigns[:tab] == 'Settings' },
+      { name: t('d.billing'), href: subscriptions_url, active: local_assigns[:tab] == 'Billing' }]) do
     %p= t('devise.registrations._tabs.error')

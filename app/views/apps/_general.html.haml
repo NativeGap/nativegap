@@ -1,7 +1,31 @@
-= component 'myg/form-field', as: :input, attribute: :name, class_name: 'app', label: t('d.name'), input_html: { required: true, value: @app.name }
-= component 'myg/form-field', as: :input, attribute: :description, class_name: 'app', label: t('d.description'), input_html: { required: true, value: @app.description }
+= component('myg/form-field',
+  as: :input,
+  attribute: :name,
+  class_name: 'app',
+  label: t('d.name'),
+  input_html: { required: true, value: app.name })
+= component('myg/form-field',
+  as: :input,
+  attribute: :description,
+  class_name: 'app',
+  label: t('d.description'),
+  input_html: { required: true, value: app.description })
 
 %h3.sm Experience
-= component 'myg/form-field', as: :input, attribute: :path, class_name: 'app', label: t('apps._general.path'), input_html: { value: @app.path, placeholder: 'start/path' }
-= component 'myg/form-field', as: :input, attribute: :globalization, class_name: 'app', label: [t('apps._general.globalization.title'), t('apps._general.globalization.content')], input_html: { value: @app.globalization, placeholder: 'lang' }
-= component 'myg/form-field', as: :checkbox, attribute: :branding, class_name: 'app', inline_label: [t('apps._general.branding.title'), t('apps._general.branding.content')], input_html: { input_html: { checked: @app.branding } }
+= component('myg/form-field',
+  as: :input,
+  attribute: :path,
+  class_name: 'app',
+  label: t('apps._general.path'),
+  input_html: { value: app.path, placeholder: 'start/path' })
+= component('myg/form-field',
+  as: :input,
+  attribute: :globalization,
+  class_name: 'app', label: [t('apps._general.globalization.title'), t('apps._general.globalization.content')], input_html: { value: app.globalization, placeholder: 'lang' })
+= component('myg/form-field',
+  as: :checkbox,
+  attribute: :branding,
+  class_name: 'app',
+  inline_label: [t('apps._general.branding.title'),
+    t('apps._general.branding.content')],
+  input_html: { input_html: { checked: app.branding } })

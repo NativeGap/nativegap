@@ -6,4 +6,13 @@ module ApplicationHelper
   def class_hierarchy(hierarchy = [], delimiter: ' ')
     hierarchy.map(&:inspect).join(delimiter).delete('",[]')
   end
+
+  def required_confirmation_in_days
+    7 - (Date.today - current_user.created_at.to_date).to_i
+  end
+
+  def required_confirmation_in_days_string
+    "#{required_confirmation_in_days} "\
+    "#{t('mozaic._confirm.day').pluralize(required_confirmation_in_days)}"
+  end
 end
