@@ -78,7 +78,7 @@ group :development do
 end
 
 group :test do
-  gem 'publicsuffix-ruby', github: 'weppos/publicsuffix-ruby' # fix RuboCop on Travis
+  gem 'public_suffix', github: 'weppos/publicsuffix-ruby' # fix RuboCop on Travis
   gem 'rspec-rails'
   gem 'rspec-sidekiq'
   gem 'rubocop'
