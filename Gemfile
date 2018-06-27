@@ -14,7 +14,7 @@ gem 'acts_as_belongable'
 gem 'ahoy_matey'
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'browser'
+gem 'browser', github: 'fnando/browser' # fix RuboCop on Travis
 gem 'cancancan'
 gem 'cancancan-system'
 gem 'carrierwave'
