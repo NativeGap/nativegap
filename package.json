@@ -1,9 +1,13 @@
 {
   "name": "nativegap",
   "private": true,
+  "scripts": {
+    "lint-js": "eslint app/**/*.js"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.5.3",
     "ahoy.js": "^0.3.3",
+    "eslint": "^5.0.1",
     "myg": "^0.12.5",
     "nativegap": "^1.1.8",
     "onsignal": "^5.0.6",
