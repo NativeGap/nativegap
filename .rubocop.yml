@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - 'bin/*'
     - 'node_modules/**/*'
+    - 'vendor/**/*'
 
 Metrics/LineLength:
   Exclude:

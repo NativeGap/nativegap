@@ -14,7 +14,7 @@ gem 'acts_as_belongable'
 gem 'ahoy_matey'
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'browser', github: 'fnando/browser' # fix RuboCop on Travis
+gem 'browser'
 gem 'cancancan'
 gem 'cancancan-system'
 gem 'carrierwave'
@@ -78,7 +78,6 @@ group :development do
 end
 
 group :test do
-  gem 'public_suffix', github: 'weppos/publicsuffix-ruby' # fix RuboCop on Travis
   gem 'rspec-rails'
   gem 'rspec-sidekiq'
   gem 'rubocop'

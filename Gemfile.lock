@@ -1,22 +1,10 @@
 GIT
-  remote: https://github.com/fnando/browser.git
-  revision: 5f13125e6b5f9d86edbc1465591cbd081a8937d8
-  specs:
-    browser (2.5.3)
-
-GIT
   remote: https://github.com/harigopal/carrierwave_backgrounder.git
   revision: d726a81cded6ed403d5be55ab8fe3124f1054d26
   branch: rails-5-1
   specs:
     carrierwave_backgrounder (0.4.2)
       carrierwave (>= 0.5, < 2.0)
-
-GIT
-  remote: https://github.com/weppos/publicsuffix-ruby.git
-  revision: 4556aa4e660ff9e7b222bf0e7fe040bf2384a79a
-  specs:
-    public_suffix (3.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -94,6 +82,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.3.0)
       msgpack (~> 1.0)
+    browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
@@ -305,6 +294,7 @@ GEM
       method_source (~> 0.9.0)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
+    public_suffix (3.0.2)
     puma (3.11.4)
     pwa (4.0.4)
       mozaic (~> 2)
@@ -493,7 +483,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  browser!
+  browser
   byebug
   cancancan
   cancancan-system
@@ -528,7 +518,6 @@ DEPENDENCIES
   onsignal
   pg
   pry-rails
-  public_suffix!
   puma
   pwa
   r404
