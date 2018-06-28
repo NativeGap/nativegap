@@ -9,6 +9,8 @@ class Subscription < ApplicationRecord
 
   validates :plan, presence: true
 
+  scope :uncanceled, -> { where.not(canceled_at: nil) }
+
   def subscribed?
     current_period_end.future?
   end

@@ -508,7 +508,7 @@ DEPENDENCIES
   modalist
   mozaic
   myg
-  mysql2 (~> 0.5.1)
+  mysql2
   nativegap
   nilify_blanks
   notification-handler

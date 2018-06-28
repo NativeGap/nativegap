@@ -9,8 +9,7 @@ class SubscriptionsController < ApplicationController
 
   def index
     turbolinks_animate 'fadein'
-    @subscriptions = current_user.subscriptions.order(:updated_at)
-                     .select { |subscription| subscription.canceled? == false }
+    @subscriptions = current_user.subscriptions.uncanceled.order(:updated_at)
     @invoices = current_user.invoices.order(:created_at)
   end
 

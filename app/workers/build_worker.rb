@@ -13,7 +13,7 @@ class BuildWorker
 
     case build.platform
     when 'android', 'ios'
-      wrapper = builder build, zip: false
+      wrapper = builder build, false
       github build, octokit_client, wrapper
       cleanup(wrapper)
 
@@ -103,33 +103,46 @@ class BuildWorker
 
   private
 
-  def builder(build, options = {})
-    defaults = {
-      zip: true
-    }
-    options = defaults.merge! options
+  def builder(build, zip: true)
     @build = build
     @app = @build.app
     @free = @build.subscription.nil? || !@build.subscription.subscribed?
 
     wrapper = "Wrapper::#{@build.platform}.camelize"
               .constantize.new(@build.beta).fetch(directory: @build.folder_name)
-    if @build.platform == 'windows'
-      # Rename NAME.sln.erb to app name
-      rename_path(wrapper + '/NAME.sln.erb', @app.name_without_spaces)
-      # Rename NAME dir to app name
-      rename_path(wrapper + '/NAME', @app.name_without_spaces, directory: true)
-      # Rename NAME/NAME_TemporaryKey.pfx to app name
-      rename_path(
-        wrapper + '/' + @app.name_without_spaces + '/NAME_TemporaryKey.pfx',
-        @app.name_without_spaces
-      )
-      # Rename NAME/NAME.jsproj.erb to app name
-      rename_path(
-        wrapper + '/' + @app.name_without_spaces + '/NAME.jsproj.erb',
-        @app.name_without_spaces
+    build_windows(wrapper) if @build.platform == 'windows'
+    fill_templates(wrapper)
+    if @build.platform == 'android' || @build.platform == 'ios'
+      download_image(
+        "#{wrapper}/www/img/logo.#{@app.logo_content_type}",
+        @app.logo.url,
+        @app.logo_content_type != 'svg'
       )
     end
+
+    create_zip(wrapper) if zip
+
+    wrapper
+  end
+
+  def build_windows(wrapper)
+    # Rename NAME.sln.erb to app name
+    rename_path(wrapper + '/NAME.sln.erb', @app.name_without_spaces)
+    # Rename NAME dir to app name
+    rename_path(wrapper + '/NAME', @app.name_without_spaces, directory: true)
+    # Rename NAME/NAME_TemporaryKey.pfx to app name
+    rename_path(
+      wrapper + '/' + @app.name_without_spaces + '/NAME_TemporaryKey.pfx',
+      @app.name_without_spaces
+    )
+    # Rename NAME/NAME.jsproj.erb to app name
+    rename_path(
+      wrapper + '/' + @app.name_without_spaces + '/NAME.jsproj.erb',
+      @app.name_without_spaces
+    )
+  end
+
+  def fill_templates(wrapper)
     Dir.glob(wrapper + '/**/*') do |path|
       path = path.to_s
       if path.split('.').last == 'erb'
@@ -143,28 +156,19 @@ class BuildWorker
       end
       replace_image @build, path
     end
-    if @build.platform == 'android' || @build.platform == 'ios'
-      download_image(
-        "#{wrapper}/www/img/logo.#{@app.logo_content_type}",
-        @app.logo.url,
-        @app.logo_content_type != 'svg'
-      )
-    end
+  end
 
-    if options[:zip]
-      require 'zip'
-      zip = Rails.root.join 'tmp', 'source_wrappers', file_name(@build)
-      Zip::File.open(zip, Zip::File::CREATE) do |zipfile|
-        Dir.glob(wrapper + '/**/*') do |file|
-          zipfile.add file.sub(wrapper + '/', ''), file
-        end
+  def create_zip(wrapper)
+    require 'zip'
+    zip = Rails.root.join 'tmp', 'source_wrappers', file_name(@build)
+    Zip::File.open(zip, Zip::File::CREATE) do |zipfile|
+      Dir.glob(wrapper + '/**/*') do |file|
+        zipfile.add file.sub(wrapper + '/', ''), file
       end
-      @build.file = File.new zip
-      @build.save!
-      File.delete zip
     end
-
-    wrapper
+    @build.file = File.new zip
+    @build.save!
+    File.delete zip
   end
 
   def cleanup(wrapper)
@@ -172,11 +176,18 @@ class BuildWorker
   end
 
   def github(build, octokit_client, wrapper)
-    begin
-      octokit_client.delete_repository "NativeGap/#{build.folder_name}"
-    rescue Octokit::UnprocessableEntity
-      p 'Repository already exists'
-    end
+    github_delete_reposirory(build, octokit_client)
+    github_create_repository(build, octokit_client)
+    github_add_contents(build, octokit_client, wrapper)
+  end
+
+  def github_delete_reposirory(build, octokit_client)
+    octokit_client.delete_repository "NativeGap/#{build.folder_name}"
+  rescue Octokit::UnprocessableEntity
+    p 'Repository already exists'
+  end
+
+  def github_create_repository(build, octokit_client)
     octokit_client.create_repository(
       build.folder_name,
       organization: 'NativeGap',
@@ -185,7 +196,9 @@ class BuildWorker
       has_wiki: false,
       has_downloads: false
     )
-    sleep(15)
+  end
+
+  def github_add_contents(build, octokit_client, wrapper)
     Dir.glob(wrapper + '/**/*') do |path|
       next if File.directory? path
       octokit_client.create_contents(
@@ -225,41 +238,50 @@ class BuildWorker
   def replace_image(build, path)
     case build.platform
     when 'android', 'ios'
-      if path.split('.').last == 'png' && path.include?('www/res/icon')
-        name = path.split('.').first.split('/')
-        version = name.last
-        FileUtils.rm path if File.file? path
-        download_image path, build.icon_url(version).to_s
-      end
+      replace_image_android_ios(build, path)
     when 'chrome'
-      if path.split('.').last == 'png' && (path.include?('app/icons') ||
-         path.include?('assets') ||
-         path.include?('resources/default_app/icons') ||
-         path.include?('data/content/icons'))
-        name = path.split('.').first.split('/').last
-        version =
-          case name
-          when '128'
-            'large'
-          when '64'
-            'medium'
-          when '32'
-            'small'
-          when '16'
-            'tiny'
-          else
-            name
-          end
-        FileUtils.rm path
-        download_image path, build.icon_url(version).to_s
-      end
+      replace_image_chrome(build, path)
     when 'windows'
-      if path.split('.').last == 'png' && path.include?('/images/')
-        version = path.split('/').last.split('.').first
-        FileUtils.rm path
-        download_image path, build.icon_url(version).to_s
-      end
+      replace_image_windows(build, path)
     end
+  end
+
+  def replace_image_android_ios(build, path)
+    return unless path.split('.').last == 'png' && path.include?('www/res/icon')
+    name = path.split('.').first.split('/')
+    version = name.last
+    FileUtils.rm path if File.file? path
+    download_image path, build.icon_url(version).to_s
+  end
+
+  def replace_image_chrome(build, path)
+    return unless path.split('.').last == 'png' && (path.include?('app/icons') ||
+                  path.include?('assets') ||
+                  path.include?('resources/default_app/icons') ||
+                  path.include?('data/content/icons'))
+    name = path.split('.').first.split('/').last
+    version =
+      case name
+      when '128'
+        'large'
+      when '64'
+        'medium'
+      when '32'
+        'small'
+      when '16'
+        'tiny'
+      else
+        name
+      end
+    FileUtils.rm path
+    download_image path, build.icon_url(version).to_s
+  end
+
+  def replace_image_windows(build, path)
+    return unless path.split('.').last == 'png' && path.include?('/images/')
+    version = path.split('/').last.split('.').first
+    FileUtils.rm path
+    download_image path, build.icon_url(version).to_s
   end
 
   def rename_path(path, replacement, options = {})

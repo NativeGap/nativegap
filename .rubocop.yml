@@ -1,12 +1,12 @@
 AllCops:
   Exclude:
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+    - bin/*
+    - db/schema.rb
+    - node_modules/**/*
+    - vendor/**/*
 
-Metrics/LineLength:
+Metrics/AbcSize:
   Exclude:
-    - config/initializers/devise.rb
     - db/migrate/*.rb
 
 Metrics/BlockLength:
@@ -17,14 +17,22 @@ Metrics/BlockLength:
     - config/routes.rb
     - db/migrate/*.rb
 
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/*.rb
+
 Metrics/MethodLength:
   Exclude:
     - app/models/ability.rb
     - db/migrate/*.rb
+  Max: 15
 
-Metrics/AbcSize:
-  Exclude:
-    - db/migrate/*.rb
+Metrics/ParameterLists:
+  Max: 10
 
 Style/SymbolArray:
   EnforcedStyle: brackets

@@ -28,6 +28,6 @@ class ExploreController < ApplicationController
   end
 
   def set_platforms
-    @platforms = detect_platforms(app: @app)
+    @platforms = detect_app_platforms(app: @app)
   end
 end

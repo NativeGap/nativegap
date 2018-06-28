@@ -12,32 +12,31 @@ class PhonegapWorker
       password: Rails.application.credentials.phonegap[:password]
     )
 
-    # Download build
+    download_build(phonegap_client, phonegap_app_id, build)
+    AppetizeWorker.perform_async(build_id: build_id)
+    delete_phonegap_app(phonegap_client, phonegap_app_id, phonegap_key_id)
+    build.update(status: 'processed')
+    send_notification(build) if build.app.user.build_notifications
+  end
+
+  private
+
+  def download_build(phonegap_client, phonegap_app_id, build)
     phonegap_build = Phonegap::Build.new(phonegap_client,
                                          app_id: phonegap_app_id,
-                                         platform: build.platform
-                                        )
-    build.file = phonegap.fetch(directory: build.folder_name)
+                                         platform: build.platform)
+    build.file = phonegap_build.fetch(directory: build.folder_name)
     build.save!
     return_with_error(build) unless build.file.url
+  end
 
-    # Create Appetize app
-    AppetizeWorker.perform_async(build_id: build_id)
-
-    # Delete PhoneGap app
+  def delete_phonegap_app(phonegap_client, phonegap_app_id, phonegap_key_id)
     Phonegap::App.new(phonegap_client, id: phonegap_app_id).destroy
     "Phonegap::Key::#{build.platform.camelize}".constantize.new(
       phonegap_client,
       id: phonegap_key_id
     ).destroy
-
-    build.update(status: 'processed')
-
-    # Send notification
-    send_notification(build) if build.app.user.build_notifications
   end
-
-  private
 
   def return_with_error(object)
     object.update_attributes status: 'error'
