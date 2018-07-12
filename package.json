@@ -2,7 +2,7 @@
   "name": "nativegap",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.5.3",
+    "@rails/webpacker": "^3.5.5",
     "ahoy.js": "^0.3.3",
     "myg": "^0.12.5",
     "nativegap": "^1.1.8",
