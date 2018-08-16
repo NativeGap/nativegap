@@ -11,6 +11,15 @@ class Subscription < ApplicationRecord
 
   scope :uncanceled, -> { where.not(canceled_at: nil) }
 
+  def self.names(plan)
+    case plan
+    when 'android_starter', 'ios_starter'
+      I18n.t('d.starter')
+    when 'android_pro', 'ios_pro'
+      I18n.t('d.professional')
+    end
+  end
+
   def subscribed?
     current_period_end.future?
   end
@@ -23,12 +32,61 @@ class Subscription < ApplicationRecord
     self.class.names plan
   end
 
-  def self.names(plan)
-    case plan
-    when 'android_starter', 'ios_starter'
-      I18n.t('d.starter')
-    when 'android_pro', 'ios_pro'
-      I18n.t('d.professional')
-    end
+  def enable
+    stripe.save
+
+    return unless @subscription.stripe.canceled_at.nil?
+    update!(canceled_at: nil)
+  end
+
+  def cancel
+    stripe.delete(at_period_end: true)
+
+    return if stripe.canceled_at.nil?
+    update!(canceled_at: Time.at(stripe.canceled_at).to_datetime)
+  end
+
+  def process_payment(response:)
+    handle_succeeded_payment(response)
+    send_notification(response)
+  end
+
+  def stripe
+    @stripe ||=
+      Stripe::Subscription.retrieve(stripe_subscription_id)
+  end
+
+  def create_stripe
+    @stripe = Stripe::Subscription.create(
+      customer: user.stripe.id,
+      items: [{ plan: plan }],
+      metadata: { id: id }
+    )
+
+    update!(
+      stripe_subscription_id: stripe.id,
+      current_period_end: Time.at(stripe.current_period_end).to_datetime
+    )
+
+    build.build
+  end
+
+  private
+
+  def handle_succeeded_payment(response)
+    return unless response == 'invoice.payment_succeeded'
+
+    update!(current_period_end: Time.at(stripe.current_period_end).to_datetime)
+
+    Subscription::Invoice.create!(subscription: self,
+                                  amount: stripe.plan.amount)
+  end
+
+  def send_notification(response)
+    return unless response == 'invoice.payment_succeeded' ||
+                  response == 'invoice.payment_failed' ||
+                  response == 'invoice.upcoming'
+
+    user.notify(object: self, type: response, push: :ActionMailer)
   end
 end

@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# Uncomment this and change the path if necessary to include your own
+# components.
+# See https://github.com/plataformatec/simple_form#custom-components to know
+# more about custom components.
+# Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
+#
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
@@ -103,8 +109,9 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| label.to_s }
-  config.label_text = lambda { |label, _, _| label.to_s }
+  config.label_text = lambda do |label, _required, _explicit_label|
+    label.to_s
+  end
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil

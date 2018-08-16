@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     mount ActionCable.server, at: '/cable'
 
     require 'sidekiq/web'
-    authenticated :user, lambda { |u| u.admin? } do
+    authenticated :user, ->(user) { user.admin? } do
       Sidekiq::Web.set(
         :session_secret,
         Rails.application.credentials.secret_key_base

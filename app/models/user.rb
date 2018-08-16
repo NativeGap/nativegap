@@ -35,6 +35,15 @@ class User < ApplicationRecord
     admin
   end
 
+  def stripe
+    @stripe ||= Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
+  def enable_stripe(token:)
+    stripe.source = token
+    stripe.save!
+  end
+
   private
 
   def slug_candidates
