@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Subscription < ApplicationRecord
+  PAYMENT_RESPONSE_TYPES = ['invoice.payment_succeeded',
+                            'invoice.payment_failed', 'invoice.upcoming'].freeze
+
   has_many :invoices
   belongs_to :user
   belongs_to :build, class_name: 'App::Build'
@@ -57,7 +60,7 @@ class Subscription < ApplicationRecord
   end
 
   def create_stripe
-    @stripe = Stripe::Subscription.create(
+    stripe = Stripe::Subscription.create(
       customer: user.stripe.id,
       items: [{ plan: plan }],
       metadata: { id: id }
@@ -83,9 +86,7 @@ class Subscription < ApplicationRecord
   end
 
   def send_notification(response)
-    return unless response == 'invoice.payment_succeeded' ||
-                  response == 'invoice.payment_failed' ||
-                  response == 'invoice.upcoming'
+    return unless PAYMENT_RESPONSE_TYPES.include?(response)
 
     user.notify(object: self, type: response, push: :ActionMailer)
   end

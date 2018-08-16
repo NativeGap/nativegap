@@ -3,7 +3,6 @@
 module Users
   class PaymentMethodsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_customer, only: [:update]
 
     def show
       modalist
@@ -18,21 +17,18 @@ module Users
     def update
       authorize! :update, current_user
       if stripe_successful?
-        @customer.source = params[:stripeToken]
-        @customer.save
+        current_user.enable_stripe(token: params[:stripeToken])
         unless current_user.has_payment_method?
-          current_user.update(has_payment_method: true)
+          current_user.update!(has_payment_method: true)
         end
       end
 
       respond_to do |format|
-        if stripe_successful?
-          format.html do
+        format.html do
+          if stripe_successful?
             redirect_back fallback_location: subscriptions_url,
                           notice: I18n.t('users.payment_methods.update.success')
-          end
-        else
-          format.html do
+          else
             redirect_back fallback_location: subscriptions_url,
                           alert: I18n.t('users.payment_methods.update.error')
           end
@@ -42,10 +38,6 @@ module Users
     end
 
     private
-
-    def set_customer
-      @customer = Stripe::Customer.retrieve current_user.stripe_customer_id
-    end
 
     def stripe_successful?
       params.key?(:stripeToken) && !params[:stripeToken].nil? &&

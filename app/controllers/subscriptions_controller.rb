@@ -61,7 +61,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def handle_create(subscription)
-    current_user.enable_stripe(token: params[:token]) if params.key(:token)
+    if params.key(:stripeToken)
+      current_user.enable_stripe(token: params[:stripeToken])
+    end
+
     subscription.create_stripe
 
     redirect_back fallback_location: subscription.build.app,
