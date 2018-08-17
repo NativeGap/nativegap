@@ -55,23 +55,17 @@ class Subscription < ApplicationRecord
   end
 
   def stripe
-    @stripe ||=
-      Stripe::Subscription.retrieve(stripe_subscription_id)
+    @stripe ||= Billing::Subscription::RetrieveStripe.new(
+      stripe_subscription_id: stripe_subscription_id
+    ).perform
   end
 
   def create_stripe
-    stripe = Stripe::Subscription.create(
-      customer: user.stripe.id,
-      items: [{ plan: plan }],
-      metadata: { id: id }
-    )
-
-    update!(
-      stripe_subscription_id: stripe.id,
-      current_period_end: Time.at(stripe.current_period_end).to_datetime
-    )
-
-    build.build
+    @stripe = Billing::Subscription::CreateStripe.new(
+      subscription: self,
+      stripe_customer_id: user.stripe.id,
+      plan: plan
+    ).perform
   end
 
   private

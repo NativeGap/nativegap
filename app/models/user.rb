@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  before_create :stripe
+  before_create :create_stripe
   before_save :lock
 
   extend FriendlyId
@@ -36,12 +36,16 @@ class User < ApplicationRecord
   end
 
   def stripe
-    @stripe ||= Stripe::Customer.retrieve(stripe_customer_id)
+    @stripe ||= Billing::Customer::ReceiveStripe.new(
+      stripe_customer_id: stripe_customer_id
+    ).perform
   end
 
   def enable_stripe(token:)
-    stripe.source = token
-    stripe.save!
+    Billing::Customer::EnableStripe.new(
+      stripe_customer: stripe,
+      token: token
+    ).perform
   end
 
   private
@@ -50,12 +54,10 @@ class User < ApplicationRecord
     [:publisher, [:publisher, :id]]
   end
 
-  def stripe
-    customer = Stripe::Customer.create(
-      description: name,
-      email: email
-    )
-    self.stripe_customer_id = customer.id
+  def create_stripe
+    @stripe = Billing::Customer::CreateStripe.new(name: name, email: email)
+                                             .perform
+    self.stripe_customer_id = @stripe.id
   end
 
   def lock
