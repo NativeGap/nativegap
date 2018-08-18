@@ -15,7 +15,9 @@ class SplashScreenUploader < CarrierWave::Uploader::Base
 
   # Windows
   version('_2480x1200') { process resize_to_fit: [2480, 1200] }
-  version('_1240x600', from: '_2480x1200') { process resize_to_fit: [1240, 600] }
+  version('_1240x600', from: '_2480x1200') do
+    process resize_to_fit: [1240, 600]
+  end
   version('_930x450', from: '_1240x600') { process resize_to_fit: [930, 450] }
   version('_775x375', from: '_930x450') { process resize_to_fit: [775, 375] }
   version('_620x300', from: '_775x375') { process resize_to_fit: [620, 300] }

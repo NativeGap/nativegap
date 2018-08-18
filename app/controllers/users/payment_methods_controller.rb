@@ -16,12 +16,7 @@ module Users
 
     def update
       authorize! :update, current_user
-      if stripe_successful?
-        current_user.enable_stripe(token: params[:stripeToken])
-        unless current_user.has_payment_method?
-          current_user.update!(has_payment_method: true)
-        end
-      end
+      process_payment_method
 
       respond_to do |format|
         format.html do
@@ -38,6 +33,14 @@ module Users
     end
 
     private
+
+    def process_payment_method
+      return unless stripe_successful?
+
+      current_user.enable_stripe(token: params[:stripeToken])
+      return if current_user.has_payment_method?
+      current_user.update!(has_payment_method: true)
+    end
 
     def stripe_successful?
       params.key?(:stripeToken) && !params[:stripeToken].nil? &&

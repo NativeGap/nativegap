@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class App
   class Build < ApplicationRecord
     self.table_name = 'app_builds'
@@ -35,12 +36,15 @@ class App
     has_one :subscription, class_name: '::Subscription'
     belongs_to :app, class_name: '::App'
 
+    delegate :user, to: :app, allow_nil: true
+
     def folder_name
       id.to_s
     end
 
     def name
       return "#{I18n.t("d.#{platform}")} (#{I18n.t('d.beta')})" if beta
+
       I18n.t("d.#{platform}")
     end
 
@@ -57,31 +61,18 @@ class App
     end
 
     def can_build?
-      app.user.present? && !key_needed? && !splash_screen_needed?
+      user.present? && !key_needed? && !splash_screen_needed?
     end
 
     def start_url
-      su =
-        if path
-          app.url.last == '/' ? "#{app.url}#{path}" : "#{app.url}/#{path}"
-        else
-          app.start_url
-        end
-      return su + '&nativegap=' + platform if su.include? '?'
-      su + '?nativegap=' + platform
+      "#{start_url_without_param}&nativegap=#{platform}" \
+        if start_url_without_param.include?('?')
+      "#{start_url_without_param}?nativegap=#{platform}"
     end
 
     def icon_url(version)
-      if platform == 'ios' && version == '_1024x1024' &&
-         !ios_app_store_icon.nil?
-        ios_app_store_icon.url
-      elsif icon.respond_to?(version)
-        icon&.send(version)&.url
-      elsif app.icon.respond_to?(version)
-        app.icon&.send(version)&.url
-      else
-        windows_splash_screen&.send(version)&.url
-      end
+      ios_app_store_icon_url(version) || build_icon_url(version) ||
+        app_icon_url(version) || splash_screen_url(version)
     end
 
     def update_available?
@@ -93,6 +84,7 @@ class App
 
     def build
       return unless can_build?
+
       update_attributes(status: 'processing') unless status == 'processing'
       BuildWorker.perform_in(Settings.nativegap.delay.build, id)
     end
@@ -111,28 +103,9 @@ class App
 
     def remove_appetize
       return unless appetize
+
       Appetize.new(public_key: appetize_public_key).destroy
       update(appetize: nil, appetize_public_key: nil, appetize_private_key: nil)
-    end
-
-    def android_statusbar_background
-      self[:android_statusbar_background] || '#000000'
-    end
-
-    def android_statusbar_style
-      self[:android_statusbar_style] || 'lightcontent'
-    end
-
-    def ios_statusbar_style
-      self[:ios_statusbar_style] || 'default'
-    end
-
-    def chrome_width
-      self[:chrome_width] || 350
-    end
-
-    def chrome_height
-      self[:chrome_height] || 500
     end
 
     def error_network_title
@@ -168,20 +141,18 @@ class App
     end
 
     def built_notification
-      return unless app.user.build_notifications
+      return unless user.build_notifications
 
-      notification = app.user.notify(object: app)
+      notification = user.notify(object: app)
       notification.push(
         :OneSignal,
-        player_ids: app.user.onesignal_player_ids,
+        player_ids: user.onesignal_player_ids,
         url: Rails.application.routes.url_helpers.app_url(app),
         contents: {
           en: 'App finished processing',
           de: 'Deine App ist fertig!'
-        }, headings: {
-          en: "#{app.name} (#{name})",
-          de: "#{app.name} (#{name})"
-        }
+        },
+        headings: { en: "#{app.name} (#{name})", de: "#{app.name} (#{name})" }
       )
     end
 
@@ -196,6 +167,38 @@ class App
         android_key_alias.nil? || android_key_password.nil?
     end
 
+    def start_url_without_param
+      if path
+        app.url.last == '/' ? "#{app.url}#{path}" : "#{app.url}/#{path}"
+      else
+        app.start_url
+      end
+    end
+
+    def ios_app_store_icon_url(version)
+      return unless platform == 'ios' && version == '_1024x1024'
+
+      ios_app_store_icon.url
+    end
+
+    def build_icon_url(version)
+      return unless icon.respond_to?(version)
+
+      icon&.send(version)&.url
+    end
+
+    def app_icon_url(version)
+      return unless app.icon.respond_to?(version)
+
+      app.icon&.send(version)&.url
+    end
+
+    def splash_screen_url(version)
+      return unless platform == 'windows'
+
+      windows_splash_screen&.send(version)&.url
+    end
+
     def set_wrapper_version
       self.wrapper_version = "Wrapper::#{platform.camelize}"
                              .constantize.new(beta: beta).version
@@ -203,6 +206,7 @@ class App
 
     def cancel_subscription
       return unless subscription.present?
+
       subscription = Stripe::Subscription.retrieve(
         subscription.stripe_subscription_id
       )
@@ -210,9 +214,8 @@ class App
     end
 
     def broadcast
-      # if self.status_changed?
-      App::BuildBroadcastWorker.perform_async(id)
-      # end
+      App::BuildBroadcastWorker.perform_async(id) # if self.status_changed?
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
