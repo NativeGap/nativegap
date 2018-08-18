@@ -1,6 +1,0 @@
-de:
-    devise:
-        confirmations:
-            new:
-                title: Verifizierungs-Email neu senden
-                content: Unsere Verifizierungs-Email hat es nicht in Deinen Posteingang geschafft? Wir werden es für Dich erneut versuchen.

@@ -1,0 +1,5 @@
+en:
+  apps:
+    update:
+      success: App updated
+      error: We couldn't update your app

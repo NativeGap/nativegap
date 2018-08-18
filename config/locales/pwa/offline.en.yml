@@ -1,0 +1,7 @@
+en:
+  pwa:
+    offline:
+      title: You are offline ...
+      content: We haven't yet cached this page for you. Return later with internet connectivity.
+      open_dashboard: Open dashboard
+      open_nativegap: Open NativeGap

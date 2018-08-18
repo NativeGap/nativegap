@@ -1,0 +1,10 @@
+en:
+  apps:
+    _form:
+      error: Check if you filled in all required fields
+      url:
+        title: URL
+        content: You can't change the URL after you've created an app.
+        hint:
+          content: Make sure that the <code>X-FRAME-OPTIONS</code> header is set to <code>allowall</code> across the domain. %{link}.
+          link: Learn more

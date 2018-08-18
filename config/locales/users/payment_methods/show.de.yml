@@ -1,0 +1,13 @@
+de:
+  users:
+    payment_methods:
+      show:
+        title: Bezahlmethode
+        has_payment_method:
+          title: Möchtest Du Deine Bezahlmethode ändern?
+          content: Wenn Deine Bezahlmethode nicht mehr aktuell ist, kannst Du eine neue hinzufügen.
+        no_payment_method:
+          title: Du hast noch keine Bezahlmethode.
+          content: Füge eine Bezahlmethode hinzu, um ein NativeGap Abonnement zu starten.
+        add_payment_method: Eine Bezahlmethode hinzufügen
+        continue_to_checkout: Weiter zum Bezahlen

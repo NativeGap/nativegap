@@ -1,0 +1,16 @@
+de:
+  welcome:
+    _android:
+      per_year: /Jahr
+      free:
+        content: Der perfekte Plan wenn Du gerade loslegst.
+        features: Genaue Konfirgurationsmöglichkeiten für Deine App. Von Farben über Icons zu Animationen und Größen.
+        license: Beinhaltet keine kommerzielle Lizenz.
+      starter:
+        content: Vertreibe Deine App kommerziell.
+        features: Veröffentliche Deine kommerzielle App und entferne NativeGap-Branding.
+        license: Beinhaltet eine kommerzielle Lizenz.
+      professional:
+        content: Wenn Du ein Produkt erstellst, ist dies was Du möchtest.
+        features: Füge extre Funktionalität wie Push-Benachrichtigungen zu Deiner App hinzu.
+        license: Beinhaltet eine kommerzielle Lizenz.

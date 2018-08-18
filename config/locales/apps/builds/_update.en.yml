@@ -1,0 +1,21 @@
+en:
+  apps:
+    builds:
+      _update:
+        updates:
+          title: We have updates for you
+          content: You can now rebuild your app, update the app's version and publish.
+        key_needed:
+          title: Add a signing key
+          content: We need a signing key to be able to package your app for submission to the store. %{link}.
+          link: Learn more
+        splash_screen_needed:
+          title: Add a splash screen
+          content: We need a splash screen to be able to build your app.
+        processing:
+          title: Your app is currently being built
+          content: Processing may take up to 10 minutes. If the build status still hasn't changed or displays an error, refresh this page and restart the build process.
+        rebuild:
+          title: Rebuild your app
+          content: If you want to update your app for your users, rebuild it, update the app's version and publish.
+        restart_build: Restart build

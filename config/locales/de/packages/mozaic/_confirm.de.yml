@@ -1,8 +1,0 @@
-de:
-    mozaic:
-        _confirm:
-            title: Bestätige Deinen Account
-            content: Bestätige Deinen Account in den nächsten %{days}
-            day: Tag
-            resend_email: Email erneut senden
-            resend_confirmation_email: Verifizierungs-Email erneut senden

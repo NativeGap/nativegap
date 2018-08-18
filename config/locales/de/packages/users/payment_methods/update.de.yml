@@ -1,6 +1,0 @@
-de:
-    users:
-        payment_methods:
-            update:
-                success: Bezahlmethode hinzugefügt
-                error: Karte ungültig

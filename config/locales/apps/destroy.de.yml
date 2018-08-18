@@ -1,0 +1,5 @@
+de:
+  apps:
+    destroy:
+      success: App gelöscht
+      error: Wir konnten Deine App nicht löschen

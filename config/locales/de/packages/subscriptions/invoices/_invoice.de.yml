@@ -1,5 +1,0 @@
-de:
-    subscriptions:
-        invoices:
-            _invoice:
-                content: "%{platform} %{subscription} (%{app}) · %{date}"
