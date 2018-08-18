@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   scope protocol: (Rails.env.production? ? 'https' : 'http') do
     mount Pwa::Engine, at: ''
@@ -88,3 +89,4 @@ Rails.application.routes.draw do
 
   match '*path', to: 'r404#not_found', via: :all
 end
+# rubocop:enable Metrics/BlockLength

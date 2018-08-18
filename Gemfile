@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2.0'
 
 gem 'acts_as_belongable'
 gem 'ahoy_matey'
@@ -23,7 +23,6 @@ gem 'carrierwave_backgrounder', github: 'harigopal/carrierwave_backgrounder',
 gem 'config'
 gem 'devise'
 gem 'fog-aws'
-gem 'foreman'
 gem 'friendly_id'
 gem 'git'
 gem 'haml'
@@ -65,23 +64,20 @@ gem 'webpacker'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'rspec-rails', require: false
+  gem 'rspec-sidekiq', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'certified'
+  gem 'foreman', require: false
   gem 'mysql2'
   gem 'pry-rails'
   gem 'web-console'
-end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'rspec-sidekiq'
-  gem 'rubocop'
-  gem 'rubocop-rspec'
 end
 
 group :production do
