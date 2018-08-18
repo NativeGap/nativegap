@@ -3,7 +3,7 @@
 = mozaic do
   .myg-content.flex.column.center
     = link_to root_url, data: { turbolinks_animate_persist: 'devise' } do
-      = asset 'components/brand/logo_large'
+      = asset 'logo_large.svg'
     .myg-card.myg-wrap--phone{ data: { turbolinks_animate_persist_itself: 'devise' } }
       = mozaic_area :devise do
         = yield
