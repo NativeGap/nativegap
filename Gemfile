@@ -72,7 +72,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'certified'
-  gem 'mysql2', '~> 0.5.1'
+  gem 'mysql2'
   gem 'pry-rails'
   gem 'web-console'
 end
