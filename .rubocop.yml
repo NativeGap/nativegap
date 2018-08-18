@@ -16,7 +16,6 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
-    - config/routes.rb
     - db/migrate/*.rb
 
 Metrics/LineLength:
