@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module App
+class App
   class Build < ApplicationRecord
     self.table_name = 'app_builds'
 
