@@ -1,0 +1,9 @@
+en:
+  users:
+    payment_methods:
+      edit:
+        title: Add a payment method
+        header: Safe & Secure
+        content: NativeGap's payment services are being handled by Stripe.
+        continue_to_checkout: Continue to checkout
+        add_payment_method: Add payment method

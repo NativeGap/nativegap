@@ -1,55 +1,52 @@
-# README
+# NativeGap
 
-Steps that are necessary to get the
-application up and running.
+Bring your web app to the stores of iOS, Android, Chrome and Windows.
 
----
+**https://nativegap.com**
 
-**Ruby version:** 2.3.3
+### Development
 
-**System dependencies:** none
+This project uses [asdf](https://github.com/asdf-vm/asdf) as version manager, [Yarn](https://github.com/yarnpkg/yarn) as JavaScript package manager, and [Bundler](https://github.com/bundler/bundler) for Rubygems.
 
-**Configuration:** none
+Dependencies are listed in the [.tool-versions](.tool-versions) file.
 
----
+1. Clone this repository
 
-### Database creation
+    `$ git clone ssh://git@github.com/NativeGap/nativegap.git`
+
+2. Install dependencies
+
+    ```
+    $ asdf install
+    $ yarn install
+    $ bundle install
+    ```
+
+3. Credentials setup
+
+    Customize [credentials.yml.sample](config/credentials.yml.sample)
+    `EDITOR=vim be rails credentials:edit`
+
+4. Database setup
+
+    `$ rails db:setup`
+
+5. Start development server
+
+    `$ bundle exec foreman start -f Procfile.dev`
+
+### Testing
+
+This project uses a number of packages for testing and linting:
 
 ```
-rails db:create
-rails db:migrate
+$ bundle exec rspec
+$ bundle exec rubocop
+$ bundle exec haml-lint
+$ yarn run stylelint
+$ yarn run eslint
 ```
 
----
+### Deployment
 
-### Database initialization
-
-```
-rails db:seed
-```
-
----
-
-### How to run the test suite
-
-*No test suite yet.*
-
----
-
-### Development instructions
-
-```
-$ bundle install
-$ bundle exec foreman start -f Procfile.dev
-$ ./bin/webpack-dev-server
-```
-
----
-
-### Deployment instructions
-
-#### 1) Feature
-* Create a feature branch when introducing a new feature.
-#### 2) Master
-* Test!
-* Deploy changes.
+The `master` branch of this repository is automatically deployed on Heroku.

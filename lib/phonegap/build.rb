@@ -5,7 +5,7 @@ module Phonegap
     FILE_ENDING = {
       android: 'apk',
       ios: 'ipa'
-    }
+    }.freeze
 
     attr_reader :client, :app_id, :platform
 
@@ -35,7 +35,7 @@ module Phonegap
       path = path(directory)
       FileUtils.mkdir_p(path) unless File.directory?(path)
       path = "#{path}.#{FILE_ENDING[@platform.to_sym]}"
-      file = File.new(path(directory), 'w')
+      file = File.new(path, 'w')
       file.binmode
       file.write(response)
       file.flush

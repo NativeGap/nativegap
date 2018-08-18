@@ -1,0 +1,7 @@
+de:
+  notifications:
+    invoice_payment_upcoming:
+      subject: Baldige Abonnement Verlängerung
+      content:
+        main: Dein Abonnement (%{payment}) wird bald verlängert. Bitte gehe sicher, dass deine Bezahlmethode gültig und ausreichend gedeckt ist.
+        link: Abonnements verwalten

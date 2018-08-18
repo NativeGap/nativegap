@@ -1,8 +1,0 @@
-de:
-    apps:
-        builds:
-            version:
-                title: Versionsnummer aktualisieren
-                header: Du bereitest Dich auf einen neuen Release vor?
-                content: Gib Deine neue Versionsnummer unten ein. Deine App wird automatisch neu erstellt.
-                rebuild_app: App erneuern

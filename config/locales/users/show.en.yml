@@ -1,0 +1,5 @@
+en:
+  users:
+    show:
+      visit_my_website: Visit my website
+      no_apps: This user does not have any public apps yet.

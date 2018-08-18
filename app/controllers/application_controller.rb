@@ -28,23 +28,11 @@ class ApplicationController < ActionController::Base
     collection&.select { |object| authorize! ability, object }
   end
 
-  def detect_platforms(app:)
-    platforms = []
-    if browser.device.mobile?
-      return platforms << :android if browser.platform.android? && app.android
-      return platforms << :ios if browser.platform.ios? && app.ios
-      if browser.platform.windows_mobile? && app.windows
-        return platforms << :windows
-      end
-    else
-      platforms << :windows if browser.platform.windows10? && app.windows
-      platforms << :chrome if browser.chrome? && app.chrome
+  def detect_app_platforms(app:)
+    platforms = DetectPlatform.new(browser: browser).perform
+    platforms.each do |k, _|
+      platforms[k] = false unless app.public_send(k)
     end
-    return unless platforms.empty?
-    platforms << :android if app.android
-    platforms << :ios if app.ios
-    platforms << :windows if app.windows
-    platforms << :chrome if app.chrome
   end
 
   protected
@@ -57,8 +45,8 @@ class ApplicationController < ActionController::Base
                                       keys: [:first_name, :last_name,
                                              :publisher_name, :url,
                                              :build_notifications,
-                                             :update_notifications, :visibility]
-                                     )
+                                             :update_notifications,
+                                             :visibility])
   end
 
   private
@@ -78,10 +66,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || user_pref_locale || session[:locale] ||
                   user_location_detected_locale || I18n.default_locale
 
-    session[:locale] = I18n.locale
-    return unless current_user && I18n.locale != current_user.locale
-    current_user.locale = I18n.locale
-    current_user.save!
+    store_locale
   end
 
   def user_pref_locale
@@ -93,6 +78,13 @@ class ApplicationController < ActionController::Base
     language = browser.accept_language.first
     return nil unless language&.code
     language.code
+  end
+
+  def store_locale
+    session[:locale] = I18n.locale
+    return unless current_user && I18n.locale != current_user.locale
+    current_user.locale = I18n.locale
+    current_user.save!
   end
 
   def store_current_location
