@@ -236,8 +236,6 @@ GEM
       activesupport (>= 5.0)
       mozaic (~> 2.0)
       railties (>= 5.0)
-    mysql2 (0.5.2)
-    mysql2 (0.5.2-x86-mingw32)
     nativegap (3.0.3)
       mozaic (~> 2.0)
       rails (>= 5.0)
@@ -505,7 +503,6 @@ DEPENDENCIES
   modalist
   mozaic
   myg
-  mysql2
   nativegap
   nilify_blanks
   notification-handler

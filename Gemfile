@@ -43,6 +43,7 @@ gem 'notification-pusher-actionmailer'
 gem 'notification-pusher-onesignal'
 gem 'octokit'
 gem 'onsignal'
+gem 'pg'
 gem 'puma'
 gem 'pwa'
 gem 'r404'
@@ -75,13 +76,11 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman', require: false
-  gem 'mysql2'
   gem 'pry-rails'
   gem 'web-console'
 end
 
 group :production do
-  gem 'pg'
   gem 'rack-timeout'
 end
 
