@@ -1,7 +1,0 @@
-en:
-    devise:
-        registrations:
-            _tabs:
-                title: Your account
-                content: Edit your profile, contact details & billing information.
-                error: An error occured

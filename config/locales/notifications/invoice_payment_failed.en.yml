@@ -1,0 +1,8 @@
+en:
+  notifications:
+    invoice_payment_failed:
+      subject: Subscription charge failed
+      content:
+        main: the extension of your subscription (%{payment}) failed, because your selected payment method is invalid.
+        link: Review subscriptions
+        footer: You are able create a new subscription for the product at any time.

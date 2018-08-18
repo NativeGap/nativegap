@@ -1,5 +1,0 @@
-de:
-    apps:
-        create:
-            success: Die Bearbeitung kann bis zu 10 Minuten in Anspruch nehmen
-            error: Wir konnten die App nicht erstellen
