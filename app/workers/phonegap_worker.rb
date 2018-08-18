@@ -16,7 +16,7 @@ class PhonegapWorker
     AppetizeWorker.perform_async(build_id: build_id)
     delete_phonegap_app(phonegap_client, phonegap_app_id, phonegap_key_id)
     build.update(status: 'processed')
-    send_notification(build) if build.app.user.build_notifications
+    build.built_notification
   end
 
   private
@@ -41,21 +41,5 @@ class PhonegapWorker
   def return_with_error(object)
     object.update_attributes status: 'error'
     exit
-  end
-
-  def send_notification(build)
-    notification = build.app.user.notify(object: build.app)
-    notification.push(
-      :OneSignal,
-      player_ids: build.app.user.onesignal_player_ids,
-      url: Rails.application.routes.url_helpers.app_url(build.app),
-      contents: {
-        en: 'App finished processing',
-        de: 'Deine App ist fertig!'
-      }, headings: {
-        en: "#{build.app.name} (#{build.name})",
-        de: "#{build.app.name} (#{build.name})"
-      }
-    )
   end
 end

@@ -167,6 +167,24 @@ module App
       end
     end
 
+    def built_notification
+      return unless app.user.build_notifications
+
+      notification = app.user.notify(object: app)
+      notification.push(
+        :OneSignal,
+        player_ids: app.user.onesignal_player_ids,
+        url: Rails.application.routes.url_helpers.app_url(app),
+        contents: {
+          en: 'App finished processing',
+          de: 'Deine App ist fertig!'
+        }, headings: {
+          en: "#{app.name} (#{name})",
+          de: "#{app.name} (#{name})"
+        }
+      )
+    end
+
     private
 
     def ios_key_needed?

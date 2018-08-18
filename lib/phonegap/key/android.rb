@@ -19,7 +19,7 @@ module Phonegap
       def create_request(keystore, keystore_password, key_password, key_alias,
                          title)
         RestClient.post(
-          'https://build.phonegap.com/api/v1/keys/android?auth_token='\
+          "https://build.phonegap.com/api/v1/keys/#{PLATFORM}?auth_token="\
           "#{@client.token}",
           title: title,
           alias: key_alias,

@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 AllCops:
   Exclude:
     - bin/*
@@ -9,6 +11,7 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - db/migrate/*.rb
+  Max: 20
 
 Metrics/BlockLength:
   Exclude:
