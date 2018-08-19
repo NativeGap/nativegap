@@ -4,6 +4,7 @@ rvm:
 script:
   - bundle exec rubocop
   - bundle exec rspec
+  - yarn install
   - bundle exec rails assets:precompile
 before_install:
   - nvm install node 9.11.2
