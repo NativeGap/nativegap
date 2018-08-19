@@ -26,7 +26,7 @@
           style: "background:#{@app.accent};border-color:#{@app.accent}")
       - else
         = link_to t('explore.show.install_app'), @app.send(@platforms.first), target: '_blank', class: 'myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
-    - elsif @platforms.length == 0
+    - elsif @platforms.empty?
       = link_to t('explore.show.learn_more'), @app.url, target: '_blank', class: 'myg-button myg-button--light', style: "background:#{@app.accent};border-color:#{@app.accent}"
   %p.sm{ style: "color:#{@app.splash_screen_color || @app.color}" }
     - if @app.appetize && @app.builds.where(platform: 'android').first.appetize

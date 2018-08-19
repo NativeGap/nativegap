@@ -8,8 +8,8 @@
       - else
         %p= link_to t('d.signup'), new_user_registration_url
       %p= link_to t('d.marketplace'), explore_url
-      - if @nativegap.present?
-        %p= link_to t('mozaic._footer.install_app'), app_explore_url(@nativegap)
+      - if (nativegap = App.find_by(slug: 'nativegap'))
+        %p= link_to t('mozaic._footer.install_app'), app_explore_url(nativegap)
       %p= link_to(t('d.changelog'),
         Settings.nativegap.medium.changelog,
         target: '_blank')

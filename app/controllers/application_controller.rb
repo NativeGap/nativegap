@@ -51,10 +51,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_nativegap
-    @nativegap = App.where(slug: 'nativegap').first
-  end
-
   def render_r404_access_denied(format, _status, _exception)
     format.html do
       redirect_back fallback_location: root_url,

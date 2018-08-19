@@ -1,0 +1,20 @@
+exclude:
+  - vendor/**/*
+
+linters:
+  ConsecutiveComments:
+    enabled: false
+
+  InlineStyles:
+    exclude:
+      - app/views/explore/index.html.haml
+      - app/views/explore/show.html.haml
+
+  LineLength:
+    enabled: false
+
+  UnnecessaryStringOutput:
+    enabled: false
+
+  ViewLength:
+    max: 230

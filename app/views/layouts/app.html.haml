@@ -75,9 +75,9 @@
         - if current_user.visibility == 'public'
           %p.sm= link_to t('d.profile'), current_user
       %p.sm= link_to t('d.language'), language_url, class: 'modalist--trigger'
-      - if @nativegap.present?
+      - if (nativegap = App.find_by(slug: 'nativegap'))
         %p.sm= link_to(t('layouts.app.account.install_app'),
-          app_explore_url(@nativegap))
+          app_explore_url(nativegap))
       - if current_user
         %p.sm= link_to t('signout'), destroy_user_session_path, method: :delete
 
@@ -97,9 +97,9 @@
             = link_to t('d.login'), new_user_session_url
             = link_to t('d.signup'), new_user_registration_url
           = link_to t('d.language'), language_url, class: 'modalist--trigger'
-          - if @nativegap.present?
+          - if (nativegap = App.find_by(slug: 'nativegap'))
             = link_to(t('layouts.app.account.install_app'),
-              app_explore_url(@nativegap))
+              app_explore_url(nativegap))
           = link_to(t('d.help'),
             Settings.nativegap.medium.help,
             target: '_blank')

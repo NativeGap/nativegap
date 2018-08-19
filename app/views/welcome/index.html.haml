@@ -4,11 +4,11 @@
   .myg-layout__wrap--large
     %h1.sm= t('welcome.index.title')
     %p.lg= t('welcome.index.content')
-    = simple_form_for App.new, method: :get, url: new_app_url, html: { class: 'myg-grid__flex' } do |f|
+    = simple_form_for App.new, method: :get, url: new_app_url, html: { class: 'myg-grid__flex' } do
       = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', input_html: { required: true, spellcheck: false, type: 'url', placeholder: 'https://nativegap.com' }
       = component 'myg/button', value: t('welcome.index.get_started')
 
-%section#explore.myg-layout__wrap--tablet
+%section.myg-layout__wrap--tablet#explore
   %h2= t('welcome.index.explore.title')
   %p= t('welcome.index.explore.content')
   .myg-grid__grid
@@ -20,7 +20,7 @@
   .myg-button__container
     = link_to t('welcome.index.explore.button'), explore_url, class: 'myg-button--secondary', data: { turbolinks_animate_type: 'application' }
 
-%section#features.myg-layout__wrap--large
+%section.myg-layout__wrap--large#features
   .feature
     %h2= t('welcome.index.features.enlighten_your_users.title')
     %p= t('welcome.index.features.enlighten_your_users.content')
@@ -34,7 +34,7 @@
     %h2= t('welcome.index.features.from_a_website_to_an_app.title')
     %p= t('welcome.index.features.from_a_website_to_an_app.content')
 
-%section#pricing.myg-layout__wrap--tablet
+%section.myg-layout__wrap--tablet#pricing
   %a{ name: 'pricing' }
   %h2= t('d.pricing')
   %p= t('welcome.index.pricing.content')

@@ -23,7 +23,7 @@
             - if build.subscription&.subscribed?
               = "$#{Settings.nativegap.pricing.send(build.platform).send(build.subscription&.plan&.split('_')&.last)}"
             - else
-              = "$0"
+              = '$0'
             %span.sm= t('apps.builds._build.plan.per_year')
         - if build.subscription&.subscribed?
           - if build.subscription&.canceled?
@@ -61,29 +61,28 @@
                 class: 'myg-button myg-button--secondary')
             %p.sm= link_to(t('apps.builds._build.plan.billing_overview'),
               subscriptions_url)
-          - else
-            - if current_user.confirmed?
-              - if build.platform == 'ios'
-                = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
-                  users_payment_method_url(build: build.id, plan: 'pro'),
-                  class: 'myg-button modalist--trigger myg-button--disabled')
-                = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
-                  users_payment_method_url(build: build.id, plan: 'starter'),
-                  class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
-              - else
-                = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
-                  users_payment_method_url(build: build.id, plan: 'pro'),
-                  class: 'myg-button modalist--trigger')
-                = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
-                  users_payment_method_url(build: build.id, plan: 'starter'),
-                  class: 'myg-button myg-button--secondary modalist--trigger')
-            - else
+          - elsif current_user.confirmed?
+            - if build.platform == 'ios'
               = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
                 users_payment_method_url(build: build.id, plan: 'pro'),
                 class: 'myg-button modalist--trigger myg-button--disabled')
               = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
                 users_payment_method_url(build: build.id, plan: 'starter'),
                 class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
+            - else
+              = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
+                users_payment_method_url(build: build.id, plan: 'pro'),
+                class: 'myg-button modalist--trigger')
+              = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
+                users_payment_method_url(build: build.id, plan: 'starter'),
+                class: 'myg-button myg-button--secondary modalist--trigger')
+          - else
+            = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
+              users_payment_method_url(build: build.id, plan: 'pro'),
+              class: 'myg-button modalist--trigger myg-button--disabled')
+            = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
+              users_payment_method_url(build: build.id, plan: 'starter'),
+              class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
     = render 'apps/builds/update', build: build
 
   .column
