@@ -1,0 +1,94 @@
+#application.myg-layout.myg-layout--toolbar {
+  @include myg-grid__grid-rows(myg__px(72) 1fr);
+
+  & > .myg-toolbar {
+    border-bottom: none;
+
+    & > .mdc-toolbar__row {
+      min-height: myg__px(72);
+      padding-left: myg__px(20);
+
+      @include myg-grid__bigger-than(tablet) {
+        padding: 0 myg__px(20);
+      }
+
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-start {
+        & > a {
+          line-height: 0;
+        }
+      }
+
+      & > section.mdc-toolbar__section.mdc-toolbar__section--align-end {
+        &:not(.mobile) {
+          display: none;
+        }
+
+        & > a {
+          font-size: myg__px(14);
+
+          @include myg-animate__transition;
+
+          &:not(:last-child) {
+            color: myg-theme__color(text, base);
+            margin: 0 myg__px(15);
+
+            @include myg-grid__flex---center;
+          }
+
+          &:last-child {
+            margin-left: myg__px(15);
+          }
+        }
+
+        &.mobile > a {
+          background: myg-theme__color(background, base);
+          height: myg__px(72);
+          padding: 0 myg__px(20);
+
+          @include myg-grid__flex---center;
+          @include myg-animate__transition(background);
+
+          &:hover {
+            background: myg-theme__color(background, lighter);
+          }
+        }
+      }
+
+      @include myg-grid__bigger-than(tablet) {
+        section.mdc-toolbar__section.mdc-toolbar__section--align-end {
+          &:not(.mobile) {
+            display: flex;
+          }
+
+          &.mobile {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.scrolled {
+      border-bottom: inherit;
+
+      & > .mdc-toolbar__row {
+        @include myg-grid__bigger-than(tablet) {
+          padding: 0 myg__px(15) 0 myg__px(20);
+        }
+
+        & > section.mdc-toolbar__section.mdc-toolbar__section--align-end:not(.mobile) {
+          & > a:last-child {
+            @include myg-button;
+            @include myg-button--light;
+            @include myg-button---dense;
+          }
+        }
+      }
+    }
+  }
+
+  .myg-drawer {
+    a.myg-button {
+      width: 100%;
+    }
+  }
+}

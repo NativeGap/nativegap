@@ -1,0 +1,27 @@
+.modalist--content-body.apps.builds.splash_screen {
+  flex-direction: column;
+  padding: myg__px(35);
+
+  @include myg-grid__flex---center;
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    margin: myg__px(5) 0 myg__px(35);
+  }
+
+  form {
+    width: 100%;
+
+    .flex.reverse {
+      margin-top: myg__px(25);
+    }
+  }
+}

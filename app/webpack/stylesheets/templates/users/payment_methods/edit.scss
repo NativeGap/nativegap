@@ -1,0 +1,55 @@
+.modalist--content-body.users.payment_methods.edit {
+  flex-direction: column;
+  padding: myg__px(35);
+
+  @include myg-grid__flex---center;
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    margin: myg__px(5) 0 myg__px(35);
+  }
+
+  form {
+    width: 100%;
+
+    .myg-button--container {
+      margin-top: myg__px(15);
+    }
+  }
+
+  .StripeElement {
+    background: myg-theme__color(background, lighter);
+    border: myg__px(1) solid myg-theme__color(border);
+    color: myg-theme__color(text, dark);
+    font-size: myg__px(15);
+    line-height: 1.58;
+    padding: myg__px(15) myg__px(16) myg__px(15);
+
+    @include myg-font(sans-serif);
+    @include myg-theme__border-radius(2);
+    @include myg-input__placeholder;
+    @include myg-animate__transition;
+  }
+
+  .StripeElement--focus {
+    border-color: myg-theme__color(accent, base);
+    box-shadow: 0 0 0 myg__px(3.5) rgba(myg-theme__color(accent, base, true), 0.35);
+  }
+
+  .StripeElement--invalid {
+    border-color: myg-theme__color(error);
+    box-shadow: 0 0 0 myg__px(3.5) rgba(myg-theme__color(error, null, true), 0.35);
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: myg-theme__color(background, lighter) !important;
+  }
+}
