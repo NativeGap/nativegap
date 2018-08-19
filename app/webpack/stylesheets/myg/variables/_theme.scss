@@ -3,20 +3,20 @@ $myg-theme: (
     light: #5e80d7,
     base: #4764ae,
     dark: #2c4a96,
-    contrast: #ffffff
+    contrast: #fff
   ),
   text: (
     lighter: #bec7cf,
     light: #97a4b0,
     base: #657786,
     dark: #3d4553,
-    darker: #14171A
+    darker: #14171a
   ),
   background: (
     lighter: #fcfcfc,
-    light: #ffffff,
-    base: #ffffff,
-    dark: #FBFBFD,
+    light: #fff,
+    base: #fff,
+    dark: #fbfbfd,
     darker: #ecf2f7
   ),
   border: #dce2e7,
@@ -24,8 +24,8 @@ $myg-theme: (
   error: #f6809a,
   success: #6adb83,
   overlay: (
-    light: transparentize(#e7eCf0, 0.13),
-    dark: transparentize(#14171A, 0.87)
+    light: transparentize(#e7ecf0, 0.13),
+    dark: transparentize(#14171a, 0.87)
   )
 ) !default;
 

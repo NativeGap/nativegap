@@ -1,0 +1,22 @@
+body.pwa.offline {
+  .myg-content {
+    background: myg-theme__color(background, lighter);
+    flex-direction: column;
+    padding: myg__px(35);
+
+    @include myg-grid__flex---center;
+
+    h1,
+    p {
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0 0 myg__px(35);
+    }
+  }
+}
