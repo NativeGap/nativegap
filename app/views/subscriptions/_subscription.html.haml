@@ -1,3 +1,7 @@
 .myg-list--element
   %h4= "$#{Settings.nativegap.pricing.send(subscription.build.platform).send(subscription.plan.split('_').last)}"
-  %p.sm= t('subscriptions._subscription.content', platform: subscription.build.name, subscription: subscription.name, app: subscription.build.app.name, date: subscription.current_period_end.strftime('%B %-d, %Y'))
+  %p.sm= t('subscriptions._subscription.content',
+    platform: subscription.build.name,
+    subscription: subscription.name,
+    app: subscription.build.app.name,
+    date: subscription.current_period_end.strftime('%B %-d, %Y'))

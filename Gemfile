@@ -66,6 +66,7 @@ gem 'webpacker'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'haml-lint', require: false
   gem 'rspec-rails', require: false
   gem 'rspec-sidekiq', require: false
   gem 'rubocop', require: false

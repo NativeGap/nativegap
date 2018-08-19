@@ -2,4 +2,7 @@
 %p= t('explore.install.content', app: @app.name)
 .myg-button--container
   - @platforms.each do |platform|
-    = link_to platform.to_s.titleize, @app.send(platform), target: '_blank', class: 'myg-button myg-button--secondary'
+    = link_to(platform.to_s.titleize,
+      @app.send(platform),
+      target: '_blank',
+      class: 'myg-button myg-button--secondary')

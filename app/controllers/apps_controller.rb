@@ -24,7 +24,7 @@ class AppsController < ApplicationController
         name: build.name,
         id: build.platform,
         partial: 'apps/builds/build',
-        partial_locals: { build: build },
+        partial_locals: { build: build, app: @app },
         active: index.zero?
       }
     end[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings' }

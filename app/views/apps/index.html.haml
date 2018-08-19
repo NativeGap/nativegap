@@ -3,16 +3,24 @@
 .myg-wrap--tablet.myg-grid
   - if @apps.any?
     - @apps.each do |app|
-      = link_to app, class: 'myg-card', data: { turbolinks_animate_type: 'app' } do
-        = image_tag app.icon.url
+      = link_to(app,
+        class: 'myg-card',
+        data: { turbolinks_animate_type: 'app' }) do
+        = image_tag(app.icon.url)
         %h3.sm= app.name
         %p.sm= truncate(app.description, length: 45)
-    = link_to new_app_url, class: 'myg-card', id: 'new-app', data: { turbolinks_animate_type: 'app' } do
+    = link_to(new_app_url,
+      class: 'myg-card',
+      id: 'new-app',
+      data: { turbolinks_animate_type: 'app' }) do
       %i.nc-icon.nc-simple-add-2.x3
       %h3.sm= t('apps.index.apps.new.title')
       %p.sm= t('apps.index.apps.new.content')
   - else
-    = link_to new_app_url, class: 'myg-card', id: 'first-app', data: { turbolinks_animate_type: 'app' } do
+    = link_to(new_app_url,
+      class: 'myg-card',
+      id: 'first-app',
+      data: { turbolinks_animate_type: 'app' }) do
       %i.nc-icon.nc-simple-add-2.x3
       %h3= t('apps.index.no_apps.new.title')
       %p= t('apps.index.no_apps.new.content')

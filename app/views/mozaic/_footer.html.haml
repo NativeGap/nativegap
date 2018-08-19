@@ -8,24 +8,37 @@
       - else
         %p= link_to t('d.signup'), new_user_registration_url
       %p= link_to t('d.marketplace'), explore_url
-      - if @nativegap.present?
-        %p= link_to t('mozaic._footer.install_app'), app_explore_url(@nativegap)
-      %p= link_to t('d.changelog'), Settings.nativegap.medium.changelog, target: '_blank'
+      - if (nativegap = App.find_by(slug: 'nativegap'))
+        %p= link_to t('mozaic._footer.install_app'), app_explore_url(nativegap)
+      %p= link_to(t('d.changelog'),
+        Settings.nativegap.medium.changelog,
+        target: '_blank')
     .explore
       %h3.sm= t('mozaic._footer.trending_apps')
       - App.where(visibility: 'public').limit(4)&.each do |app|
         %p= link_to app.name, app_explore_url(app)
     .support
       %h3.sm= t('d.support')
-      %p= link_to t('mozaic._footer.help_center'), Settings.nativegap.medium.help, target: '_blank'
-      %p= link_to t('mozaic._footer.contact_us'), "mailto:#{Settings.mailgun.emails.support}"
-      %p= link_to t('mozaic._footer.terms'), Settings.nativegap.terms, target: '_blank'
-      %p= link_to t('mozaic._footer.privacy'), Settings.nativegap.privacy, target: '_blank'
+      %p= link_to(t('mozaic._footer.help_center'),
+        Settings.nativegap.medium.help,
+        target: '_blank')
+      %p= link_to(t('mozaic._footer.contact_us'),
+        "mailto:#{Settings.mailgun.emails.support}")
+      %p= link_to(t('mozaic._footer.terms'),
+        Settings.nativegap.terms,
+        target: '_blank')
+      %p= link_to(t('mozaic._footer.privacy'),
+        Settings.nativegap.privacy,
+        target: '_blank')
     .socials
       %h3.sm= t('d.socials')
       %p= link_to t('d.blog'), Settings.nativegap.medium.blog, target: '_blank'
-      %p= link_to t('d.twitter'), Settings.nativegap.socials.twitter, target: '_blank'
-      %p= link_to t('d.youtube'), Settings.nativegap.socials.youtube, target: '_blank'
+      %p= link_to(t('d.twitter'),
+        Settings.nativegap.socials.twitter,
+        target: '_blank')
+      %p= link_to(t('d.youtube'),
+        Settings.nativegap.socials.youtube,
+        target: '_blank')
 
   .myg-layout__wrap--tablet.myg-grid__flex.-space-between
     %p.sm= t('mozaic._footer.copyright', link: link_to('Jonas Hübotter', 'https://jonhue.me', target: '_blank', class: 'hyperlink--inherit')).html_safe

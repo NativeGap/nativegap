@@ -3,7 +3,9 @@
 
 = mozaic do
 
-  = component 'myg/toolbar', class: 'myg-toolbar--flexible', data: { turbolinks_animate_persist: 'application' } do
+  = component('myg/toolbar',
+    class: 'myg-toolbar--flexible',
+    data: { turbolinks_animate_persist: 'application' }) do
     .myg-wrap--large.mdc-toolbar__row
       %section.mdc-toolbar__section.mdc-toolbar__section--align-start
         = link_to root_url, data: { turbolinks_animate_type: 'application' } do
@@ -12,7 +14,9 @@
         = link_to 'javascript:void(0)', class: 'preventdefault' do
           = asset 'drawer.svg'
       %section.mdc-toolbar__section.mdc-toolbar__section--align-end
-        = link_to t('d.marketplace'), explore_url, data: { turbolinks_animate_type: 'application' }
+        = link_to(t('d.marketplace'),
+          explore_url,
+          data: { turbolinks_animate_type: 'application' })
         - if current_user
           = link_to t('layouts.application.open_dashboard'), apps_url
         - else
@@ -23,15 +27,21 @@
   = component 'myg/drawer' do
     %nav.mdc-drawer__drawer
       %nav.mdc-drawer__content
-        = link_to t('d.marketplace'), explore_url, data: { turbolinks_animate_type: 'application' }
+        = link_to(t('d.marketplace'),
+          explore_url,
+          data: { turbolinks_animate_type: 'application' })
         - unless current_user
           = link_to t('d.login'), new_user_session_url
           = link_to t('d.signup'), new_user_registration_url
       %nav.mdc-drawer__footer
         - if current_user
-          = link_to t('layouts.application.open_dashboard'), apps_url, class: 'myg-button myg-button--dense'
+          = link_to(t('layouts.application.open_dashboard'),
+            apps_url,
+            class: 'myg-button myg-button--dense')
         - else
-          = link_to t('layouts.application.get_started'), new_app_url, class: 'myg-button myg-button--dense'
+          = link_to(t('layouts.application.get_started'),
+            new_app_url,
+            class: 'myg-button myg-button--dense')
 
   .myg-content
     = mozaic_area :application do

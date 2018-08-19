@@ -8,9 +8,16 @@
   %h2= t('users.payment_methods.show.no_payment_method.title')
   %p= t('users.payment_methods.show.no_payment_method.content')
 .myg-button--container
-  = link_to t('users.payment_methods.show.add_payment_method'), users_edit_payment_method_url(build: params[:build], plan: params[:plan]), class: 'myg-button modalist--trigger'
+  = link_to(t('users.payment_methods.show.add_payment_method'),
+    users_edit_payment_method_url(build: params[:build],
+      plan: params[:plan]),
+    class: 'myg-button modalist--trigger')
   - if current_user.has_payment_method?
-    - if params.has_key?(:plan)
-      = link_to t('users.payment_methods.show.continue_to_checkout'), checkout_url(build: params[:build], plan: params[:plan]), class: 'myg-button myg-button--secondary modalist--trigger'
+    - if params.key?(:plan)
+      = link_to(t('users.payment_methods.show.continue_to_checkout'),
+        checkout_url(build: params[:build], plan: params[:plan]),
+        class: 'myg-button myg-button--secondary modalist--trigger')
     - else
-      = link_to t('d.cancel'), 'javascript:void(0)', class: 'myg-button myg-button--secondary modalist--closer'
+      = link_to(t('d.cancel'),
+        'javascript:void(0)',
+        class: 'myg-button myg-button--secondary modalist--closer')
