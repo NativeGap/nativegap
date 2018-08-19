@@ -1,0 +1,13 @@
+de:
+  devise:
+    registrations:
+      new:
+        app:
+          title: Ein letzter Schritt...
+        no_app:
+          title: Los gehts
+        content: Willkommen bei NativeGap! Gib Deinen Namen & Deine Email Adresse ein, um loszulegen.
+        form:
+          first_name: Vorname
+          last_name: Nachname
+          login_instead: Anmelden

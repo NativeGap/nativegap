@@ -1,0 +1,6 @@
+en:
+  users:
+    payment_methods:
+      update:
+        success: Payment method added
+        error: Card invalid

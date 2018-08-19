@@ -1,0 +1,14 @@
+.modalist--content-body.welcome.language {
+  @include myg-grid__grid;
+  @include myg-grid__grid-columns(1fr);
+
+  @include myg-grid__bigger-than(phone) {
+    @include myg-grid__grid-columns(repeat(2, 1fr));
+  }
+
+  @include myg-grid__smaller-than(phone) {
+    a:not(:first-child) {
+      margin-top: myg__px(10);
+    }
+  }
+}

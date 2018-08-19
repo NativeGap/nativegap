@@ -1,0 +1,31 @@
+.modalist--content-body.welcome.notify {
+  background: myg-theme__color(accent, base);
+  flex-direction: column;
+  padding: myg__px(35);
+  text-align: center;
+
+  @include myg-grid__flex---center;
+
+  h3 {
+    color: myg-theme__color(accent, contrast);
+    margin: 0;
+  }
+
+  p {
+    color: myg-theme__color(text, lighter);
+    margin-bottom: myg__px(35);
+  }
+
+  .myg-button {
+    background: myg-theme__color(accent, light);
+    border-color: myg-theme__color(accent, light);
+    position: relative;
+    top: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      top: myg__px(-1);
+    }
+  }
+}

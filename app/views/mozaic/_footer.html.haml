@@ -1,6 +1,6 @@
 %footer
 
-  .myg-grid.myg-wrap--tablet
+  .myg-grid__grid.myg-layout__wrap--tablet
     .app
       %h3.sm= t('d.app')
       - if current_user
@@ -40,12 +40,6 @@
         Settings.nativegap.socials.youtube,
         target: '_blank')
 
-  .myg-wrap--tablet.flex.space-between
-    %p.sm= t('mozaic._footer.copyright',
-      link: link_to('Jonas Hübotter',
-        'https://jonhue.me',
-        target: '_blank',
-        class: 'hyperlink--inherit')).html_safe
-    %p.sm= link_to(current_language,
-      language_url,
-      class: 'modalist--trigger hyperlink--inherit')
+  .myg-layout__wrap--tablet.myg-grid__flex.-space-between
+    %p.sm= t('mozaic._footer.copyright', link: link_to('Jonas Hübotter', 'https://jonhue.me', target: '_blank', class: 'hyperlink--inherit')).html_safe
+    %p.sm= link_to current_language, language_url, class: 'modalist--trigger hyperlink--inherit'

@@ -1,0 +1,9 @@
+de:
+  users:
+    payment_methods:
+      edit:
+        title: Bezahlmethode hinzufügen
+        header: Safe & Secure
+        content: NativeGaps Bezahlservices durch Stripe gesichert.
+        continue_to_checkout: Weiter zum Bezahlen
+        add_payment_method: Bezahlmethode hinzufügen

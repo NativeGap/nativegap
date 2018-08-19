@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   scope protocol: (Rails.env.production? ? 'https' : 'http') do
     mount Pwa::Engine, at: ''
     mount ActionCable.server, at: '/cable'
 
     require 'sidekiq/web'
-    authenticated :user, lambda { |u| u.admin? } do
+    authenticated :user, ->(user) { user.admin? } do
       Sidekiq::Web.set(
         :session_secret,
         Rails.application.credentials.secret_key_base
@@ -88,3 +89,4 @@ Rails.application.routes.draw do
 
   match '*path', to: 'r404#not_found', via: :all
 end
+# rubocop:enable Metrics/BlockLength

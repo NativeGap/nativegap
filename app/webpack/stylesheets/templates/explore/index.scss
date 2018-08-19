@@ -1,0 +1,124 @@
+body.explore.index {
+  section#head {
+    background: myg-theme__color(accent, base);
+    padding: 0 myg__px(35);
+
+    & > div {
+      flex-direction: column;
+      padding: myg-spacing(7) 0;
+      text-align: center;
+
+      @include myg-grid__flex---center;
+
+      & > h1 {
+        color: myg-theme__color(accent, contrast);
+        margin-bottom: 0;
+      }
+
+      & > p {
+        color: myg-theme__color(text, lighter);
+        margin: myg__px(5) 0 myg__px(35);
+        max-width: myg__px(800);
+      }
+
+      .myg-grid {
+        @include myg-grid__smaller-than(phone) {
+          display: none;
+        }
+
+        & > a {
+          text-align: center;
+          text-decoration: none !important;
+
+          @include myg-grid__grid-span(4);
+
+          @include myg-grid__smaller-than(laptop) {
+            &:last-child {
+              display: none;
+            }
+          }
+
+          &:hover,
+          &:focus,
+          &:active {
+            .wrapper {
+              @include myg-elevation(3);
+
+              img {
+                top: myg__px(-3);
+              }
+            }
+
+            p {
+              color: myg-theme__color(accent, contrast);
+            }
+          }
+
+          .wrapper {
+            padding: myg__px(25) 0 myg__px(20);
+
+            @include myg-theme__border-radius(2);
+            @include myg-elevation(2);
+            @include myg-animate__transition;
+
+            img {
+              height: myg__px(64);
+              position: relative;
+              top: 0;
+
+              @include myg-theme__border-radius(2);
+              @include myg-elevation(2);
+              @include myg-animate__transition(all, 0.35s);
+            }
+
+            h3 {
+              margin: 0;
+            }
+          }
+
+          p {
+            color: myg-theme__color(text, lighter);
+            margin: myg__px(15) myg__px(20);
+
+            @include myg-animate__transition;
+          }
+        }
+      }
+    }
+  }
+
+  section#content {
+    padding: myg__px(50) myg__px(35);
+
+    .myg-tabs--panel {
+      .myg-grid {
+        a.myg-card {
+          padding: myg__px(20);
+          text-decoration: none !important;
+
+          @include myg-grid__grid-span(4);
+          @include myg-grid__flex;
+
+          @include myg-grid__bigger-than(laptop) {
+            @include myg-grid__grid-span(6);
+          }
+
+          img {
+            height: myg__px(64);
+            margin-right: myg__px(20);
+
+            @include myg-theme__border-radius(2);
+          }
+
+          h3 {
+            margin: 0;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

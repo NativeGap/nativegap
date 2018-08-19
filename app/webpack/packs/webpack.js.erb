@@ -10,30 +10,30 @@ import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
 import 'turbolinks-animate';
-document.addEventListener( 'turbolinks:load', () => {
-    TurbolinksAnimate.init({ element: document.querySelector('body.turbolinks-animate') });
-})
+document.addEventListener('turbolinks:load', () => {
+  TurbolinksAnimate.init({element: document.querySelector('body.turbolinks-animate')});
+});
 
 import NativeGap from 'nativegap';
-document.addEventListener( 'DOMContentLoaded', () => {
-    const nativegap = new NativeGap;
-})
+document.addEventListener('DOMContentLoaded', () => {
+  const nativegap = new NativeGap;
+});
 
 import 'onsignal/dist/OneSignalSDK';
 import OnSignal from 'onsignal';
-document.addEventListener( 'DOMContentLoaded', () => {
-    window.onSignal = new OnSignal( '<%= Rails.application.credentials.onesignal[:app_id] %>', {} );
-})
+document.addEventListener('DOMContentLoaded', () => {
+  window.onSignal = new OnSignal('<%= Rails.application.credentials.onesignal[:app_id] %>', {});
+});
 
 import './../javascripts/myg/index';
 
-import './../javascripts/packages/apps/show';
-import './../javascripts/packages/apps/form';
-import './../javascripts/packages/layouts/application';
-import './../javascripts/packages/layouts/app';
-import './../javascripts/packages/users/payment_methods/edit';
-import './../javascripts/packages/users/registrations/edit';
-import './../javascripts/packages/welcome/notify';
+import './../javascripts/templates/apps/show';
+import './../javascripts/templates/apps/form';
+import './../javascripts/templates/layouts/application';
+import './../javascripts/templates/layouts/app';
+import './../javascripts/templates/users/payment_methods/edit';
+import './../javascripts/templates/users/registrations/edit';
+import './../javascripts/templates/welcome/notify';
 
 
 import './../stylesheets/index';

@@ -1,0 +1,43 @@
+footer {
+  background: myg-theme__color(background, dark);
+  padding: myg__px(50) 0;
+
+  .myg-grid__grid {
+    @include myg-grid__smaller-than(laptop) {
+      padding: 0 myg__px(25);
+    }
+
+    & > div {
+      @include myg-grid__grid;
+      @include myg-grid__grid-span(4);
+
+      @include myg-grid__bigger-than(laptop) {
+        @include myg-grid__grid-span(3);
+      }
+
+      p {
+        margin: myg__px(4) 0;
+
+        a {
+          color: myg-theme__color(text, darker);
+        }
+      }
+    }
+  }
+
+  .myg-grid__flex {
+    margin-top: myg__px(25);
+
+    @include myg-grid__smaller-than(laptop) {
+      padding: 0 myg__px(25);
+    }
+
+    p {
+      color: myg-theme__color(text, light) !important;
+
+      &:last-child {
+        margin-left: myg__px(15);
+      }
+    }
+  }
+}

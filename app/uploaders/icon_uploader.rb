@@ -3,204 +3,79 @@
 class IconUploader < CarrierWave::Uploader::Base
   include CarrierWave::Backgrounder::Delay
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
-  # storage :file
   storage :fog
 
-  # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url(*args)
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path(
-  #   #   "fallback/" + [version_name, "default.png"].compact.join('_')
-  #   # )
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
-
-  # Create different versions of your uploaded files:
-
   process resize_to_fill: [1240, 1240]
 
-  ## Android
-  version :xxxhdpi do
-    process resize_to_fill: [192, 192]
-  end
-  version :xxhdpi, from: :xxxhdpi do
-    process resize_to_fill: [144, 144]
-  end
-  version :xhdpi, from: :xxhdpi do
-    process resize_to_fill: [96, 96]
-  end
-  version :hdpi, from: :xhdpi do
-    process resize_to_fill: [72, 72]
-  end
-  version :mdpi, from: :hdpi do
-    process resize_to_fill: [48, 48]
-  end
-  version :ldpi, from: :mdpi do
-    process resize_to_fill: [36, 36]
-  end
+  # Android
+  version(:xxxhdpi) { process resize_to_fill: [192, 192] }
+  version(:xxhdpi, from: :xxxhdpi) { process resize_to_fill: [144, 144] }
+  version(:xhdpi, from: :xxhdpi) { process resize_to_fill: [96, 96] }
+  version(:hdpi, from: :xhdpi) { process resize_to_fill: [72, 72] }
+  version(:mdpi, from: :hdpi) { process resize_to_fill: [48, 48] }
+  version(:ldpi, from: :mdpi) { process resize_to_fill: [36, 36] }
 
-  ## iOS
-  version '_1024x1024' do
-    process resize_to_fill: [1024, 1024]
-  end
-  version '_180x180', from: '_1024x1024' do
-    process resize_to_fill: [180, 180]
-  end
-  version '_167x167', from: '_180x180' do
-    process resize_to_fill: [167, 167]
-  end
-  version '_152x152', from: '_167x167' do
-    process resize_to_fill: [152, 152]
-  end
-  version '_120x120', from: '_152x152' do
-    process resize_to_fill: [120, 120]
-  end
-  version '_87x87', from: '_120x120' do
-    process resize_to_fill: [87, 87]
-  end
-  version '_80x80', from: '_87x87' do
-    process resize_to_fill: [80, 80]
-  end
-  version '_76x76', from: '_80x80' do
-    process resize_to_fill: [76, 76]
-  end
-  version '_60x60', from: '_80x80' do
-    process resize_to_fill: [60, 60]
-  end
-  version '_58x58', from: '_60x60' do
-    process resize_to_fill: [58, 58]
-  end
-  version '_40x40', from: '_58x58' do
-    process resize_to_fill: [40, 40]
-  end
+  # iOS
+  version('_1024x1024') { process resize_to_fill: [1024, 1024] }
+  version('_180x180', from: '_1024x1024') { process resize_to_fill: [180, 180] }
+  version('_167x167', from: '_180x180') { process resize_to_fill: [167, 167] }
+  version('_152x152', from: '_167x167') { process resize_to_fill: [152, 152] }
+  version('_120x120', from: '_152x152') { process resize_to_fill: [120, 120] }
+  version('_87x87', from: '_120x120') { process resize_to_fill: [87, 87] }
+  version('_80x80', from: '_87x87') { process resize_to_fill: [80, 80] }
+  version('_76x76', from: '_80x80') { process resize_to_fill: [76, 76] }
+  version('_60x60', from: '_80x80') { process resize_to_fill: [60, 60] }
+  version('_58x58', from: '_60x60') { process resize_to_fill: [58, 58] }
+  version('_40x40', from: '_58x58') { process resize_to_fill: [40, 40] }
 
-  ## Windows
-  version '_1240x1240' do
-    process resize_to_fill: [1240, 1240]
-  end
-  version '_620x620', from: '_1240x1240' do
-    process resize_to_fill: [620, 620]
-  end
-  version '_600x600', from: '_620x620' do
-    process resize_to_fill: [600, 600]
-  end
-  version '_465x465', from: '_600x600' do
-    process resize_to_fill: [465, 465]
-  end
-  version '_388x388', from: '_465x465' do
-    process resize_to_fill: [388, 388]
-  end
-  version '_310x310', from: '_388x388' do
-    process resize_to_fill: [310, 310]
-  end
-  version '_300x300', from: '_310x310' do
-    process resize_to_fill: [300, 300]
-  end
-  version '_284x284', from: '_300x300' do
-    process resize_to_fill: [284, 284]
-  end
-  version '_256x256', from: '_284x284' do
-    process resize_to_fill: [256, 256]
-  end
-  version '_225x225', from: '_256x256' do
-    process resize_to_fill: [225, 225]
-  end
-  version '_188x188', from: '_225x225' do
-    process resize_to_fill: [188, 188]
-  end
-  version '_176x176', from: '_188x188' do
-    process resize_to_fill: [176, 176]
-  end
-  version '_150x150', from: '_176x176' do
-    process resize_to_fill: [150, 150]
-  end
-  version '_142x142', from: '_150x150' do
-    process resize_to_fill: [142, 142]
-  end
-  version '_107x107', from: '_142x142' do
-    process resize_to_fill: [107, 107]
-  end
-  version '_96x96', from: '_107x107' do
-    process resize_to_fill: [96, 96]
-  end
-  version '_89x89', from: '_96x96' do
-    process resize_to_fill: [89, 89]
-  end
-  version '_88x88', from: '_89x89' do
-    process resize_to_fill: [88, 88]
-  end
-  version '_71x71', from: '_88x88' do
-    process resize_to_fill: [71, 71]
-  end
-  version '_66x66', from: '_71x71' do
-    process resize_to_fill: [66, 66]
-  end
-  version '_55x55', from: '_66x66' do
-    process resize_to_fill: [55, 55]
-  end
-  version '_50x50', from: '_55x55' do
-    process resize_to_fill: [50, 50]
-  end
-  version '_48x48', from: '_50x50' do
-    process resize_to_fill: [48, 48]
-  end
-  version '_44x44', from: '_48x48' do
-    process resize_to_fill: [44, 44]
-  end
-  version '_36x36', from: '_44x44' do
-    process resize_to_fill: [36, 36]
-  end
-  version '_32x32', from: '_36x36' do
-    process resize_to_fill: [32, 32]
-  end
-  version '_30x30', from: '_32x32' do
-    process resize_to_fill: [30, 30]
-  end
-  version '_24x24', from: '_30x30' do
-    process resize_to_fill: [24, 24]
-  end
-  version '_16x16', from: '_24x24' do
-    process resize_to_fill: [16, 16]
-  end
+  # Windows
+  version('_1240x1240') { process resize_to_fill: [1240, 1240] }
+  version('_620x620', from: '_1240x1240') { process resize_to_fill: [620, 620] }
+  version('_600x600', from: '_620x620') { process resize_to_fill: [600, 600] }
+  version('_465x465', from: '_600x600') { process resize_to_fill: [465, 465] }
+  version('_388x388', from: '_465x465') { process resize_to_fill: [388, 388] }
+  version('_310x310', from: '_388x388') { process resize_to_fill: [310, 310] }
+  version('_300x300', from: '_310x310') { process resize_to_fill: [300, 300] }
+  version('_284x284', from: '_300x300') { process resize_to_fill: [284, 284] }
+  version('_256x256', from: '_284x284') { process resize_to_fill: [256, 256] }
+  version('_225x225', from: '_256x256') { process resize_to_fill: [225, 225] }
+  version('_188x188', from: '_225x225') { process resize_to_fill: [188, 188] }
+  version('_176x176', from: '_188x188') { process resize_to_fill: [176, 176] }
+  version('_150x150', from: '_176x176') { process resize_to_fill: [150, 150] }
+  version('_142x142', from: '_150x150') { process resize_to_fill: [142, 142] }
+  version('_107x107', from: '_142x142') { process resize_to_fill: [107, 107] }
+  version('_96x96', from: '_107x107') { process resize_to_fill: [96, 96] }
+  version('_89x89', from: '_96x96') { process resize_to_fill: [89, 89] }
+  version('_88x88', from: '_89x89') { process resize_to_fill: [88, 88] }
+  version('_71x71', from: '_88x88') { process resize_to_fill: [71, 71] }
+  version('_66x66', from: '_71x71') { process resize_to_fill: [66, 66] }
+  version('_55x55', from: '_66x66') { process resize_to_fill: [55, 55] }
+  version('_50x50', from: '_55x55') { process resize_to_fill: [50, 50] }
+  version('_48x48', from: '_50x50') { process resize_to_fill: [48, 48] }
+  version('_44x44', from: '_48x48') { process resize_to_fill: [44, 44] }
+  version('_36x36', from: '_44x44') { process resize_to_fill: [36, 36] }
+  version('_32x32', from: '_36x36') { process resize_to_fill: [32, 32] }
+  version('_30x30', from: '_32x32') { process resize_to_fill: [30, 30] }
+  version('_24x24', from: '_30x30') { process resize_to_fill: [24, 24] }
+  version('_16x16', from: '_24x24') { process resize_to_fill: [16, 16] }
 
-  ## Chrome
-  version :logo do
-    process resize_to_fill: [500, 500]
-  end
-  version :large, from: :logo do
-    process resize_to_fill: [128, 128]
-  end
-  version :medium, from: :large do
-    process resize_to_fill: [64, 64]
-  end
-  version :small, from: :medium do
-    process resize_to_fill: [32, 32]
-  end
-  version :tiny, from: :small do
-    process resize_to_fill: [16, 16]
-  end
+  # Chrome
+  version(:logo) { process resize_to_fill: [500, 500] }
+  version(:large, from: :logo) { process resize_to_fill: [128, 128] }
+  version(:medium, from: :large) { process resize_to_fill: [64, 64] }
+  version(:small, from: :medium) { process resize_to_fill: [32, 32] }
+  version(:tiny, from: :small) { process resize_to_fill: [16, 16] }
 
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
   def extension_whitelist
-    %w[png]
+    ['png']
   end
 
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for
-  # details.
   def filename
     if version_name == :icns
       "#{original_filename.split('.').first}.icns"

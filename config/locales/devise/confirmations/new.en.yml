@@ -1,0 +1,6 @@
+en:
+  devise:
+    confirmations:
+      new:
+        title: Resend confirmation email
+        content: Our confirmation email didn't make it in your inbox? We'll resend it for you.

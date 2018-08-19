@@ -19,17 +19,15 @@ class AppsController < ApplicationController
   def show
     authorize! :read, @app
 
-    @tabs = []
-    @app.builds.order(:created_at).each_with_index do |build, index|
-      @tabs << {
+    @tabs = @app.builds.order(:created_at).map.with_index do |build, index|
+      {
         name: build.name,
         id: build.platform,
         partial: 'apps/builds/build',
         partial_locals: { build: build, app: @app },
         active: index.zero?
       }
-    end
-    @tabs[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings' }
+    end[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings' }
 
     turbolinks_animate 'fadein'
   end

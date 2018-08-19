@@ -1,0 +1,108 @@
+body.explore.show {
+  a.hyperlink--inherit {
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  p {
+    &.nav {
+      left: myg__px(15);
+      margin: 0;
+      position: fixed;
+      top: myg__px(15);
+
+      a {
+        opacity: 0.7;
+
+        @include myg-animate__transition;
+
+        &:hover,
+        &:focus,
+        &:active {
+          opacity: 1;
+        }
+      }
+
+      &.right {
+        left: auto;
+        right: myg__px(15);
+      }
+
+      @include myg-grid__smaller-than(phone) {
+        &:not(.right) {
+          display: none;
+        }
+      }
+    }
+
+    span {
+      opacity: 0.7;
+    }
+  }
+
+  section#main {
+    flex-direction: column;
+    min-height: 100vh;
+    padding: myg__px(50) myg__px(35);
+    width: 100%;
+
+    @include myg-grid__flex---center;
+
+    img {
+      height: myg__px(128);
+
+      @include myg-theme__border-radius(3);
+      @include myg-elevation(2);
+    }
+
+    h1 {
+      margin: myg__px(15) 0 0;
+      text-align: center;
+    }
+
+    p {
+      margin: 0;
+      max-width: myg__px(350);
+      text-align: center;
+
+      &.sm {
+        margin-top: myg__px(10);
+        opacity: 1;
+
+        & > a {
+          opacity: 0.7;
+
+          @include myg-animate__transition;
+
+          &:hover,
+          &:focus,
+          &:active {
+            opacity: 1;
+          }
+
+          &:not(:first-child) {
+            margin-left: myg__px(15);
+          }
+        }
+      }
+    }
+
+    .myg-button--container {
+      margin-top: myg__px(20);
+
+      a.myg-button {
+        color: white !important;
+        position: relative;
+        top: 0;
+
+        @include myg-animate__transition;
+
+        &:hover,
+        &:focus,
+        &:active {
+          top: myg__px(-1);
+        }
+      }
+    }
+  }
+}

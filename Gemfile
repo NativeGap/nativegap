@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2.0'
 
 gem 'acts_as_belongable'
 gem 'ahoy_matey'
@@ -23,7 +23,6 @@ gem 'carrierwave_backgrounder', github: 'harigopal/carrierwave_backgrounder',
 gem 'config'
 gem 'devise'
 gem 'fog-aws'
-gem 'foreman'
 gem 'friendly_id'
 gem 'git'
 gem 'haml'
@@ -44,6 +43,7 @@ gem 'notification-pusher-actionmailer'
 gem 'notification-pusher-onesignal'
 gem 'octokit'
 gem 'onsignal'
+gem 'pg'
 gem 'puma'
 gem 'pwa'
 gem 'r404'
@@ -56,6 +56,7 @@ gem 'search-engine-optimization'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'simple_form'
+gem 'skylight'
 gem 'stripe'
 gem 'turbolinks'
 gem 'turbolinks-animate'
@@ -76,14 +77,12 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'certified'
-  gem 'mysql2', '~> 0.5.1'
+  gem 'foreman', require: false
   gem 'pry-rails'
   gem 'web-console'
 end
 
 group :production do
-  gem 'pg'
   gem 'rack-timeout'
 end
 

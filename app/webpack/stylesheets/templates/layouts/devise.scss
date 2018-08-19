@@ -1,0 +1,23 @@
+#devise.myg-layout {
+  background: myg-theme__color(background, lighter);
+
+  & > .myg-content {
+    padding: myg-spacing(7) myg-spacing(4);
+
+    & > a {
+      margin-bottom: myg__px(35);
+    }
+
+    & > .myg-card {
+      padding: myg-spacing(5);
+
+      & > h2:first-child {
+        margin: 0;
+      }
+
+      & > p {
+        margin-top: 0;
+      }
+    }
+  }
+}

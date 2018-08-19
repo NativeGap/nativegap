@@ -20,7 +20,7 @@
                 = @app.name
               - else
                 = t('layouts.app.choose_an_app')
-              = asset 'components/dropdown/toggle'
+              = asset 'dropdown.svg'
           - else
             = link_to(t('layouts.app.build_app'),
               new_app_url,
@@ -28,20 +28,20 @@
       %section.mdc-toolbar__section.mdc-toolbar__section--align-center
         - if current_user
           = link_to apps_url, data: { turbolinks_animate_type: 'app' } do
-            = asset 'components/brand/logo'
+            = asset 'logo.svg'
         - else
           = link_to root_url do
-            = asset 'components/brand/logo'
+            = asset 'logo.svg'
       - if current_user
         %section.mdc-toolbar__section.mdc-toolbar__section--align-end.mobile
           = link_to 'javascript:void(0)', class: 'preventdefault' do
-            = asset 'components/drawer/toggle'
+            = asset 'drawer.svg'
         %section.mdc-toolbar__section.mdc-toolbar__section--align-end
           = link_to('javascript:void(0)',
             class: 'preventdefault',
             id: 'account-dropdown') do
             = current_user.name
-            = asset 'components/dropdown/toggle'
+            = asset 'dropdown.svg'
 
   - if current_user
     - if current_user.apps.any?

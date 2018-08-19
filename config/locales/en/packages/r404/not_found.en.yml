@@ -1,7 +1,0 @@
-en:
-    r404:
-        not_found:
-            title: You got lost ...
-            content: We'd love to get you back on track again 😉.
-            open_dashboard: Open dashboard
-            open_nativegap: Open NativeGap

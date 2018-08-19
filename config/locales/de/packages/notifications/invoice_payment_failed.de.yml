@@ -1,8 +1,0 @@
-de:
-    notifications:
-        invoice_payment_failed:
-            subject: Abonnement Bezahlung fehlgeschlagen
-            content:
-                main: die Verlängerung Deines Abonnements (%{payment}) ist fehlgeschlagen, Deine ausgewählte Bezahlmethode nicht gültig ist.
-                link: Abonnements verwalten
-                footer: Du kannst jederzeit ein neuse Abonnement für Dein Produkt beginnen.
