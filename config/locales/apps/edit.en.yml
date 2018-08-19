@@ -1,0 +1,4 @@
+en:
+  apps:
+    edit:
+      title: Edit %{app}

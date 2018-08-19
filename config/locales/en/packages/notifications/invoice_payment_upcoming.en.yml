@@ -1,7 +1,0 @@
-en:
-    notifications:
-        invoice_payment_upcoming:
-            subject: Subscription charge is upcoming
-            content:
-                main: your subscription (%{payment}) will be extended shortly. Please make sure that your payment method has sufficient funds.
-                link: Manage subscriptions

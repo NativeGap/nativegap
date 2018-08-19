@@ -1,7 +1,0 @@
-de:
-    notifications:
-        invoice_payment_succeeded:
-            subject: Wir haben Dein Abonnement verlängert
-            content:
-                main: vielen Dank, dass du bei uns bleibst! Wit haben Dein Abonnement (%{payment}) verlängert, nachdem die Bezahlung erfolgreich war.
-                link: Abonnements verwalten

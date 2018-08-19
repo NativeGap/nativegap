@@ -5,20 +5,25 @@
     "lint-css": "stylelint **/*.scss **/*.css"
   },
   "dependencies": {
-    "@rails/webpacker": "^3.5.3",
+    "@rails/webpacker": "^3.5.5",
     "ahoy.js": "^0.3.3",
-    "myg": "^0.12.5",
+    "eslint": "^5.0.1",
+    "myg": "^0.13.5",
     "nativegap": "^1.1.8",
     "onsignal": "^5.0.6",
     "rails-erb-loader": "^5.4.2",
-    "rails-ujs": "^5.2.0",
+    "rails-ujs": "^5.2.1",
+    "sass-loader": "^7.1.0",
     "stylelint": "^9.3.0",
     "stylelint-config-standard": "^18.2.0",
     "turbolinks": "^5.1.1",
     "turbolinks-animate": "^3.0.5"
   },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint app/**/*.js app/webpack/packs/webpack.js.erb"
+  },
   "devDependencies": {
-    "webpack-cli": "^3.0.8",
+    "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^2.11.1"
   }
 }

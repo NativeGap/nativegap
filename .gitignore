@@ -1,26 +1,22 @@
 /.bundle
 /.byebug_history
 
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/db/schema.rb
-
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-/yarn-error.log
-/yarn-debug.log
-/.yarn-integrity
-
 /public/assets
-/public/uploads
 /public/packs
 /public/packs-test
+/node_modules
+/yarn-debug.log*
+/yarn-error.log*
+/.yarn-integrity
 
 /config/settings.local.yml
 /config/settings/*.local.yml
 /config/environments/*.local.yml
+
+# Ignore master key for decrypting credentials and more.
 /config/master.key

@@ -1,0 +1,8 @@
+en:
+  apps:
+    builds:
+      version:
+        title: Update version
+        header: You prepare for a new release?
+        content: Enter your new version number below. Your app will rebuild automatically.
+        rebuild_app: Rebuild app

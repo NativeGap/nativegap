@@ -1,0 +1,13 @@
+en:
+  apps:
+    builds:
+      splash_screen:
+        title: Add splash screen
+        header: Add a splash screen
+        content: Your splash screen image will be displayed when users launch your app.
+        form:
+          no_file_chosen: No file chosen
+          windows_splash_screen:
+            title: Splash Screen
+            content: Used for Windows 10. File format must be PNG. We suggest an image with a width of 2480 pixels and a height of 1200 pixels.
+          add_splash_scree: Add splash screen

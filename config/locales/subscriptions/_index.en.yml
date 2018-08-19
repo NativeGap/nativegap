@@ -1,0 +1,16 @@
+en:
+  subscriptions:
+    _index:
+      payment_method:
+        title: Payment method
+        has_payment_method:
+          content: If your payment method is not up to date, update it before your next scheduled invoice.
+          button: Update payment method
+        no_payment_method:
+          content: Add a payment method to NativeGap to be able to subscribe to a plan.
+          button: Add payment method
+      upcoming_invoices:
+        title: Upcoming invoices
+        content: You don't have any active subscriptions.
+      invoices:
+        content: There are no invoices associated with your account yet.

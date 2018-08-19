@@ -1,0 +1,13 @@
+en:
+  users:
+    payment_methods:
+      show:
+        title: Payment method
+        has_payment_method:
+          title: Do you want to change your payment method?
+          content: If it is not valid anymore, you can add a new one.
+        no_payment_method:
+          title: You don't have a payment method yet.
+          content: Add your payment method to subscribe to a NativeGap plan.
+        add_payment_method: Add a payment method
+        continue_to_checkout: Continue to checkout

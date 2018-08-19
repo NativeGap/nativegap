@@ -1,0 +1,4 @@
+en:
+  subscriptions:
+    _subscription:
+      content: "%{platform} %{subscription} (%{app}) · %{date}"

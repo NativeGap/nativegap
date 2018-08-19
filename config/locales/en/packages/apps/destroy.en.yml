@@ -1,5 +1,0 @@
-en:
-    apps:
-        destroy:
-            success: App deleted
-            error: We couldn't delete your app
