@@ -1,9 +1,6 @@
 {
   "name": "nativegap",
   "private": true,
-  "scripts": {
-    "lint-js": "eslint app/**/*.js"
-  },
   "dependencies": {
     "@rails/webpacker": "^3.5.5",
     "ahoy.js": "^0.3.3",
@@ -16,6 +13,9 @@
     "sass-loader": "^7.1.0",
     "turbolinks": "^5.1.1",
     "turbolinks-animate": "^3.0.5"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint app/**/*.js app/webpack/packs/webpack.js.erb"
   },
   "devDependencies": {
     "webpack-cli": "^3.1.0",

@@ -10,20 +10,20 @@ import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
 import 'turbolinks-animate';
-document.addEventListener( 'turbolinks:load', () => {
-    TurbolinksAnimate.init({ element: document.querySelector('body.turbolinks-animate') });
-})
+document.addEventListener('turbolinks:load', () => {
+  TurbolinksAnimate.init({element: document.querySelector('body.turbolinks-animate')});
+});
 
 import NativeGap from 'nativegap';
-document.addEventListener( 'DOMContentLoaded', () => {
-    const nativegap = new NativeGap;
-})
+document.addEventListener('DOMContentLoaded', () => {
+  const nativegap = new NativeGap;
+});
 
 import 'onsignal/dist/OneSignalSDK';
 import OnSignal from 'onsignal';
-document.addEventListener( 'DOMContentLoaded', () => {
-    window.onSignal = new OnSignal( '<%= Rails.application.credentials.onesignal[:app_id] %>', {} );
-})
+document.addEventListener('DOMContentLoaded', () => {
+  window.onSignal = new OnSignal('<%= Rails.application.credentials.onesignal[:app_id] %>', {});
+});
 
 import './../javascripts/myg/index';
 

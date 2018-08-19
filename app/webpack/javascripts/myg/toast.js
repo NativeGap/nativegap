@@ -1,13 +1,13 @@
 import MygToast from 'myg-toast';
 
-['turbolinks:load'].forEach( (event) => {
-  document.removeEventListener( event, init );
-  document.addEventListener( event, init );
-})
+['turbolinks:load'].forEach((event) => {
+  document.removeEventListener(event, init);
+  document.addEventListener(event, init);
+});
 function init() {
-  window.mygToast = MygToast.init( document.querySelector('.myg-toast'), {} );
+  window.mygToast = MygToast.init(document.querySelector('.myg-toast'), {});
   let notice = document.querySelector('p#notice').innerHTML,
-      alert = document.querySelector('p#alert').innerHTML;
+    alert = document.querySelector('p#alert').innerHTML;
   setTimeout(() => {
     if (notice)
       mygToast.show({ message: notice });
