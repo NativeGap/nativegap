@@ -1,5 +1,0 @@
-en:
-    apps:
-        create:
-            success: Processing may take up to 10 minutes
-            error: We couldn't create your app

@@ -1,7 +1,0 @@
-en:
-    notifications:
-        invoice_payment_succeeded:
-            subject: We have extended your subscription
-            content:
-                main: thanks for sticking with us! We have extended your subscription (%{payment}) after completing the payment successfully.
-                link: Manage subscriptions

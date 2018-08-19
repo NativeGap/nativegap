@@ -1,0 +1,16 @@
+en:
+  devise:
+    registrations:
+      _edit:
+        first_name: First name
+        last_name: Last name
+        publisher_name: Publisher name (optional)
+        url: Website (optional)
+        password: New password (optional)
+        current_password: Current password
+        build_notifications: Receive notifications when your app builds finish processing
+        update_notifications: Get notified when we have updates for you
+        enable_notifications: Enable notifications on this device
+        visibility:
+          content: Create a public profile listing all your apps. Look at it %{link}.
+          link: here

@@ -1,3 +1,4 @@
-ruby 2.5.1
 nodejs 9.11.2
+postgres 10.4
 redis 4.0.9
+ruby 2.5.1

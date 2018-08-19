@@ -1,0 +1,5 @@
+en:
+  explore:
+    install:
+      title: Choose a platform
+      content: you want to install %{app} on.

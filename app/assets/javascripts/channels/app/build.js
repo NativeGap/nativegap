@@ -1,5 +1,4 @@
-App['app/build'] = App.cable.subscriptions.create( 'App::BuildChannel', {
-
+App['app/build'] = App.cable.subscriptions.create('App::BuildChannel', {
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -11,7 +10,7 @@ App['app/build'] = App.cable.subscriptions.create( 'App::BuildChannel', {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     // Update manage card for platorm
-    let parent = document.querySelector( 'body.apps.show .myg-tabs--panel .myg-grid[data-build-id="' + data['id'] + '"]' ),
+    let parent = document.querySelector('body.apps.show .myg-tabs--panel .myg-grid[data-build-id="' + data['id'] + '"]'),
         manage = parent.querySelector('#manage'),
         update = parent.querySelector('#update'),
         wrapper = document.createElement('div');
@@ -21,7 +20,6 @@ App['app/build'] = App.cable.subscriptions.create( 'App::BuildChannel', {
     wrapper.innerHTML= data['update'];
     let u = wrapper.firstChild;
     update.replaceWith(u);
-    MygProgress.initAll( document.querySelectorAll('.myg-progress'), {} );
+    MygProgress.initAll(document.querySelectorAll('.myg-progress'), {});
   }
-
 });

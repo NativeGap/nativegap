@@ -50,42 +50,6 @@ class App < ApplicationRecord
     builds.create!(platform: 'chrome')
   end
 
-  def globalization
-    self[:globalization] || 'lang'
-  end
-
-  def splash_screen_background
-    self[:splash_screen_background] || background
-  end
-
-  def splash_screen_color
-    self[:splash_screen_color] || color
-  end
-
-  def splash_screen_transition_duration
-    self[:splash_screen_transition_duration] || 350
-  end
-
-  def splash_screen_logo_height
-    self[:splash_screen_logo_height] || 50
-  end
-
-  def error_network_title
-    self[:error_network_title] || 'Oooooops ...'
-  end
-
-  def error_network_content
-    self[:error_network_content] || 'No network connection'
-  end
-
-  def error_unsupported_title
-    self[:error_unsupported_title] || 'Oooooops ...'
-  end
-
-  def error_unsupported_content
-    self[:error_unsupported_content] || 'Your device is unsupported'
-  end
-
   private
 
   def slug_candidates

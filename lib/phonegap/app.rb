@@ -15,17 +15,8 @@ module Phonegap
         HTTParty.post(
           "https://build.phonegap.com/api/v1/apps?auth_token=#{@client.token}",
           body: {
-            data: {
-              title: title,
-              create_method: 'remote_repo',
-              package: package,
-              version: version,
-              description: description,
-              debug: debug,
-              private: private,
-              tag: tag,
-              repo: "https://github.com/NativeGap/#{repository}.git"
-            }
+            data: create_data_hash(title, package, version, description, debug,
+                                   private, tag, repository)
           },
           format: :plain
         ),
@@ -42,24 +33,16 @@ module Phonegap
 
     def destroy
       return unless @id
-      HTTParty.delete(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{@id}?auth_token=#{@client.token}"
-      )
+      HTTParty.delete(app_url)
     end
 
     def add_android_key(id:, key_password:, keystore_password:)
       HTTParty.put(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{@id}?auth_token=#{@client.token}",
+        app_url,
         body: {
           data: {
             keys: {
-              android: {
-                id: id,
-                key_pw: key_password,
-                keystore_pw: keystore_password
-              }
+              android: android_key_hash(id, key_password, keystore_password)
             }
           }
         },
@@ -69,11 +52,40 @@ module Phonegap
 
     def add_ios_key(id:, cert_password:)
       HTTParty.put(
-        'https://build.phonegap.com/api/v1/apps/'\
-        "#{@id}?auth_token=#{@client.token}",
-        body: { data: { keys: { ios: { id: id, password: cert_password } } } },
+        app_url,
+        body: { data: { keys: { ios: ios_key_hash(id, cert_password) } } },
         format: :plain
       )
+    end
+
+    private
+
+    def create_data_hash(title, package, version, description, debug, private,
+                         tag, repository)
+      {
+        title: title,
+        create_method: 'remote_repo',
+        package: package,
+        version: version,
+        description: description,
+        debug: debug,
+        private: private,
+        tag: tag,
+        repo: "https://github.com/NativeGap/#{repository}.git"
+      }
+    end
+
+    def app_url
+      'https://build.phonegap.com/api/v1/apps/'\
+      "#{@id}?auth_token=#{@client.token}"
+    end
+
+    def android_key_hash(id, key_password, keystore_password)
+      { id: id, key_pw: key_password, keystore_pw: keystore_password }
+    end
+
+    def ios_key_hash(id, cert_password)
+      { id: id, password: cert_password }
     end
   end
 end

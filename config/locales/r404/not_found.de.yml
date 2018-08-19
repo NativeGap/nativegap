@@ -1,0 +1,7 @@
+de:
+  r404:
+    not_found:
+      title: Du hast Dich verirrt ...
+      content: Wir würden Dich gerne wieder auf den richtigen Weg brnigen 😉.
+      open_dashboard: Dashboard öffnen
+      open_nativegap: NativeGap öffnen

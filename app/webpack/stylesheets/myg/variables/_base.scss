@@ -1,18 +1,16 @@
-// Base
 $myg-base: (
-    font-size: 16,
-    pwa-display-mode: standalone
+  font-size: 16,
+  pwa-display-mode: standalone
 ) !default;
 
-
-// Cursor
-$myg--cursors: (
-    default: default,
-    text: text,
-    pointer: pointer,
-    help: help,
-    move: move,
-    grab: grab,
-    progress: progress,
-    wait: wait
+$myg__cursor: (
+  default: default,
+  text: text,
+  pointer: pointer,
+  help: help,
+  move: move,
+  grab: grab,
+  progress: progress,
+  wait: wait,
+  not-allowed: not-allowed
 ) !default;

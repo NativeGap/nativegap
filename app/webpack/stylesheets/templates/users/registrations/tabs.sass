@@ -1,0 +1,22 @@
+body.users.registrations.edit, body.subscriptions.index
+  .myg-content
+    padding: myg-spacing(5) myg-spacing(4)
+    +myg-grid__smaller-than(phone)
+      padding: myg-spacing(4)
+    & > div
+      & > h2
+        margin-bottom: myg__px(10)
+      & > p
+        margin: 0 0 myg__px(40)
+      h3:not(:first-child)
+        margin: myg__px(50) 0 myg__px(15)
+      .myg-button--container
+        margin-top: myg__px(10)
+      .flex.reverse
+        margin-top: myg__px(50)
+      .myg-list--element
+        +myg-grid__flex---center-y
+        h4, p
+          margin: 0
+        p
+          margin-left: myg__px(15)

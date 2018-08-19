@@ -1,4 +1,4 @@
-# frozen_string_lieteral: true
+# frozen_string_literal: true
 
 class Appetize
   attr_reader :public_key, :private_key, :url
@@ -12,10 +12,7 @@ class Appetize
       HTTParty.post(
         "https://#{Rails.application.credentials.appetize[:token]}"\
         '@api.appetize.io/v1/apps',
-        body: {
-          url: file_url,
-          platform: platform
-        }.to_json,
+        body: { url: file_url, platform: platform }.to_json,
         headers: { 'Content-Type' => 'application/json' },
         format: :plain
       ),

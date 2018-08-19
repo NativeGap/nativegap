@@ -1,0 +1,5 @@
+en:
+  layouts:
+    application:
+      open_dashboard: Open dashboard
+      get_started: Get started

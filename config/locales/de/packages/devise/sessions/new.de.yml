@@ -1,8 +1,0 @@
-de:
-    devise:
-        sessions:
-            new:
-                content: Willkommen zurück! Melde Dich mit Deiner Email und Deinem Passwort an.
-                form:
-                    remember_me: An mich erinnern
-                    forgot_password: Passwort vergessen?

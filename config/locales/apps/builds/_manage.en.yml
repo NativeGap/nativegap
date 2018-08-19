@@ -1,0 +1,14 @@
+en:
+  apps:
+    builds:
+      _manage:
+        error:
+          title: An error ocurred
+          content: Restarting the build process may help sometimes. If you repeatedly see this message, %{link}.
+          contact_us: contact us
+          signing_key:
+            content: Please check if your %{link} credentials are valid.
+            link: signing key
+        edit_signing_key: Edit signing key
+        add_signing_key: Add signing key
+        add_splash_screen: Add splash screen

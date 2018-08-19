@@ -8,6 +8,6 @@ NotificationPusher.configure do |config|
   config.define_pusher(
     :OneSignal,
     app_id: Rails.application.credentials.onesignal[:app_id],
-    auth_key: Rails.application.credentials.onesignal[:key]
+    auth_key: Rails.application.credentials.onesignal[:auth_key]
   )
 end
