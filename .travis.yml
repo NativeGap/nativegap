@@ -2,8 +2,9 @@ language: ruby
 rvm:
   - 2.5.1
 script:
-  - yarn run lint-css
   - bundle exec rubocop
   - bundle exec rspec
   - yarn install --ignore-engines
   - bundle exec rails assets:precompile
+  - yarn run eslint
+  - yarn run stylelint
