@@ -14,8 +14,8 @@ class SubscriptionsController < ApplicationController
 
   def new
     @price = Settings.nativegap.pricing
-                     .send(App::Build.find(params[:build]).platform)&
-                     .send(params[:plan])
+                     .send(App::Build.find(params[:build]).platform)
+                     &.send(params[:plan])
     modalist
   end
 
