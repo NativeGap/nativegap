@@ -1,7 +1,7 @@
-document.addEventListener( 'turbolinks:load', () => {
+document.addEventListener('turbolinks:load', () => {
   if (document.querySelector('body#application')) {
-    document.querySelector('.mdc-toolbar__section.mdc-toolbar__section--align-end.mobile > a > svg').addEventListener( 'click', () => mygDrawer.open() );
-    window.addEventListener( 'scroll', () => {
+    document.querySelector('.mdc-toolbar__section.mdc-toolbar__section--align-end.mobile > a > svg').addEventListener('click', () => mygDrawer.open());
+    window.addEventListener('scroll', () => {
       let element = document.querySelector('section#head'),
         toolbar = document.querySelector('.myg-toolbar');
       if (toolbar.classList.contains('scrolled')) {
@@ -13,6 +13,6 @@ document.addEventListener( 'turbolinks:load', () => {
           toolbar.classList.add('scrolled');
         }
       }
-    })
+    });
   }
-})
+});
