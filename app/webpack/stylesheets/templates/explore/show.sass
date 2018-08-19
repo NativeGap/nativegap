@@ -1,0 +1,59 @@
+body.explore.show
+  a.hyperlink--inherit
+    text-decoration: none
+    font-weight: 500
+  p
+    &.nav
+      position: fixed
+      top: myg__px(15)
+      left: myg__px(15)
+      margin: 0
+      a
+        opacity: .7
+        +myg-animate__transition
+        &:hover, &:focus, &:active
+          opacity: 1
+      &.right
+        left: auto
+        right: myg__px(15)
+      +myg-grid__smaller-than(phone)
+        &:not(.right)
+          display: none
+    span
+      opacity: .7
+  section#main
+    +myg-grid__flex---center
+    flex-direction: column
+    width: 100%
+    min-height: 100vh
+    padding: myg__px(50) myg__px(35)
+    img
+      height: myg__px(128)
+      +myg-theme__border-radius(3)
+      +myg-elevation(2)
+    h1
+      margin: myg__px(15) 0 0
+      text-align: center
+    p
+      margin: 0
+      text-align: center
+      max-width: myg__px(350)
+      &.sm
+        margin-top: myg__px(10)
+        opacity: 1
+        & > a
+          opacity: .7
+          +myg-animate__transition
+          &:hover, &:focus, &:active
+            opacity: 1
+          &:not(:first-child)
+            margin-left: myg__px(15)
+    .myg-button--container
+      margin-top: myg__px(20)
+      a.myg-button
+        position: relative
+        top: 0
+        color: white !important
+        +myg-animate__transition
+        &:hover, &:focus, &:active
+          top: myg__px(-1)

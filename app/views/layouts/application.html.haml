@@ -7,10 +7,10 @@
     .myg-wrap--large.mdc-toolbar__row
       %section.mdc-toolbar__section.mdc-toolbar__section--align-start
         = link_to root_url, data: { turbolinks_animate_type: 'application' } do
-          = asset 'components/brand/logo_large'
+          = asset 'logo_large.svg'
       %section.mdc-toolbar__section.mdc-toolbar__section--align-end.mobile
         = link_to 'javascript:void(0)', class: 'preventdefault' do
-          = asset 'components/drawer/toggle'
+          = asset 'drawer.svg'
       %section.mdc-toolbar__section.mdc-toolbar__section--align-end
         = link_to t('d.marketplace'), explore_url, data: { turbolinks_animate_type: 'application' }
         - if current_user
