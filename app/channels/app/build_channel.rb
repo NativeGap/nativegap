@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module App
+class App
   class BuildChannel < ApplicationCable::Channel
     def subscribed
       stream_from 'app_build_channel'
