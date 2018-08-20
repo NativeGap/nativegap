@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Build
-  class Windows < Zip
+  class Windows < Compress
     PLATFORM = 'windows'
 
     private

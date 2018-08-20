@@ -3,7 +3,7 @@
 require 'zip'
 
 module Build
-  class Zip < Base
+  class Compress < Base
     def perform
       wrapper = builder
       create_zip(wrapper)
@@ -17,7 +17,7 @@ module Build
 
     def create_zip(wrapper)
       zip = Rails.root.join('tmp', 'source_wrappers', zip_file_name)
-      ::Zip::File.open(zip, ::Zip::File::CREATE) do |zipfile|
+      Zip::File.open(zip, Zip::File::CREATE) do |zipfile|
         Dir.glob("#{wrapper}/**/*") do |file|
           zipfile.add(file.sub("#{wrapper}/", ''), file)
         end

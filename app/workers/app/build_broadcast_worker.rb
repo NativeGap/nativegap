@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class App
+class App < ApplicationRecord
   class BuildBroadcastWorker
     include Sidekiq::Worker
     sidekiq_options(retry: false, queue: 'cable')

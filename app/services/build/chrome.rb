@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Build
-  class Chrome < Zip
+  class Chrome < Compress
     PLATFORM = 'chrome'
 
     private
