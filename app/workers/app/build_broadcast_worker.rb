@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module App
+class App
   class BuildBroadcastWorker
     include Sidekiq::Worker
     sidekiq_options(retry: false, queue: 'cable')
