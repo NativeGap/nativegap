@@ -2,7 +2,8 @@
   "name": "nativegap",
   "private": true,
   "scripts": {
-    "lint-css": "stylelint **/*.scss **/*.css"
+    "stylelint": "./node_modules/.bin/stylelint app/**/*.scss",
+    "eslint": "./node_modules/.bin/eslint app/**/*.js app/webpack/packs/webpack.js.erb"
   },
   "dependencies": {
     "@rails/webpacker": "^3.5.5",
@@ -13,12 +14,8 @@
     "rails-erb-loader": "^5.4.2",
     "rails-ujs": "^5.2.1",
     "sass-loader": "^7.1.0",
-    "turbolinks": "^5.1.1",
+    "turbolinks": "^5.2.0",
     "turbolinks-animate": "^3.0.5"
-  },
-  "scripts": {
-    "stylelint": "./node_modules/.bin/stylelint app/**/*.scss",
-    "eslint": "./node_modules/.bin/eslint app/**/*.js app/webpack/packs/webpack.js.erb"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
