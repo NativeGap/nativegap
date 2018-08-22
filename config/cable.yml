@@ -10,4 +10,5 @@ test:
 production:
   adapter: redis
   url: <%= Rails.application.credentials.production[:redis][:host] %>
+  password: <%= Rails.application.credentials.production[:redis][:password] %>
   channel_prefix: nativegap_production
