@@ -11,7 +11,7 @@
 %section.myg-layout__wrap--tablet#explore
   %h2= t('welcome.index.explore.title')
   %p= t('welcome.index.explore.content')
-  .myg-grid__grid
+  .myg-grid__grid.myg-grid__grid--default
     - App.where(visibility: 'public').limit(3)&.each do |app|
       = link_to app_explore_url(app) do
         = image_tag app.icon.url

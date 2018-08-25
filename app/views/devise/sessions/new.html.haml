@@ -27,14 +27,14 @@
       class_name: 'user',
       inline_label: t('devise.sessions.new.form.remember_me'),
       input_html: { input_html: { checked: true } })
-  .flex.space-between
+  .myg-grid__flex.-space-between
     %p.sm
       = link_to(t('d.signup'),
         new_user_registration_url(app: params[:app]),
-        class: 'hyperlink--inherit',
+        class: 'myg-text__hyperlink -inherit',
         data: { turbolinks_animate_type: 'devise' })
       = link_to(t('devise.sessions.new.form.forgot_password'),
         new_user_password_url,
-        class: 'hyperlink--inherit',
+        class: 'myg-text__hyperlink -inherit',
         data: { turbolinks_animate_type: 'devise' })
     = component 'myg/button', value: t('d.login')

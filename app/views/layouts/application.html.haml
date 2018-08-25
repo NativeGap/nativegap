@@ -6,7 +6,7 @@
   = component('myg/toolbar',
     class: 'myg-toolbar--flexible',
     data: { turbolinks_animate_persist: 'application' }) do
-    .myg-wrap--large.mdc-toolbar__row
+    .myg-layout__wrap--large.mdc-toolbar__row
       %section.mdc-toolbar__section.mdc-toolbar__section--align-start
         = link_to root_url, data: { turbolinks_animate_type: 'application' } do
           = asset 'logo_large.svg'

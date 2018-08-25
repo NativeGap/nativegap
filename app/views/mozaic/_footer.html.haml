@@ -1,6 +1,5 @@
 %footer
-
-  .myg-grid__grid.myg-layout__wrap--tablet
+  .myg-grid__grid.myg-grid__grid--default.myg-layout__wrap--tablet
     .app
       %h3.sm= t('d.app')
       - if current_user
@@ -41,5 +40,5 @@
         target: '_blank')
 
   .myg-layout__wrap--tablet.myg-grid__flex.-space-between
-    %p.sm= t('mozaic._footer.copyright', link: link_to('Jonas Hübotter', 'https://jonhue.me', target: '_blank', class: 'hyperlink--inherit')).html_safe
-    %p.sm= link_to current_language, language_url, class: 'modalist--trigger hyperlink--inherit'
+    %p.sm= t('mozaic._footer.copyright', link: link_to('Jonas Hübotter', 'https://jonhue.me', target: '_blank', class: 'myg-text__hyperlink -inherit')).html_safe
+    %p.sm= link_to current_language, language_url, class: 'modalist--trigger myg-text__hyperlink -inherit'

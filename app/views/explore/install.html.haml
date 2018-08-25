@@ -1,6 +1,6 @@
 %h2= t('explore.install.title')
 %p= t('explore.install.content', app: @app.name)
-.myg-button--container
+.myg-button__container
   - @platforms.each do |platform|
     = link_to(platform.to_s.titleize,
       @app.send(platform),

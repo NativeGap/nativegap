@@ -1,4 +1,4 @@
-.myg-button--container#manage
+.myg-button__container#manage
   - if build.can_build?
     - if build.status == 'processing'
       = component 'myg/progress', indeterminate: true
@@ -11,11 +11,11 @@
             = t('apps.builds._manage.error.signing_key.content',
               link: link_to(t('apps.builds._manage.error.signing_key.link'),
                 app_apps_key_url(build.app.slug, build.id),
-                class: 'modalist--trigger hyperlink--inherit')).html_safe
+                class: 'modalist--trigger myg-text__hyperlink -inherit')).html_safe
           = t('apps.builds._manage.error.content',
             link: link_to(t('apps.builds._manage.error.contact_us'),
               "mailto:#{Settings.mailgun.emails.support}",
-              class: 'hyperlink--inherit')).html_safe
+              class: 'myg-text__hyperlink -inherit')).html_safe
     - else
       = link_to(t('d.download'),
         build.file.url,

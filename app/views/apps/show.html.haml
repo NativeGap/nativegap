@@ -7,7 +7,7 @@
     %span= link_to(@app.start_url,
       @app.start_url,
       target: '_blank',
-      class: 'hyperlink--inherit')
+      class: 'myg-text__hyperlink -inherit')
     %span= t('apps.show.created', time: time_ago_in_words(@app.created_at))
 
 = component 'myg/tabs', tabs: @tabs

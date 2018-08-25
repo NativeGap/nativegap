@@ -4720,9 +4720,9 @@ myg-tooltip@*:
     myg-theme "*"
     popper.js "^1.14.3"
 
-myg@^0.13.5:
-  version "0.13.5"
-  resolved "https://registry.yarnpkg.com/myg/-/myg-0.13.5.tgz#a3aa2d31dc6864d8fdfca4c6b4e4b403ff7609aa"
+myg@^0.13.6:
+  version "0.13.6"
+  resolved "https://registry.yarnpkg.com/myg/-/myg-0.13.6.tgz#42e5817f1632b7b8dd7159a58e70024ab6b881f9"
   dependencies:
     myg-action-button "*"
     myg-animate "*"

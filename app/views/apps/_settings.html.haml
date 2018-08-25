@@ -1,4 +1,4 @@
-.myg-wrap--phone
+.myg-layout__wrap--phone
 
   %h3.sm= t('d.marketplace')
   = simple_form_for app do
@@ -44,14 +44,14 @@
         inline_label: [t('apps._settings.marketplace.appetize.title'),
           t('apps._settings.marketplace.appetize.content')],
         input_html: { input_html: { checked: app.appetize } })
-    .myg-button--container
+    .myg-button__container
       = component('myg/button',
         value: t('d.update'),
         class: 'myg-button--secondary')
 
   %h3.sm= t('apps._settings.edit_your_app.title')
   %p.sm= t('apps._settings.edit_your_app.content')
-  .myg-button--container
+  .myg-button__container
     = link_to(t('apps._settings.edit_your_app.button'),
       edit_app_url(app),
       class: 'myg-button myg-button--secondary',
@@ -59,7 +59,7 @@
 
   %h3.sm= t('apps._settings.danger_zone.title')
   %p.sm= t('apps._settings.danger_zone.content')
-  .myg-button--container
+  .myg-button__container
     = link_to(t('apps._settings.danger_zone.button'),
       app_url(app),
       method: :delete,

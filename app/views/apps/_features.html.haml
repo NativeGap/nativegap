@@ -42,6 +42,6 @@
   label: t('apps._features.notifications.one_signal_app_id'),
   input_html: { value: app.one_signal_app_id })
 
-.flex.reverse
+.myg-grid__flex.-reverse
   = component('myg/button',
     value: app.created_at ? t('apps._features.update_app') : t('apps._features.create_app'))

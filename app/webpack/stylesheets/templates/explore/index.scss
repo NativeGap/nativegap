@@ -17,7 +17,7 @@ body.explore.index {
 
       & > p {
         color: myg-theme__color(text, lighter);
-        margin: myg__px(5) 0 myg__px(35);
+        margin: myg__px(5) auto myg__px(35);
         max-width: myg__px(800);
       }
 

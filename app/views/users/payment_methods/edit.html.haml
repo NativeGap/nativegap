@@ -10,7 +10,7 @@
   remote: params.key?(:plan)) do
   %input{ type: 'hidden', name: 'stripeToken' }
   #card-element
-  .myg-button--container.flex.reverse
+  .myg-button__container.myg-grid__flex.-reverse
     - if params.key?(:plan)
       = component('myg/button',
         value: t('users.payment_methods.edit.continue_to_checkout'),

@@ -17,7 +17,7 @@
   - else
     %h3.sm= t('apps.builds._update.rebuild.title')
     %p= t('apps.builds._update.rebuild.content')
-  .myg-button--container
+  .myg-button__container
     - if build.update_available?
       = link_to(t('d.update'),
         app_apps_build_url(build.app.slug, build.id),

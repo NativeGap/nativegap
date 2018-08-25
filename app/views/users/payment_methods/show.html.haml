@@ -7,7 +7,7 @@
 - else
   %h2= t('users.payment_methods.show.no_payment_method.title')
   %p= t('users.payment_methods.show.no_payment_method.content')
-.myg-button--container
+.myg-button__container
   = link_to(t('users.payment_methods.show.add_payment_method'),
     users_edit_payment_method_url(build: params[:build],
       plan: params[:plan]),

@@ -66,8 +66,8 @@
     class: layouts_mozaic_body_class,
     id: area(:layout)) do
 
-    %p.hidden#notice= notice
-    %p.hidden#alert= alert
+    %p.myg--hidden#notice= notice
+    %p.myg--hidden#alert= alert
     = component 'myg/toast'
 
     = component 'modalist/overlay'

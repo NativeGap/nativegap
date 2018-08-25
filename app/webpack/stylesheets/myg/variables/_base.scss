@@ -1,7 +1,7 @@
 $myg-base: (
   font-size: 16,
   pwa-display-mode: standalone
-) !default;
+);
 
 $myg__cursor: (
   default: default,
@@ -13,4 +13,4 @@ $myg__cursor: (
   progress: progress,
   wait: wait,
   not-allowed: not-allowed
-) !default;
+);
