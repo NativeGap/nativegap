@@ -7,11 +7,11 @@ nativegap:
     youtube: https://www.youtube.com/channel/UCIEedde7D9ea39nBEHIcLTw
   pricing:
     android:
-      starter: 25
-      pro: 100
+      starter: 7
+      pro: 20
     ios:
-      starter: 25
-      pro: 100
+      starter: 7
+      pro: 20
   medium:
     blog: https://medium.com/nativegap/blog
     help: https://medium.com/nativegap/help
