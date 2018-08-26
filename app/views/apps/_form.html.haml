@@ -1,6 +1,5 @@
-= simple_form_for app, html: { class: 'myg-wrap--phone', multipart: true } do
-
-  %p.hidden#error= t('apps._form.error')
+= simple_form_for app, html: { class: 'myg-layout__wrap--phone', multipart: true } do
+  %p.myg--hidden#error= t('apps._form.error')
 
   = component('myg/form-field',
     as: :input,
@@ -11,7 +10,7 @@
       link: link_to(t('apps._form.url.hint.link'),
         'https://medium.com/nativegap/whats-the-the-x-frame-options-header-c6bd6573d7dd',
         target: '_blank',
-        class: 'hyperlink--inherit')).html_safe unless app.id),
+        class: 'myg-text__hyperlink -inherit')).html_safe unless app.id),
     hint_html: { class: 'error' },
     input_html: { required: true,
       type: 'url',

@@ -3,6 +3,8 @@ footer {
   padding: myg__px(50) 0;
 
   .myg-grid__grid {
+    align-items: start;
+
     @include myg-grid__smaller-than(laptop) {
       padding: 0 myg__px(25);
     }

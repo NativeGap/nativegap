@@ -1,6 +1,6 @@
 - meta title: t('d.dashboard')
 
-.myg-wrap--tablet.myg-grid
+.myg-layout__wrap--tablet.myg-grid__grid.myg-grid__grid--default
   - if @apps.any?
     - @apps.each do |app|
       = link_to(app,

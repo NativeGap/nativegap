@@ -1,7 +1,6 @@
-.myg-grid.myg-wrap--tablet{ data: { build_id: build.id } }
-
+.myg-grid__grid.myg-grid__grid--default.myg-layout__wrap--tablet{ data: { build_id: build.id } }
   .column
-    .myg-card.flex#information
+    .myg-card.myg-grid__flex#information
       = image_tag(build.icon_url('_1240x1240'),
         onerror: "this.src = 'https://nativegap.com/icon_fallback.png'")
       .wrapper
@@ -33,7 +32,7 @@
               link: link_to(t('apps.builds._build.plan.subscription.canceled.warning.link'),
                 'https://medium.com/nativegap/licensing-22021a9389ff',
                 target: '_blank',
-                class: 'hyperlink--inherit')).html_safe
+                class: 'myg-text__hyperlink -inherit')).html_safe
           - else
             %p= t('apps.builds._build.plan.subscription.active',
               date: build.subscription.current_period_end.strftime('%B %-d, %Y'))
@@ -46,8 +45,8 @@
             link: link_to(t('apps.builds._build.plan.subscription.inactive.warning.link'),
               'https://medium.com/nativegap/licensing-22021a9389ff',
               target: '_blank',
-              class: 'hyperlink--inherit')).html_safe
-        .myg-button--container
+              class: 'myg-text__hyperlink -inherit')).html_safe
+        .myg-button__container
           - if build.subscription&.subscribed?
             - if build.subscription&.canceled?
               = link_to(t('apps.builds._build.plan.enable_subscription'),
@@ -223,7 +222,7 @@
           inline_label: [t('apps.builds._build.settings.form.beta.title'),
             t('apps.builds._build.settings.form.beta.content')],
           input_html: { input_html: { checked: build.beta } })
-        .flex.reverse
+        .myg-grid__flex.-reverse
           = component('myg/button',
             value: t('d.update'),
             class: 'myg-button--secondary')

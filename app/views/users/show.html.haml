@@ -3,7 +3,7 @@
 %section#main
   %h1.sm= @user.publisher
   - if @user.url
-    .myg-button--container
+    .myg-button__container
       = link_to(t('users.show.visit_my_website'),
         @user.url,
         target: '_blank',
@@ -12,6 +12,6 @@
     %p= t('users.show.no_apps')
 
 - if @apps.any?
-  %section.myg-grid.myg-wrap--tablet#apps
+  %section.myg-grid__grid.myg-grid__grid--default.myg-layout__wrap--tablet#apps
     - @apps.each do |app|
       = render app

@@ -59,7 +59,7 @@
     class_name: 'user',
     inline_label: t('devise.registrations._edit.update_notifications'),
     input_html: { input_html: { checked: current_user.update_notifications } })
-  .myg-button--container.hidden
+  .myg-button__container.myg--hidden
     = link_to(t('devise.registrations._edit.enable_notifications'),
       notify_url,
       class: 'modalist--trigger myg-button myg-button--secondary')
@@ -75,5 +75,5 @@
     input_html: { values: ['private', 'public'],
       input_html: { checked: current_user.visibility == 'public' } })
 
-  .flex.reverse
+  .myg-grid__flex.-reverse
     = component 'myg/button', value: t('d.update')

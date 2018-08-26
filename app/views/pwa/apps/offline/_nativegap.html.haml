@@ -1,6 +1,6 @@
 %h1.sm= t('pwa.offline.title')
 %p= t('pwa.offline.content')
-.myg-button--container
+.myg-button__container
   - if current_user
     = link_to t('pwa.offline.open_dashboard'), apps_url, class: 'myg-button'
   - else

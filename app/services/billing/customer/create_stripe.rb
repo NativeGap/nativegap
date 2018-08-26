@@ -11,7 +11,7 @@ module Billing
       end
 
       def perform
-        Stripe::Customer.create(description: @user.name, email: @user.email)
+        Stripe::Customer.create(description: @name, email: @email)
       end
     end
   end

@@ -8,7 +8,7 @@
   %h2= t('d.professional')
   %p= t('subscriptions.new.professional')
 
-.myg-button--container
+.myg-button__container
   = link_to(t('d.purchase'),
     subscriptions_url(build: params[:build], plan: params[:plan]),
     method: :post,

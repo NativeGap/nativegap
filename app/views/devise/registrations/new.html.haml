@@ -11,7 +11,7 @@
     as: :hidden,
     required: false,
     input_html: { value: params[:app] })
-  .myg-form-field--inline-container
+  .myg-form-field__inline-container
     = component('myg/form-field',
       as: :input,
       attribute: :first_name,
@@ -36,10 +36,10 @@
     class_name: 'user',
     floating_label: t('d.password'),
     input_html: { required: true, type: 'password', minlength: 5 })
-  .flex.space-between
+  .myg-grid__flex.-space-between
     %p.sm
       = link_to(t('devise.registrations.new.form.login_instead'),
         new_user_session_url(app: params[:app]),
-        class: 'hyperlink--inherit',
+        class: 'myg-text__hyperlink -inherit',
         data: { turbolinks_animate_type: 'devise' })
     = component 'myg/button', value: t('d.signup')
