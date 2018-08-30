@@ -27,10 +27,10 @@ body.apps.show {
     }
 
     nav {
-      margin-top: myg__px(-48);
+      margin-top: myg__px(-60);
     }
 
-    .myg-tabs--panel {
+    .myg-tabs__panel {
       padding: myg__px(35);
 
       @include myg-grid__bigger-than(laptop) {

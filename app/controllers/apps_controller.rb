@@ -27,7 +27,9 @@ class AppsController < ApplicationController
         partial_locals: { build: build, app: @app },
         active: index.zero?
       }
-    end[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings' }
+    end
+    @tabs[@tabs.length] = { name: I18n.t('d.settings'), partial: 'settings',
+                            partial_locals: { app: @app } }
 
     turbolinks_animate 'fadein'
   end

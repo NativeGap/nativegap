@@ -2,7 +2,7 @@
 
 module Build
   class Ios < Phonegap
-    PLATFORM = 'ios'
+    @platform = 'ios'
 
     private
 

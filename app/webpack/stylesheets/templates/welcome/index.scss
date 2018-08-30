@@ -98,6 +98,7 @@ body.welcome.index {
 
         img {
           height: myg__px(48);
+          margin: 0 auto;
 
           @include myg-theme__border-radius(2);
         }
@@ -144,7 +145,6 @@ body.welcome.index {
   }
 
   section#pricing {
-    grid-template-columns: repeat(12, 1fr);
     max-width: 85%;
     padding-bottom: myg__px(100);
     text-align: center;
@@ -168,6 +168,8 @@ body.welcome.index {
 
     .myg-tabs__panel {
       .myg-grid__grid {
+        grid-template-columns: repeat(12, 1fr) !important;
+
         @include myg-grid__smaller-than(laptop) {
           overflow-x: scroll;
         }

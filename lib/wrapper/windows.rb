@@ -2,9 +2,9 @@
 
 module Wrapper
   class Windows < Base
-    VERSION = '1.4.1'
-    BETA_VERSION = '1.4.1'
-    GITHUB_USERNAME = 'NativeGap'
-    GITHUB_REPOSITORY = 'windows'
+    @version = '1.4.1'
+    @beta_version = '1.4.1'
+    @github_username = 'NativeGap'
+    @github_repository = 'windows'
   end
 end

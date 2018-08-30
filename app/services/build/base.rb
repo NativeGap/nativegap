@@ -8,6 +8,10 @@ module Build
       @build = build
     end
 
+    class << self
+      attr_accessor :platform
+    end
+
     private
 
     def builder
@@ -18,7 +22,7 @@ module Build
                              .fetch(directory: @build.folder_name)
       fill_templates(wrapper)
 
-      case PLATFORM
+      case self.class.platform
       when 'android', 'ios'
         phonegap_builder(wrapper, @app)
       when 'windows'
@@ -59,7 +63,7 @@ module Build
     end
 
     def wrapper_class
-      "Wrapper::#{PLATFORM.camelize}"
+      "Wrapper::#{self.class.platform.camelize}"
     end
 
     def free?

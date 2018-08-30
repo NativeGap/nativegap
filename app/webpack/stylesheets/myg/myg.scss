@@ -1,21 +1,3 @@
-/* CUSTOM THEMES */
-
-@import "theme/_custom";
-@import "theme/theme";
-
-/* CONFIGURATION */
-
-@import "variables/_action-button";
-@import "variables/_animate";
-@import "variables/_base";
-@import "variables/_font";
-@import "variables/_footer";
-@import "variables/_grid";
-@import "variables/_layout";
-@import "variables/_spacing";
-@import "variables/_text";
-@import "variables/_theme";
-
 // |\      /| \    / /¯¯¯¯ //
 // | \    / |  \  /  |     //
 // |  \  /  |   \/   |  __ //
@@ -23,15 +5,30 @@
 
 // @import "myg/src/myg"
 
-
 /* CUSTOMIZE MYG */
 
 /* Base */
+@import "variables/_base";
 @import "myg-base/base";
 
 /* Style */
 @import "myg-theme/theme";
 @import "myg-font/font";
+
+/* Custom themes */
+@import "theme/_custom";
+@import "theme/theme";
+
+/* Configuration */
+@import "variables/_action-button";
+@import "variables/_animate";
+@import "variables/_font";
+@import "variables/_footer";
+@import "variables/_grid";
+@import "variables/_layout";
+@import "variables/_spacing";
+@import "variables/_text";
+@import "variables/_theme";
 
 /* Components */
 // @import "myg-action-button/action-button";

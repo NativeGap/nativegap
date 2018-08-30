@@ -3,7 +3,7 @@
 module Phonegap
   module Key
     class Android < Base
-      PLATFORM = 'android'
+      @platform = 'android'
 
       def create(keystore:, keystore_password:, key_password:, key_alias:,
                  title:)
@@ -19,8 +19,8 @@ module Phonegap
       def create_request(keystore, keystore_password, key_password, key_alias,
                          title)
         RestClient.post(
-          "https://build.phonegap.com/api/v1/keys/#{PLATFORM}?auth_token="\
-          "#{@client.token}",
+          "https://build.phonegap.com/api/v1/keys/#{self.class.platform}"\
+          "?auth_token=#{@client.token}",
           title: title,
           alias: key_alias,
           key_pw: key_password,

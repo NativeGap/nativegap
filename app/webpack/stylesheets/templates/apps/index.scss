@@ -17,6 +17,7 @@ body.apps.index {
       text-align: center;
 
       @include myg-grid__grid-span(4);
+      @include myg-grid__flex;
       @include myg-grid__flex---center;
 
       @include myg-grid__smaller-than(phone) {

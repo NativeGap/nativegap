@@ -62,16 +62,21 @@
           display: none;
         }
 
-        &.mobile > a {
-          background: myg-theme__color(background, base);
-          height: map-get($myg-layout, toolbar-height);
-          padding: 0 myg__px(20);
+        &.mobile {
+          padding: 0;
 
-          @include myg-grid__flex---center;
-          @include myg-animate__transition(background);
+          & > a {
+            background: myg-theme__color(background, base);
+            height: myg__px(72);
+            padding: 0 myg__px(20);
 
-          &:hover {
-            background: myg-theme__color(background, lighter);
+            @include myg-grid__flex;
+            @include myg-grid__flex---center;
+            @include myg-animate__transition(background);
+
+            &:hover {
+              background: myg-theme__color(background, lighter);
+            }
           }
         }
       }
@@ -100,12 +105,6 @@
       a {
         color: myg-theme__color(text, base);
       }
-    }
-  }
-
-  .myg-drawer {
-    a.myg-button {
-      width: 100%;
     }
   }
 }

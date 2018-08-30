@@ -2,7 +2,7 @@
 
 module Build
   class Chrome < Compress
-    PLATFORM = 'chrome'
+    @platform = 'chrome'
 
     private
 

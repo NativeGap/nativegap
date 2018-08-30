@@ -13,8 +13,8 @@ footer {
       @include myg-grid__grid;
       @include myg-grid__grid-span(4);
 
-      @include myg-grid__bigger-than(laptop) {
-        @include myg-grid__grid-span(3);
+      @include myg-grid__bigger-than(tablet) {
+        @include myg-grid__grid-span(2);
       }
 
       p {

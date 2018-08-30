@@ -104,7 +104,7 @@
             Settings.nativegap.medium.help,
             target: '_blank')
           - if current_user
-            %p.sm= link_to(t('signout'),
+            = link_to(t('signout'),
               destroy_user_session_path,
               method: :delete)
         %nav.mdc-drawer__footer

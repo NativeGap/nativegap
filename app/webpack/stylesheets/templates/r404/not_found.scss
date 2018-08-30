@@ -4,6 +4,7 @@ body.r404.not_found {
     flex-direction: column;
     padding: myg__px(35);
 
+    @include myg-grid__flex;
     @include myg-grid__flex---center;
 
     h1,

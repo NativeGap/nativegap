@@ -46,6 +46,7 @@ body.explore.show {
     padding: myg__px(50) myg__px(35);
     width: 100%;
 
+    @include myg-grid__flex;
     @include myg-grid__flex---center;
 
     img {

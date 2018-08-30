@@ -2,7 +2,7 @@
 
 module Build
   class Android < Phonegap
-    PLATFORM = 'android'
+    @platform = 'android'
 
     private
 

@@ -19,6 +19,7 @@ body.users.show {
     .myg-button__container {
       margin-top: myg__px(5);
 
+      @include myg-grid__flex;
       @include myg-grid__flex---center;
     }
   }
@@ -37,10 +38,6 @@ body.users.show {
 
       @include myg-grid__grid-span(4);
       @include myg-grid__flex;
-
-      @include myg-grid__bigger-than(laptop) {
-        @include myg-grid__grid-span(6);
-      }
 
       img {
         height: myg__px(64);
