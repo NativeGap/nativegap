@@ -28,13 +28,6 @@ class ApplicationController < ActionController::Base
     collection&.select { |object| authorize! ability, object }
   end
 
-  def detect_app_platforms(app:)
-    platforms = DetectPlatform.new(browser: browser).perform
-    platforms.each do |k, _|
-      platforms[k] = false unless app.public_send(k)
-    end
-  end
-
   protected
 
   def configure_permitted_parameters

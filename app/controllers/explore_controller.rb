@@ -28,6 +28,9 @@ class ExploreController < ApplicationController
   end
 
   def set_platforms
-    @platforms = detect_app_platforms(app: @app)
+    @platforms = DetectPlatform.new(browser: browser).perform
+    @platforms.each do |k, _|
+      @platforms[k] = false unless @app.public_send(k)
+    end
   end
 end
