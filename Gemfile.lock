@@ -6,6 +6,15 @@ GIT
     carrierwave_backgrounder (0.4.2)
       carrierwave (>= 0.5, < 2.0)
 
+GIT
+  remote: https://github.com/jonhue/modalist-rails.git
+  revision: 48cd267bca211b9bb59a949404667f1183f05607
+  specs:
+    modalist (2.3.3)
+      actionpack (~> 5.2)
+      mozaic (~> 2.0)
+      railties (~> 5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -226,10 +235,6 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    modalist (2.3.3)
-      actionpack (~> 5.2)
-      mozaic (~> 2.0)
-      railties (~> 5.2)
     mozaic (2.0.1)
       activesupport (>= 5.0)
       nestive-rails (~> 1.0)
@@ -514,7 +519,7 @@ DEPENDENCIES
   metamagic
   mime-types
   mini_magick
-  modalist
+  modalist!
   mozaic
   myg
   nativegap

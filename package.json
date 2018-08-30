@@ -8,7 +8,7 @@
   "dependencies": {
     "@rails/webpacker": "^3.5.5",
     "ahoy.js": "^0.3.3",
-    "myg": "^0.13.6",
+    "myg": "jonhue/myg#master",
     "nativegap": "^1.1.8",
     "onsignal": "^5.0.6",
     "rails-erb-loader": "^5.5.0",
