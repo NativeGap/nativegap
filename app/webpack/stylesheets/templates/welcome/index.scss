@@ -169,6 +169,7 @@ body.welcome.index {
     .myg-tabs__panel {
       .myg-grid__grid {
         grid-template-columns: repeat(12, 1fr) !important;
+
         @include myg-grid__smaller-than(laptop) {
           overflow-x: scroll;
         }

@@ -16,8 +16,8 @@ module Phonegap
 
       def create_request(profile, cert, cert_password, title)
         RestClient.post(
-          "https://build.phonegap.com/api/v1/keys/#{self.class.platform}?auth_token="\
-          "#{@client.token}",
+          "https://build.phonegap.com/api/v1/keys/#{self.class.platform}"\
+          "?auth_token=#{@client.token}",
           title: title,
           password: cert_password,
           cert: cert,
