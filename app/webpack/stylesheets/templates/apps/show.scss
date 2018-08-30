@@ -45,10 +45,6 @@ body.apps.show {
         .column {
           @include myg-grid__grid-span(4);
 
-          @include myg-grid__bigger-than(laptop) {
-            @include myg-grid__grid-span(6);
-          }
-
           .myg-card {
             padding: myg__px(20);
 

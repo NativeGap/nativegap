@@ -15,9 +15,9 @@ class DetectPlatform
       @platforms[:windows] = windows_mobile?
     else
       @platforms[:chrome] = chrome?
-      @platforms[:windows] = windows?
+      @platforms[:windows] = windows? unless @platforms[:windows]
     end
-    @platforms
+    @platforms.compact
   end
 
   private
