@@ -39,10 +39,6 @@ body.users.show {
       @include myg-grid__grid-span(4);
       @include myg-grid__flex;
 
-      @include myg-grid__bigger-than(laptop) {
-        @include myg-grid__grid-span(6);
-      }
-
       img {
         height: myg__px(64);
         margin-right: myg__px(20);

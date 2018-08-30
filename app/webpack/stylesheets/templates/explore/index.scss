@@ -27,6 +27,10 @@ body.explore.index {
           display: none;
         }
 
+        @include myg-grid__bigger-than(laptop) {
+          grid-template-columns: repeat(12, 1fr);
+        }
+
         & > a {
           text-align: center;
           text-decoration: none !important;
