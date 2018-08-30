@@ -8,6 +8,7 @@ body.explore.index {
       padding: myg-spacing(7) 0;
       text-align: center;
 
+      @include myg-grid__flex;
       @include myg-grid__flex---center;
 
       & > h1 {
@@ -21,7 +22,7 @@ body.explore.index {
         max-width: myg__px(800);
       }
 
-      .myg-grid {
+      .myg-grid__grid {
         @include myg-grid__smaller-than(phone) {
           display: none;
         }
@@ -90,8 +91,8 @@ body.explore.index {
   section#content {
     padding: myg__px(50) myg__px(35);
 
-    .myg-tabs--panel {
-      .myg-grid {
+    .myg-tabs__panel {
+      .myg-grid__grid {
         a.myg-card {
           padding: myg__px(20);
           text-decoration: none !important;

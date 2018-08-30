@@ -4,7 +4,7 @@
 %h2= t('apps.builds.version.header')
 %p= t('apps.builds.version.content')
 
-= simple_form_for @build, url: app_apps_build_url(@build.app.slug, @build.id) do
+= simple_form_for @build, url: app_apps_build_url(@build.app.slug, @build.id), html: { id: "edit_app_build_#{@build.id}_version" } do
   = component('myg/form-field',
     as: :input,
     attribute: :version,

@@ -19,6 +19,7 @@ body.users.show {
     .myg-button__container {
       margin-top: myg__px(5);
 
+      @include myg-grid__flex;
       @include myg-grid__flex---center;
     }
   }

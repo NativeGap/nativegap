@@ -98,6 +98,7 @@ body.welcome.index {
 
         img {
           height: myg__px(48);
+          margin: 0 auto;
 
           @include myg-theme__border-radius(2);
         }

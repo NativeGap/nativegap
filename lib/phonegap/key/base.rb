@@ -10,10 +10,14 @@ module Phonegap
         @id = id
       end
 
+      class << self
+        attr_accessor :platform
+      end
+
       def destroy
         return unless @id
         HTTParty.delete(
-          "https://build.phonegap.com/api/v1/keys/#{PLATFORM}/"\
+          "https://build.phonegap.com/api/v1/keys/#{self.class.platform}/"\
           "#{@id}?auth_token=#{@client.token}"
         )
       end

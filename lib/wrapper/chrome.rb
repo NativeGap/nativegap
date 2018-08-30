@@ -2,9 +2,9 @@
 
 module Wrapper
   class Chrome < Base
-    VERSION = '1.1.1'
-    BETA_VERSION = '1.1.1'
-    GITHUB_USERNAME = 'NativeGap'
-    GITHUB_REPOSITORY = 'chrome'
+    @version = '1.1.1'
+    @beta_version = '1.1.1'
+    @github_username = 'NativeGap'
+    @github_repository = 'chrome'
   end
 end

@@ -8,8 +8,13 @@ module Wrapper
       @beta = beta
     end
 
+    class << self
+      attr_accessor :version, :beta_version, :github_username,
+                    :github_repository
+    end
+
     def version
-      @beta ? BETA_VERSION : VERSION
+      @beta ? self.class.beta_version : self.class.version
     end
 
     def fetch(directory:)
@@ -22,7 +27,7 @@ module Wrapper
     def github_url
       "https://#{Rails.application.credentials.github[:username]}:"\
       "#{Rails.application.credentials.github[:password]}@github.com/"\
-      "#{GITHUB_USERNAME}/#{GITHUB_REPOSITORY}"
+      "#{self.class.github_username}/#{self.class.github_repository}"
     end
 
     def path(directory)

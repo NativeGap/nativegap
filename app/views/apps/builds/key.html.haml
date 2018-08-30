@@ -14,7 +14,7 @@
 = simple_form_for(@build,
   url: app_apps_build_url(@build.app.slug, @build.id),
   method: :put,
-  html: { multipart: true }) do
+  html: { multipart: true, id: "edit_app_build_#{@build.id}_key" }) do
   - if @build.platform == 'android'
     = component('myg/form-field',
       as: :input,

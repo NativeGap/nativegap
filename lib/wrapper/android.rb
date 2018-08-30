@@ -2,9 +2,9 @@
 
 module Wrapper
   class Android < Base
-    VERSION = '2.1.0'
-    BETA_VERSION = '2.1.0'
-    GITHUB_USERNAME = 'jonhue'
-    GITHUB_REPOSITORY = 'nativegap-android'
+    @version = '2.1.0'
+    @beta_version = '2.1.0'
+    @github_username = 'jonhue'
+    @github_repository = 'nativegap-android'
   end
 end

@@ -40,5 +40,9 @@ module Users
       sign_up_params.delete :app_id
       sign_up_params
     end
+
+    def after_sign_up_path_for(_resource)
+      apps_url
+    end
   end
 end

@@ -4,6 +4,7 @@
   padding: myg__px(35);
   text-align: center;
 
+  @include myg-grid__flex;
   @include myg-grid__flex---center;
 
   h3 {

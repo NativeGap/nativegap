@@ -1,0 +1,23 @@
+.myg-drawer {
+  .mdc-drawer__drawer {
+    padding: myg-spacing(2);
+
+    .mdc-drawer__content > a {
+      color: myg-theme__color(text, dark);
+      display: block;
+      margin: myg-spacing(3);
+      padding-bottom: myg-spacing(4);
+      text-decoration: none !important;
+
+      &:not(:last-child) {
+        border-bottom: myg__px(1) solid myg-theme__color(background, darker);
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: myg-theme__color(text, darker);
+      }
+    }
+  }
+}

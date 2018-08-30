@@ -5,5 +5,6 @@ import MygFormField from 'myg-form-field';
   document.addEventListener(event, init);
 });
 function init() {
-  const mygFormFields = MygFormField.initAll(document.querySelectorAll('.myg-form-field'), {});
+  const mygFormFields = MygFormField.initAll(document.querySelectorAll('.myg-form-field'), {}) +
+                        MygFormField.initAll(document.querySelectorAll('.myg-form-field--file'), {});
 }

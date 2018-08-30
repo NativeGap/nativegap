@@ -3,7 +3,7 @@
 module Phonegap
   module Key
     class Ios < Base
-      PLATFORM = 'ios'
+      @platform = 'ios'
 
       def create(profile:, cert:, cert_password:, title:)
         @id = JSON.parse(
@@ -16,7 +16,7 @@ module Phonegap
 
       def create_request(profile, cert, cert_password, title)
         RestClient.post(
-          "https://build.phonegap.com/api/v1/keys/#{PLATFORM}?auth_token="\
+          "https://build.phonegap.com/api/v1/keys/#{self.class.platform}?auth_token="\
           "#{@client.token}",
           title: title,
           password: cert_password,

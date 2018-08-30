@@ -2,7 +2,7 @@
 
 module Build
   class Windows < Compress
-    PLATFORM = 'windows'
+    @platform = 'windows'
 
     private
 
