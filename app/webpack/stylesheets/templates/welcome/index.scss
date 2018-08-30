@@ -145,7 +145,6 @@ body.welcome.index {
   }
 
   section#pricing {
-    grid-template-columns: repeat(12, 1fr);
     max-width: 85%;
     padding-bottom: myg__px(100);
     text-align: center;
@@ -169,6 +168,7 @@ body.welcome.index {
 
     .myg-tabs__panel {
       .myg-grid__grid {
+        grid-template-columns: repeat(12, 1fr) !important;
         @include myg-grid__smaller-than(laptop) {
           overflow-x: scroll;
         }
