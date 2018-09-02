@@ -16,7 +16,7 @@ module Users
           app.update!(user: resource) unless app.user.present?
           app.builds.each do |build|
             next unless build.can_build?
-            BuildWorker.perform_in(Settings.nativegap.delay.build, build.id)
+            BuildWorker.perform_in(Settings.nativegap.delay.build, build_id: build.id)
           end
         end
       end
