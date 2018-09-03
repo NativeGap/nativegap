@@ -4,7 +4,7 @@ class BuildWorker
   include Sidekiq::Worker
   sidekiq_options(retry: false, queue: 'app')
 
-  def perform(build_id:)
+  def perform(build_id)
     build = App::Build.find(build_id)
 
     case build.platform
