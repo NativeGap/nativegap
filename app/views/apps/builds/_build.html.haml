@@ -52,12 +52,12 @@
               = link_to(t('apps.builds._build.plan.enable_subscription'),
                 subscription_url(build.subscription),
                 method: :put,
-                class: 'myg-button myg-button--secondary')
+                class: 'myg-button--secondary')
             - else
               = link_to(t('apps.builds._build.plan.cancel_subscription'),
                 subscription_url(build.subscription),
                 method: :delete,
-                class: 'myg-button myg-button--secondary')
+                class: 'myg-button--secondary')
             %p.sm= link_to(t('apps.builds._build.plan.billing_overview'),
               subscriptions_url)
           - elsif current_user.confirmed?
@@ -67,21 +67,21 @@
                 class: 'myg-button modalist--trigger myg-button--disabled')
               = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
                 users_payment_method_url(build: build.id, plan: 'starter'),
-                class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
+                class: 'myg-button--secondary modalist--trigger myg-button--disabled')
             - else
               = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
                 users_payment_method_url(build: build.id, plan: 'pro'),
                 class: 'myg-button modalist--trigger')
               = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
                 users_payment_method_url(build: build.id, plan: 'starter'),
-                class: 'myg-button myg-button--secondary modalist--trigger')
+                class: 'myg-button--secondary modalist--trigger')
           - else
             = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
               users_payment_method_url(build: build.id, plan: 'pro'),
               class: 'myg-button modalist--trigger myg-button--disabled')
             = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
               users_payment_method_url(build: build.id, plan: 'starter'),
-              class: 'myg-button myg-button--secondary modalist--trigger myg-button--disabled')
+              class: 'myg-button--secondary modalist--trigger myg-button--disabled')
     = render 'apps/builds/update', build: build
 
   .column

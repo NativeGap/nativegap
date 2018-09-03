@@ -7,7 +7,7 @@
       = link_to(t('users.show.visit_my_website'),
         @user.url,
         target: '_blank',
-        class: 'myg-button myg-button--secondary')
+        class: 'myg-button--secondary')
   - unless @apps.any?
     %p= t('users.show.no_apps')
 
