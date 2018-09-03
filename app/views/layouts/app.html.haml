@@ -13,7 +13,7 @@
         %section.mdc-toolbar__section.mdc-toolbar__section--align-start
           - if current_user.apps.any?
             = link_to('javascript:void(0)',
-              class: 'preventdefault',
+              class: 'preventdefault myg-grid__flex',
               id: 'apps-dropdown') do
               - if @app&.created_at
                 = image_tag(@app.icon.url)
