@@ -16,8 +16,8 @@
     - if params.key?(:plan)
       = link_to(t('users.payment_methods.show.continue_to_checkout'),
         checkout_url(build: params[:build], plan: params[:plan]),
-        class: 'myg-button myg-button--secondary modalist--trigger')
+        class: 'myg-button--secondary modalist--trigger')
     - else
       = link_to(t('d.cancel'),
         'javascript:void(0)',
-        class: 'myg-button myg-button--secondary modalist--closer')
+        class: 'myg-button--secondary modalist--closer')

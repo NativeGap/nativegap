@@ -54,7 +54,7 @@
   .myg-button__container
     = link_to(t('apps._settings.edit_your_app.button'),
       edit_app_url(app),
-      class: 'myg-button myg-button--secondary',
+      class: 'myg-button--secondary',
       data: { turbolinks_animate_type: 'app' })
 
   %h3.sm= t('apps._settings.danger_zone.title')
@@ -63,6 +63,6 @@
     = link_to(t('apps._settings.danger_zone.button'),
       app_url(app),
       method: :delete,
-      class: 'myg-button myg-button--secondary -error',
+      class: 'myg-button--secondary -error',
       data: { turbolinks_animate_type: 'app',
         confirm: t('apps._settings.danger_zone.confirm') })
