@@ -46,7 +46,6 @@
 
           & > a {
             background: myg-theme__color(background, base);
-            height: myg__px(72);
             padding: 0 myg__px(20);
 
             @include myg-grid__flex;

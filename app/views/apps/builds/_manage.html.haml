@@ -33,8 +33,8 @@
   - elsif build.key_needed?
     = link_to(t('apps.builds._manage.add_signing_key'),
       app_apps_key_url(build.app.slug, build.id),
-      class: 'modalist--trigger myg-button myg-button--secondary error')
+      class: 'modalist--trigger myg-button myg-button--secondary -error')
   - elsif build.splash_screen_needed?
     = link_to(t('apps.builds._manage.add_splash_screen'),
       app_apps_splash_screen_url(build.app.slug, build.id),
-      class: 'modalist--trigger myg-button myg-button--secondary error')
+      class: 'modalist--trigger myg-button myg-button--secondary -error')
