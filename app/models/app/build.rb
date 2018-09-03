@@ -85,8 +85,8 @@ class App
     def build
       return unless can_build?
 
-      update_attributes(status: 'processing') unless status == 'processing'
-      BuildWorker.perform_in(Settings.nativegap.delay.build, build_id: id)
+      update!(status: 'processing') unless status == 'processing'
+      BuildWorker.perform_in(Settings.nativegap.delay.build, id)
     end
 
     def create_appetize

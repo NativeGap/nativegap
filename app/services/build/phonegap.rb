@@ -71,12 +71,8 @@ module Build
 
     def build_phonegap_app(phonegap_app, phonegap_key)
       phonegap_app.build
-      PhonegapWorker.perform_in(
-        Settings.nativegap.delay.phonegap,
-        build_id: @build.id,
-        phonegap_app_id: phonegap_app.id,
-        phonegap_key_id: phonegap_key.id
-      )
+      PhonegapWorker.perform_in(Settings.nativegap.delay.phonegap,
+                                @build.id, phonegap_app.id, phonegap_key.id)
     end
 
     def download_file(url, format: nil)

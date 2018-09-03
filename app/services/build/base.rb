@@ -18,7 +18,7 @@ module Build
       @app = @build.app
       @free = free?
 
-      wrapper = wrapper_class.constantize.new(@build.beta)
+      wrapper = wrapper_class.constantize.new(beta: @build.beta)
                              .fetch(directory: @build.folder_name)
       fill_templates(wrapper)
 

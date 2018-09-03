@@ -4,7 +4,7 @@ class PhonegapWorker
   include Sidekiq::Worker
   sidekiq_options(retry: false, queue: 'app')
 
-  def perform(build_id:, phonegap_app_id:, phonegap_key_id:)
+  def perform(build_id, phonegap_app_id, phonegap_key_id)
     build = App::Build.find(build_id)
 
     phonegap_client = Phonegap::Client.new(
@@ -13,7 +13,7 @@ class PhonegapWorker
     )
 
     download_build(phonegap_client, phonegap_app_id, build)
-    AppetizeWorker.perform_async(build_id: build_id)
+    AppetizeWorker.perform_async(build_id)
     delete_phonegap_app(phonegap_client, phonegap_app_id, phonegap_key_id)
     build.update(status: 'processed')
     build.built_notification
