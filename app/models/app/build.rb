@@ -51,12 +51,14 @@ class App
     def key_needed?
       return false unless platform == 'ios' && ios_key_needed? ||
                           platform == 'android' && android_key_needed?
+
       true
     end
 
     def splash_screen_needed?
       return false unless platform == 'windows' &&
                           windows_splash_screen.url.nil?
+
       true
     end
 
@@ -79,6 +81,7 @@ class App
       current_wrapper_version = "Wrapper::#{platform.camelize}"
                                 .constantize.new(beta: beta).version
       return true unless wrapper_version == current_wrapper_version
+
       false
     end
 

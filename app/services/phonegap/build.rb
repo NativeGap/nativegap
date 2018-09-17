@@ -28,6 +28,7 @@ module Phonegap
         format: :plain
       )
       return unless request_successful?(response)
+
       response.body
     end
 

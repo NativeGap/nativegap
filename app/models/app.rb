@@ -58,6 +58,7 @@ class App < ApplicationRecord
 
   def set_logo_content_type
     return unless logo.present? && logo_changed?
+
     self.logo_content_type = logo.url.split('.').last
   end
 end

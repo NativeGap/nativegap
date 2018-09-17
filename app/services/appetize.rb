@@ -25,6 +25,7 @@ class Appetize
 
   def destroy
     return unless @public_key
+
     HTTParty.delete(
       "https://#{Rails.application.credentials.appetize[:token]}"\
       "@api.appetize.io/v1/apps/#{@public_key}"

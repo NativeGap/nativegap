@@ -33,6 +33,7 @@ module Phonegap
 
     def destroy
       return unless @id
+
       HTTParty.delete(app_url)
     end
 

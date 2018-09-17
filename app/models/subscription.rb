@@ -37,15 +37,15 @@ class Subscription < ApplicationRecord
 
   def enable
     stripe.save
-
     return unless @subscription.stripe.canceled_at.nil?
+
     update!(canceled_at: nil)
   end
 
   def cancel
     stripe.delete(at_period_end: true)
-
     return if stripe.canceled_at.nil?
+
     update!(canceled_at: Time.at(stripe.canceled_at).to_datetime)
   end
 

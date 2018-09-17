@@ -16,6 +16,7 @@ module Phonegap
 
       def destroy
         return unless @id
+
         HTTParty.delete(
           "https://build.phonegap.com/api/v1/keys/#{self.class.platform}/"\
           "#{@id}?auth_token=#{@client.token}"
