@@ -24,6 +24,7 @@ module Build
 
       Dir.glob("#{wrapper}/**/*") do |path|
         next if File.directory?(path)
+
         octokit_client.create_contents("NativeGap/#{@build.folder_name}",
                                        path.sub("#{wrapper}/", ''), '🎉',
                                        File.read(path), branch: 'master')

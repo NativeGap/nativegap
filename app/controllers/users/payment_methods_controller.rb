@@ -39,6 +39,7 @@ module Users
 
       current_user.enable_stripe(token: params[:stripeToken])
       return if current_user.has_payment_method?
+
       current_user.update!(has_payment_method: true)
     end
 
