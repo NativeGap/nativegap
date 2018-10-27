@@ -32,8 +32,9 @@ module Billing
       def update_subsciption(stripe_subscription)
         @subscription.update!(
           stripe_subscription_id: stripe_subscription.id,
-          current_period_end: Time.at(stripe_subscription.current_period_end)
-                                  .to_datetime
+          current_period_end: Time.strptime(
+            stripe_subscription.current_period_end.to_s, '%s'
+          )
         )
       end
 

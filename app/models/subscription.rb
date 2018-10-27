@@ -46,7 +46,7 @@ class Subscription < ApplicationRecord
     stripe.delete(at_period_end: true)
     return if stripe.canceled_at.nil?
 
-    update!(canceled_at: Time.at(stripe.canceled_at).to_datetime)
+    update!(canceled_at: Time.strptime(stripe.canceled_at.to_s, '%s'))
   end
 
   def process_payment(response:)
@@ -73,7 +73,8 @@ class Subscription < ApplicationRecord
   def handle_succeeded_payment(response)
     return unless response == 'invoice.payment_succeeded'
 
-    update!(current_period_end: Time.at(stripe.current_period_end).to_datetime)
+    update!(current_period_end: Time.strptime(stripe.current_period_end.to_s,
+                                              '%s'))
 
     Subscription::Invoice.create!(subscription: self,
                                   amount: stripe.plan.amount)
