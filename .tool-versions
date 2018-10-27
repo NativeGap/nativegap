@@ -1,4 +1,4 @@
 nodejs 9.11.2
-postgres 10.4
-redis 4.0.9
+postgres 11.0
+redis 5.0.0
 ruby 2.5.1
