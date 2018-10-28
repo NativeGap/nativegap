@@ -5,8 +5,8 @@
 error_handler = proc { |e, context| Sidekiq::ErrorHandler.process(e, context) }
 
 if Rails.env.production?
-  host = Rails.application.credentials.production[:redis][:host]
-  password = Rails.application.credentials.production[:redis][:password]
+  host = ENV['REDIS_HOST']
+  password = ENV['REDIS_PASSWORD']
 
   Sidekiq.configure_client do |config|
     config.redis = { url: host, password: password, size: 1 }
@@ -17,7 +17,7 @@ if Rails.env.production?
     config.error_handlers << error_handler
   end
 elsif Rails.env.development?
-  host = Rails.application.credentials.development[:redis][:host]
+  host = ENV['REDIS_HOST']
 
   Sidekiq.configure_client do |config|
     config.redis = { url: host, size: 1 }

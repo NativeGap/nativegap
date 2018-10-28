@@ -1,4 +1,5 @@
 web: bundle exec puma -e development -C ./config/puma.rb
 worker: bundle exec sidekiq -e development -C ./config/sidekiq.yml
 webpack: ./bin/webpack-dev-server
+redis: redis-server
 log: tail -f ./log/development.log
