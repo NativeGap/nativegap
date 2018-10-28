@@ -2,17 +2,7 @@
 
 require 'redis'
 
-url =
-  if Rails.env.production?
-    Rails.application.credentials.production[:redis][:host]
-  else
-    Rails.application.credentials.development[:redis][:host]
-  end
-password =
-  if Rails.env.production?
-    Rails.application.credentials.production[:redis][:password]
-  else
-    Rails.application.credentials.development[:redis][:password]
-  end
+url = ENV['REDIS_HOST']
+password = ENV['REDIS_PASSWORD']
 
 Redis.new(url: url, password: password)

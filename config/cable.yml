@@ -1,6 +1,6 @@
 development:
   adapter: redis
-  url: <%= Rails.application.credentials.development[:redis][:host] %>
+  url: <%= ENV['REDIS_HOST'] %>
   channel_prefix: nativegap_development
 
 test:
@@ -9,6 +9,6 @@ test:
 
 production:
   adapter: redis
-  url: <%= Rails.application.credentials.production[:redis][:host] %>
-  password: <%= Rails.application.credentials.production[:redis][:password] %>
+  url: <%= ENV['REDIS_HOST'] %>
+  password: <%= ENV['REDIS_PASSWORD'] %>
   channel_prefix: nativegap_production
