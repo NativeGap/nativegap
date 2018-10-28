@@ -3,13 +3,13 @@
   %p= t('subscriptions._index.payment_method.has_payment_method.content')
   .myg-button__container
     = link_to(t('subscriptions._index.payment_method.has_payment_method.button'),
-      users_edit_payment_method_url,
+      users_edit_payment_method_path,
       class: 'modalist--trigger myg-button')
 - else
   %p= t('subscriptions._index.payment_method.no_payment_method.content')
   .myg-button__container
     = link_to(t('subscriptions._index.payment_method.no_payment_method.button'),
-      users_edit_payment_method_url,
+      users_edit_payment_method_path,
       class: 'modalist--trigger myg-button')
 
 %h3.sm= t('subscriptions._index.upcoming_invoices.title')

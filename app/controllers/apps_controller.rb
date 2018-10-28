@@ -12,7 +12,7 @@ class AppsController < ApplicationController
       authorizes! :read, @apps
       turbolinks_animate 'fadein'
     else
-      redirect_to new_user_session_url(nativegap: params[:nativegap])
+      redirect_to new_user_session_path(nativegap: params[:nativegap])
     end
   end
 
@@ -51,10 +51,10 @@ class AppsController < ApplicationController
     @app.user = current_user if current_user
 
     if @app.save
-      url = @app.user ? @app : new_user_registration_url(app: @app.slug)
+      url = @app.user ? @app : new_user_registration_path(app: @app.slug)
       redirect_to url, notice: I18n.t('apps.create.success'), notify: true
     else
-      redirect_to root_url, alert: I18n.t('apps.create.error')
+      redirect_to root_path, alert: I18n.t('apps.create.error')
     end
   end
 
@@ -64,7 +64,7 @@ class AppsController < ApplicationController
     if @app.update app_params
       redirect_to @app, notice: I18n.t('apps.update.success')
     else
-      redirect_to edit_app_url(@app), alert: I18n.t('apps.update.error')
+      redirect_to edit_app_path(@app), alert: I18n.t('apps.update.error')
     end
   end
 
@@ -72,7 +72,7 @@ class AppsController < ApplicationController
     authorize! :destroy, @app
 
     if @app.destroy
-      redirect_to apps_url, notice: I18n.t('apps.destroy.success')
+      redirect_to apps_path, notice: I18n.t('apps.destroy.success')
     else
       redirect_to @app, notice: I18n.t('apps.destroy.error')
     end

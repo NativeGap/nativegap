@@ -5,7 +5,7 @@
 
 = simple_form_for(resource,
   as: resource_name,
-  url: password_url,
+  url: password_path,
   html: { method: :put }) do |f|
   = f.input :reset_password_token, as: :hidden
   = component('myg/form-field',

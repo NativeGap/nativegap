@@ -9,7 +9,7 @@
           = build.version
           ·
           = link_to(t('apps.builds._build.information.update_version'),
-            app_apps_version_url(build.app.slug, build.id),
+            app_apps_version_path(build.app.slug, build.id),
             class: 'modalist--trigger')
     - if build.platform == 'android' || build.platform == 'ios'
       .myg-card#plan
@@ -39,7 +39,7 @@
         - else
           %p= t('apps.builds._build.plan.subscription.inactive.content',
             link: link_to(t('d.here'),
-              "#{root_url}#pricing",
+              "#{root_path}#pricing",
               target: '_blank')).html_safe
           %p.color--error= t('apps.builds._build.plan.subscription.inactive.warning.content',
             link: link_to(t('apps.builds._build.plan.subscription.inactive.warning.link'),
@@ -50,37 +50,37 @@
           - if build.subscription&.subscribed?
             - if build.subscription&.canceled?
               = link_to(t('apps.builds._build.plan.enable_subscription'),
-                subscription_url(build.subscription),
+                subscription_path(build.subscription),
                 method: :put,
                 class: 'myg-button--secondary')
             - else
               = link_to(t('apps.builds._build.plan.cancel_subscription'),
-                subscription_url(build.subscription),
+                subscription_path(build.subscription),
                 method: :delete,
                 class: 'myg-button--secondary')
             %p.sm= link_to(t('apps.builds._build.plan.billing_overview'),
-              subscriptions_url)
+              subscriptions_path)
           - elsif current_user.confirmed?
             - if build.platform == 'ios'
               = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
-                users_payment_method_url(build: build.id, plan: 'pro'),
+                users_payment_method_path(build: build.id, plan: 'pro'),
                 class: 'myg-button modalist--trigger myg-button--disabled')
               = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
-                users_payment_method_url(build: build.id, plan: 'starter'),
+                users_payment_method_path(build: build.id, plan: 'starter'),
                 class: 'myg-button--secondary modalist--trigger myg-button--disabled')
             - else
               = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
-                users_payment_method_url(build: build.id, plan: 'pro'),
+                users_payment_method_path(build: build.id, plan: 'pro'),
                 class: 'myg-button modalist--trigger')
               = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
-                users_payment_method_url(build: build.id, plan: 'starter'),
+                users_payment_method_path(build: build.id, plan: 'starter'),
                 class: 'myg-button--secondary modalist--trigger')
           - else
             = link_to(t('apps.builds._build.plan.upgrade_to_pro'),
-              users_payment_method_url(build: build.id, plan: 'pro'),
+              users_payment_method_path(build: build.id, plan: 'pro'),
               class: 'myg-button modalist--trigger myg-button--disabled')
             = link_to(t('apps.builds._build.plan.upgrade_to_starter'),
-              users_payment_method_url(build: build.id, plan: 'starter'),
+              users_payment_method_path(build: build.id, plan: 'starter'),
               class: 'myg-button--secondary modalist--trigger myg-button--disabled')
     = render 'apps/builds/update', build: build
 
@@ -90,7 +90,7 @@
       %h3.sm= t('d.settings')
       %p= t('apps.builds._build.settings.content')
       = simple_form_for(build,
-        url: app_apps_build_url(build.app.slug, build.id),
+        url: app_apps_build_path(build.app.slug, build.id),
         method: :put,
         html: { multipart: true }) do
         = component('myg/form-field',

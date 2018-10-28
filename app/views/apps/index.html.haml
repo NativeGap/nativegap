@@ -9,7 +9,7 @@
         = image_tag(app.icon.url)
         %h3.sm= app.name
         %p.sm= truncate(app.description, length: 45)
-    = link_to(new_app_url,
+    = link_to(new_app_path,
       class: 'myg-card',
       id: 'new-app',
       data: { turbolinks_animate_type: 'app' }) do
@@ -17,7 +17,7 @@
       %h3.sm= t('apps.index.apps.new.title')
       %p.sm= t('apps.index.apps.new.content')
   - else
-    = link_to(new_app_url,
+    = link_to(new_app_path,
       class: 'myg-card',
       id: 'first-app',
       data: { turbolinks_animate_type: 'app' }) do

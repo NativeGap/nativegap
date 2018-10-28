@@ -6,7 +6,7 @@
     %p.lg= t('explore.index.content')
     .myg-grid__grid.myg-grid__grid--default.myg-layout__wrap--tablet
       - App.where(visibility: 'public').limit(3)&.each do |app|
-        = link_to app_explore_url(app) do
+        = link_to app_explore_path(app) do
           .wrapper{ style: "background:#{app.splash_screen_background || app.background}" }
             = image_tag app.icon.url
             %h3{ style: "color:#{app.splash_screen_color || app.color}" }= app.name

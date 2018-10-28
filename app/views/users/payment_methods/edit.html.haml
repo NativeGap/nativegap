@@ -4,7 +4,7 @@
 %h2= t('users.payment_methods.edit.header')
 %p= t('users.payment_methods.edit.content')
 
-= form_tag(users_payment_method_url,
+= form_tag(users_payment_method_path,
   method: :post,
   authenticity_token: true,
   remote: params.key?(:plan)) do

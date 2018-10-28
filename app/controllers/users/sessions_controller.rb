@@ -37,11 +37,11 @@ module Users
     end
 
     def after_sign_in_path_for(_resource)
-      apps_url
+      apps_path
     end
 
     def after_sign_out_path_for(_resource)
-      root_url
+      root_path
     end
   end
 end

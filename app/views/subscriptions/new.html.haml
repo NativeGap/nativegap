@@ -10,6 +10,6 @@
 
 .myg-button__container
   = link_to(t('d.purchase'),
-    subscriptions_url(build: params[:build], plan: params[:plan]),
+    subscriptions_path(build: params[:build], plan: params[:plan]),
     method: :post,
     class: 'myg-button')

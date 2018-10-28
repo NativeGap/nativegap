@@ -7,7 +7,7 @@
     %p= t('mozaic._confirm.content',
       days: required_confirmation_in_days_string)
     = link_to(t('mozaic._confirm.resend_email'),
-      new_user_confirmation_url,
+      new_user_confirmation_path,
       class: 'welcomer--mobile')
     = link_to(t('mozaic._confirm.resend_confirmation_email'),
-      new_user_confirmation_url)
+      new_user_confirmation_path)

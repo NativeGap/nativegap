@@ -43,7 +43,7 @@ module Users
     end
 
     def after_sign_up_path_for(_resource)
-      apps_url
+      apps_path
     end
   end
 end
