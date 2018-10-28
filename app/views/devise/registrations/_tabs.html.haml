@@ -5,6 +5,6 @@
   = component('myg/tabs',
     async: true,
     success: local_assigns[:success],
-    tabs: [{ name: t('d.settings'), href: edit_user_registration_url, active: local_assigns[:tab] == 'Settings' },
-      { name: t('d.billing'), href: subscriptions_url, active: local_assigns[:tab] == 'Billing' }]) do
+    tabs: [{ name: t('d.settings'), href: edit_user_registration_path, active: local_assigns[:tab] == 'Settings' },
+      { name: t('d.billing'), href: subscriptions_path, active: local_assigns[:tab] == 'Billing' }]) do
     %p= t('devise.registrations._tabs.error')

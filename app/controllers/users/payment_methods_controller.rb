@@ -21,10 +21,10 @@ module Users
       respond_to do |format|
         format.html do
           if stripe_successful?
-            redirect_back fallback_location: subscriptions_url,
+            redirect_back fallback_location: subscriptions_path,
                           notice: I18n.t('users.payment_methods.update.success')
           else
-            redirect_back fallback_location: subscriptions_url,
+            redirect_back fallback_location: subscriptions_path,
                           alert: I18n.t('users.payment_methods.update.error')
           end
         end

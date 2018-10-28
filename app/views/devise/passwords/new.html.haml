@@ -3,7 +3,7 @@
 %h2= t('devise.passwords.new.title')
 %p= t('devise.passwords.new.content')
 
-= simple_form_for resource, as: resource_name, url: password_url do
+= simple_form_for resource, as: resource_name, url: password_path do
   = component('myg/form-field',
     as: :input,
     attribute: :email,
@@ -13,7 +13,7 @@
   .myg-grid__flex.-space-between
     %p.sm
       = link_to(t('devise.passwords.new.try_to_login'),
-        new_user_session_url,
+        new_user_session_path,
         class: 'myg-text__hyperlink -inherit',
         data: { turbolinks_animate_type: 'devise' })
     = component 'myg/button', value: t('d.proceed')

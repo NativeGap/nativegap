@@ -9,7 +9,7 @@
       inline_label: [t('apps._settings.marketplace.visibility.title'),
         t('apps._settings.marketplace.visibility.content',
           link: link_to(t('apps._settings.marketplace.visibility.link'),
-            app_explore_url(app))).html_safe],
+            app_explore_path(app))).html_safe],
       input_html: { values: ['private', 'public'],
         input_html: { checked: app.visibility == 'public' } })
     - if app.visibility == 'public'
@@ -53,7 +53,7 @@
   %p.sm= t('apps._settings.edit_your_app.content')
   .myg-button__container
     = link_to(t('apps._settings.edit_your_app.button'),
-      edit_app_url(app),
+      edit_app_path(app),
       class: 'myg-button--secondary',
       data: { turbolinks_animate_type: 'app' })
 
@@ -61,7 +61,7 @@
   %p.sm= t('apps._settings.danger_zone.content')
   .myg-button__container
     = link_to(t('apps._settings.danger_zone.button'),
-      app_url(app),
+      app_path(app),
       method: :delete,
       class: 'myg-button--secondary -error',
       data: { turbolinks_animate_type: 'app',

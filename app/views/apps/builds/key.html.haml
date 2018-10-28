@@ -12,7 +12,7 @@
   %p= t('apps.builds.key.no_key_needed.content')
 
 = simple_form_for(@build,
-  url: app_apps_build_url(@build.app.slug, @build.id),
+  url: app_apps_build_path(@build.app.slug, @build.id),
   method: :put,
   html: { multipart: true, id: "edit_app_build_#{@build.id}_key" }) do
   - if @build.platform == 'android'

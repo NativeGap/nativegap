@@ -20,7 +20,7 @@
   .myg-button__container
     - if build.update_available?
       = link_to(t('d.update'),
-        app_apps_build_url(build.app.slug, build.id),
+        app_apps_build_path(build.app.slug, build.id),
         method: :put,
         remote: true,
         class: 'myg-button')
@@ -30,13 +30,13 @@
     - elsif build.key_needed? == false
       - if build.status == 'processing'
         = link_to(t('apps.builds._update.restart_build'),
-          app_apps_build_url(build.app.slug, build.id),
+          app_apps_build_path(build.app.slug, build.id),
           method: :put,
           remote: true,
           class: 'myg-button--secondary')
       - else
         = link_to(t('d.rebuild'),
-          app_apps_build_url(build.app.slug, build.id),
+          app_apps_build_path(build.app.slug, build.id),
           method: :put,
           remote: true,
           class: 'myg-button--secondary')

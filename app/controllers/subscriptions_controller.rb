@@ -45,7 +45,7 @@ class SubscriptionsController < ApplicationController
 
     @subscription.cancel
 
-    redirect_back fallback_location: root_url,
+    redirect_back fallback_location: root_path,
                   notice: I18n.t('subscriptions.destroy.success')
   end
 

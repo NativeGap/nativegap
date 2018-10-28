@@ -4,7 +4,7 @@
   .myg-layout__wrap--large
     %h1.sm= t('welcome.index.title')
     %p.lg= t('welcome.index.content')
-    = simple_form_for App.new, method: :get, url: new_app_url, html: { class: 'myg-grid__flex' } do
+    = simple_form_for App.new, method: :get, url: new_app_path, html: { class: 'myg-grid__flex' } do
       = component 'myg/form-field', as: :input, attribute: :url, class_name: 'app', input_html: { required: true, spellcheck: false, type: 'url', placeholder: 'https://nativegap.com' }
       = component 'myg/button', value: t('welcome.index.get_started')
 
@@ -13,12 +13,12 @@
   %p= t('welcome.index.explore.content')
   .myg-grid__grid.myg-grid__grid--default
     - App.where(visibility: 'public').limit(3)&.each do |app|
-      = link_to app_explore_url(app) do
+      = link_to app_explore_path(app) do
         = image_tag app.icon.url
         %h3.sm= app.name
         %p.sm= app.description
   .myg-button__container
-    = link_to t('welcome.index.explore.button'), explore_url, class: 'myg-button--secondary', data: { turbolinks_animate_type: 'application' }
+    = link_to t('welcome.index.explore.button'), explore_path, class: 'myg-button--secondary', data: { turbolinks_animate_type: 'application' }
 
 %section.myg-layout__wrap--large#features
   .feature

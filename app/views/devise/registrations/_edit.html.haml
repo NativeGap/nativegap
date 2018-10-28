@@ -1,6 +1,6 @@
 = simple_form_for(resource,
   as: resource_name,
-  url: account_url,
+  url: account_path,
   html: { method: :put }) do
 
   = component('myg/form-field',
@@ -61,7 +61,7 @@
     input_html: { input_html: { checked: current_user.update_notifications } })
   .myg-button__container.myg--hidden
     = link_to(t('devise.registrations._edit.enable_notifications'),
-      notify_url,
+      notify_path,
       class: 'modalist--trigger myg-button--secondary')
 
   %h3.sm Explore
@@ -71,7 +71,7 @@
     class_name: 'user',
     inline_label: t('devise.registrations._edit.visibility.content',
       link: link_to(t('devise.registrations._edit.visibility.link'),
-        user_url(current_user))).html_safe,
+        user_path(current_user))).html_safe,
     input_html: { values: ['private', 'public'],
       input_html: { checked: current_user.visibility == 'public' } })
 

@@ -6,7 +6,7 @@
   %h2= t('devise.registrations.new.no_app.title')
 %p= t('devise.registrations.new.content')
 
-= simple_form_for resource, as: resource_name, url: user_registration_url do |f|
+= simple_form_for resource, as: resource_name, url: user_registration_path do |f|
   = f.input(:app_id,
     as: :hidden,
     required: false,
@@ -39,7 +39,7 @@
   .myg-grid__flex.-space-between
     %p.sm
       = link_to(t('devise.registrations.new.form.login_instead'),
-        new_user_session_url(app: params[:app]),
+        new_user_session_path(app: params[:app]),
         class: 'myg-text__hyperlink -inherit',
         data: { turbolinks_animate_type: 'devise' })
     = component 'myg/button', value: t('d.signup')

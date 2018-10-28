@@ -3,19 +3,19 @@
     .app
       %h3.sm= t('d.app')
       - if current_user
-        %p= link_to t('d.dashboard'), apps_url
+        %p= link_to t('d.dashboard'), apps_path
       - else
-        %p= link_to t('d.signup'), new_user_registration_url
-      %p= link_to t('d.marketplace'), explore_url
+        %p= link_to t('d.signup'), new_user_registration_path
+      %p= link_to t('d.marketplace'), explore_path
       - if (nativegap = App.find_by(slug: 'nativegap'))
-        %p= link_to t('mozaic._footer.install_app'), app_explore_url(nativegap)
+        %p= link_to t('mozaic._footer.install_app'), app_explore_path(nativegap)
       %p= link_to(t('d.changelog'),
         Settings.nativegap.medium.changelog,
         target: '_blank')
     .explore
       %h3.sm= t('mozaic._footer.trending_apps')
       - App.where(visibility: 'public').limit(4)&.each do |app|
-        %p= link_to app.name, app_explore_url(app)
+        %p= link_to app.name, app_explore_path(app)
     .support
       %h3.sm= t('d.support')
       %p= link_to(t('mozaic._footer.help_center'),
@@ -41,4 +41,4 @@
 
   .myg-layout__wrap--tablet.myg-grid__flex.-space-between
     %p.sm= t('mozaic._footer.copyright', link: link_to('Jonas Hübotter', 'https://jonhue.me', target: '_blank', class: 'myg-text__hyperlink -inherit')).html_safe
-    %p.sm= link_to current_language, language_url, class: 'modalist--trigger myg-text__hyperlink -inherit'
+    %p.sm= link_to current_language, language_path, class: 'modalist--trigger myg-text__hyperlink -inherit'

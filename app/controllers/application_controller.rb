@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
   def render_r404_access_denied(format, _status, _exception)
     format.html do
-      redirect_back fallback_location: root_url,
+      redirect_back fallback_location: root_path,
                     alert: I18n.t('application.unauthorized')
     end
   end

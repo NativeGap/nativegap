@@ -1,6 +1,6 @@
 - meta(title: @app.name)
 
-%p.sm.nav{ style: "color:#{@app.splash_screen_color || @app.color}" }= link_to t('explore.show.more'), explore_url, class: 'myg-text__hyperlink -inherit'
+%p.sm.nav{ style: "color:#{@app.splash_screen_color || @app.color}" }= link_to t('explore.show.more'), explore_path, class: 'myg-text__hyperlink -inherit'
 - if @app.user.visibility == 'public'
   %p.sm.nav.right{ style: "color:#{@app.splash_screen_color || @app.color}" }
     %span= t('explore.show.made_by').html_safe
@@ -14,7 +14,7 @@
   .myg-button__container
     - if @platforms.select { |_, v| v }.length > 1
       = link_to(t('explore.show.install_app'),
-        install_app_explore_url(@app),
+        install_app_explore_path(@app),
         class: 'modalist--trigger myg-button myg-button--light',
         style: "background:#{@app.accent};border-color:#{@app.accent}")
     - elsif @platforms.select { |_, v| v }.length == 1
