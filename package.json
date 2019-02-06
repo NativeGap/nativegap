@@ -22,7 +22,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.1",
-    "webpack-cli": "^3.2.1",
+    "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^2.11.1"
   }
 }
